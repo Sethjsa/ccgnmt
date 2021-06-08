@@ -1,553 +1,553 @@
-2021-06-08 11:31:07,246 - INFO - root - Hello! This is Joey-NMT (version 1.3).
-2021-06-08 11:31:07,247 - INFO - joeynmt.data - Loading training data...
-2021-06-08 11:31:07,658 - INFO - joeynmt.data - Building vocabulary...
-2021-06-08 11:31:07,793 - INFO - joeynmt.data - Loading dev data...
-2021-06-08 11:31:07,805 - INFO - joeynmt.data - Loading test data...
-2021-06-08 11:31:07,812 - INFO - joeynmt.data - Data loaded.
-2021-06-08 11:31:07,812 - INFO - joeynmt.model - Building an encoder-decoder model...
-2021-06-08 11:31:07,841 - INFO - joeynmt.model - Enc-dec model built.
-2021-06-08 11:31:07,844 - INFO - joeynmt.training - Total params: 105088
-2021-06-08 11:31:07,844 - DEBUG - joeynmt.training - Trainable parameters: ['decoder.att_vector_layer.bias', 'decoder.att_vector_layer.weight', 'decoder.attention.key_layer.weight', 'decoder.output_layer.weight', 'decoder.rnn.bias_hh_l0', 'decoder.rnn.bias_ih_l0', 'decoder.rnn.weight_hh_l0', 'decoder.rnn.weight_ih_l0', 'encoder.rnn.bias_hh_l0', 'encoder.rnn.bias_hh_l0_reverse', 'encoder.rnn.bias_ih_l0', 'encoder.rnn.bias_ih_l0_reverse', 'encoder.rnn.weight_hh_l0', 'encoder.rnn.weight_hh_l0_reverse', 'encoder.rnn.weight_ih_l0', 'encoder.rnn.weight_ih_l0_reverse', 'src_embed.lut.weight', 'trg_embed.lut.weight']
-2021-06-08 11:31:07,848 - INFO - joeynmt.helpers - cfg.name                           : reverse_experiment
-2021-06-08 11:31:07,849 - INFO - joeynmt.helpers - cfg.data.src                       : src
-2021-06-08 11:31:07,849 - INFO - joeynmt.helpers - cfg.data.trg                       : trg
-2021-06-08 11:31:07,849 - INFO - joeynmt.helpers - cfg.data.train                     : test/data/reverse/train
-2021-06-08 11:31:07,849 - INFO - joeynmt.helpers - cfg.data.dev                       : test/data/reverse/dev
-2021-06-08 11:31:07,849 - INFO - joeynmt.helpers - cfg.data.test                      : test/data/reverse/test
-2021-06-08 11:31:07,849 - INFO - joeynmt.helpers - cfg.data.level                     : word
-2021-06-08 11:31:07,849 - INFO - joeynmt.helpers - cfg.data.lowercase                 : False
-2021-06-08 11:31:07,849 - INFO - joeynmt.helpers - cfg.data.max_sent_length           : 25
-2021-06-08 11:31:07,849 - INFO - joeynmt.helpers - cfg.data.src_voc_min_freq          : 0
-2021-06-08 11:31:07,849 - INFO - joeynmt.helpers - cfg.data.src_voc_limit             : 100
-2021-06-08 11:31:07,849 - INFO - joeynmt.helpers - cfg.data.trg_voc_min_freq          : 0
-2021-06-08 11:31:07,849 - INFO - joeynmt.helpers - cfg.data.trg_voc_limit             : 100
-2021-06-08 11:31:07,850 - INFO - joeynmt.helpers - cfg.testing.beam_size              : 1
-2021-06-08 11:31:07,850 - INFO - joeynmt.helpers - cfg.testing.alpha                  : 1.0
-2021-06-08 11:31:07,850 - INFO - joeynmt.helpers - cfg.training.random_seed           : 42
-2021-06-08 11:31:07,850 - INFO - joeynmt.helpers - cfg.training.optimizer             : adam
-2021-06-08 11:31:07,850 - INFO - joeynmt.helpers - cfg.training.learning_rate         : 0.001
-2021-06-08 11:31:07,850 - INFO - joeynmt.helpers - cfg.training.learning_rate_min     : 0.0002
-2021-06-08 11:31:07,850 - INFO - joeynmt.helpers - cfg.training.weight_decay          : 0.0
-2021-06-08 11:31:07,850 - INFO - joeynmt.helpers - cfg.training.clip_grad_norm        : 1.0
-2021-06-08 11:31:07,850 - INFO - joeynmt.helpers - cfg.training.batch_size            : 10
-2021-06-08 11:31:07,850 - INFO - joeynmt.helpers - cfg.training.batch_type            : sentence
-2021-06-08 11:31:07,851 - INFO - joeynmt.helpers - cfg.training.scheduling            : plateau
-2021-06-08 11:31:07,851 - INFO - joeynmt.helpers - cfg.training.patience              : 5
-2021-06-08 11:31:07,851 - INFO - joeynmt.helpers - cfg.training.decrease_factor       : 0.5
-2021-06-08 11:31:07,851 - INFO - joeynmt.helpers - cfg.training.early_stopping_metric : eval_metric
-2021-06-08 11:31:07,851 - INFO - joeynmt.helpers - cfg.training.epochs                : 1
-2021-06-08 11:31:07,851 - INFO - joeynmt.helpers - cfg.training.validation_freq       : 1000
-2021-06-08 11:31:07,851 - INFO - joeynmt.helpers - cfg.training.logging_freq          : 100
-2021-06-08 11:31:07,851 - INFO - joeynmt.helpers - cfg.training.eval_metric           : bleu
-2021-06-08 11:31:07,851 - INFO - joeynmt.helpers - cfg.training.model_dir             : reverse_model
-2021-06-08 11:31:07,852 - INFO - joeynmt.helpers - cfg.training.overwrite             : True
-2021-06-08 11:31:07,852 - INFO - joeynmt.helpers - cfg.training.shuffle               : True
-2021-06-08 11:31:07,852 - INFO - joeynmt.helpers - cfg.training.use_cuda              : False
-2021-06-08 11:31:07,852 - INFO - joeynmt.helpers - cfg.training.max_output_length     : 30
-2021-06-08 11:31:07,852 - INFO - joeynmt.helpers - cfg.training.print_valid_sents     : [0, 3, 6]
-2021-06-08 11:31:07,852 - INFO - joeynmt.helpers - cfg.training.keep_last_ckpts       : 2
-2021-06-08 11:31:07,852 - INFO - joeynmt.helpers - cfg.model.initializer              : xavier
-2021-06-08 11:31:07,852 - INFO - joeynmt.helpers - cfg.model.embed_initializer        : normal
-2021-06-08 11:31:07,852 - INFO - joeynmt.helpers - cfg.model.embed_init_weight        : 0.1
-2021-06-08 11:31:07,852 - INFO - joeynmt.helpers - cfg.model.bias_initializer         : zeros
-2021-06-08 11:31:07,853 - INFO - joeynmt.helpers - cfg.model.init_rnn_orthogonal      : False
-2021-06-08 11:31:07,853 - INFO - joeynmt.helpers - cfg.model.lstm_forget_gate         : 0.0
-2021-06-08 11:31:07,853 - INFO - joeynmt.helpers - cfg.model.encoder.rnn_type         : lstm
-2021-06-08 11:31:07,853 - INFO - joeynmt.helpers - cfg.model.encoder.embeddings.embedding_dim : 16
-2021-06-08 11:31:07,853 - INFO - joeynmt.helpers - cfg.model.encoder.embeddings.scale : False
-2021-06-08 11:31:07,853 - INFO - joeynmt.helpers - cfg.model.encoder.hidden_size      : 64
-2021-06-08 11:31:07,853 - INFO - joeynmt.helpers - cfg.model.encoder.bidirectional    : True
-2021-06-08 11:31:07,853 - INFO - joeynmt.helpers - cfg.model.encoder.dropout          : 0.1
-2021-06-08 11:31:07,853 - INFO - joeynmt.helpers - cfg.model.encoder.num_layers       : 1
-2021-06-08 11:31:07,853 - INFO - joeynmt.helpers - cfg.model.decoder.rnn_type         : lstm
-2021-06-08 11:31:07,853 - INFO - joeynmt.helpers - cfg.model.decoder.embeddings.embedding_dim : 16
-2021-06-08 11:31:07,853 - INFO - joeynmt.helpers - cfg.model.decoder.embeddings.scale : False
-2021-06-08 11:31:07,853 - INFO - joeynmt.helpers - cfg.model.decoder.hidden_size      : 64
-2021-06-08 11:31:07,854 - INFO - joeynmt.helpers - cfg.model.decoder.dropout          : 0.1
-2021-06-08 11:31:07,854 - INFO - joeynmt.helpers - cfg.model.decoder.hidden_dropout   : 0.1
-2021-06-08 11:31:07,854 - INFO - joeynmt.helpers - cfg.model.decoder.num_layers       : 1
-2021-06-08 11:31:07,854 - INFO - joeynmt.helpers - cfg.model.decoder.input_feeding    : True
-2021-06-08 11:31:07,854 - INFO - joeynmt.helpers - cfg.model.decoder.init_hidden      : zero
-2021-06-08 11:31:07,854 - INFO - joeynmt.helpers - cfg.model.decoder.attention        : luong
-2021-06-08 11:31:07,854 - INFO - joeynmt.helpers - Data set sizes: 
+2021-06-08 13:09:36,917 - INFO - root - Hello! This is Joey-NMT (version 1.3).
+2021-06-08 13:09:36,923 - INFO - joeynmt.data - Loading training data...
+2021-06-08 13:09:37,323 - INFO - joeynmt.data - Building vocabulary...
+2021-06-08 13:09:37,454 - INFO - joeynmt.data - Loading dev data...
+2021-06-08 13:09:37,464 - INFO - joeynmt.data - Loading test data...
+2021-06-08 13:09:37,469 - INFO - joeynmt.data - Data loaded.
+2021-06-08 13:09:37,470 - INFO - joeynmt.model - Building an encoder-decoder model...
+2021-06-08 13:09:37,504 - INFO - joeynmt.model - Enc-dec model built.
+2021-06-08 13:09:37,509 - INFO - joeynmt.training - Total params: 105088
+2021-06-08 13:09:37,509 - DEBUG - joeynmt.training - Trainable parameters: ['decoder.att_vector_layer.bias', 'decoder.att_vector_layer.weight', 'decoder.attention.key_layer.weight', 'decoder.output_layer.weight', 'decoder.rnn.bias_hh_l0', 'decoder.rnn.bias_ih_l0', 'decoder.rnn.weight_hh_l0', 'decoder.rnn.weight_ih_l0', 'encoder.rnn.bias_hh_l0', 'encoder.rnn.bias_hh_l0_reverse', 'encoder.rnn.bias_ih_l0', 'encoder.rnn.bias_ih_l0_reverse', 'encoder.rnn.weight_hh_l0', 'encoder.rnn.weight_hh_l0_reverse', 'encoder.rnn.weight_ih_l0', 'encoder.rnn.weight_ih_l0_reverse', 'src_embed.lut.weight', 'trg_embed.lut.weight']
+2021-06-08 13:09:37,516 - INFO - joeynmt.helpers - cfg.name                           : reverse_experiment
+2021-06-08 13:09:37,516 - INFO - joeynmt.helpers - cfg.data.src                       : src
+2021-06-08 13:09:37,516 - INFO - joeynmt.helpers - cfg.data.trg                       : trg
+2021-06-08 13:09:37,516 - INFO - joeynmt.helpers - cfg.data.train                     : test/data/reverse/train
+2021-06-08 13:09:37,516 - INFO - joeynmt.helpers - cfg.data.dev                       : test/data/reverse/dev
+2021-06-08 13:09:37,517 - INFO - joeynmt.helpers - cfg.data.test                      : test/data/reverse/test
+2021-06-08 13:09:37,517 - INFO - joeynmt.helpers - cfg.data.level                     : word
+2021-06-08 13:09:37,517 - INFO - joeynmt.helpers - cfg.data.lowercase                 : False
+2021-06-08 13:09:37,517 - INFO - joeynmt.helpers - cfg.data.max_sent_length           : 25
+2021-06-08 13:09:37,517 - INFO - joeynmt.helpers - cfg.data.src_voc_min_freq          : 0
+2021-06-08 13:09:37,517 - INFO - joeynmt.helpers - cfg.data.src_voc_limit             : 100
+2021-06-08 13:09:37,517 - INFO - joeynmt.helpers - cfg.data.trg_voc_min_freq          : 0
+2021-06-08 13:09:37,517 - INFO - joeynmt.helpers - cfg.data.trg_voc_limit             : 100
+2021-06-08 13:09:37,517 - INFO - joeynmt.helpers - cfg.testing.beam_size              : 1
+2021-06-08 13:09:37,517 - INFO - joeynmt.helpers - cfg.testing.alpha                  : 1.0
+2021-06-08 13:09:37,517 - INFO - joeynmt.helpers - cfg.training.random_seed           : 42
+2021-06-08 13:09:37,517 - INFO - joeynmt.helpers - cfg.training.optimizer             : adam
+2021-06-08 13:09:37,517 - INFO - joeynmt.helpers - cfg.training.learning_rate         : 0.001
+2021-06-08 13:09:37,518 - INFO - joeynmt.helpers - cfg.training.learning_rate_min     : 0.0002
+2021-06-08 13:09:37,518 - INFO - joeynmt.helpers - cfg.training.weight_decay          : 0.0
+2021-06-08 13:09:37,518 - INFO - joeynmt.helpers - cfg.training.clip_grad_norm        : 1.0
+2021-06-08 13:09:37,518 - INFO - joeynmt.helpers - cfg.training.batch_size            : 10
+2021-06-08 13:09:37,518 - INFO - joeynmt.helpers - cfg.training.batch_type            : sentence
+2021-06-08 13:09:37,518 - INFO - joeynmt.helpers - cfg.training.scheduling            : plateau
+2021-06-08 13:09:37,518 - INFO - joeynmt.helpers - cfg.training.patience              : 5
+2021-06-08 13:09:37,518 - INFO - joeynmt.helpers - cfg.training.decrease_factor       : 0.5
+2021-06-08 13:09:37,518 - INFO - joeynmt.helpers - cfg.training.early_stopping_metric : eval_metric
+2021-06-08 13:09:37,518 - INFO - joeynmt.helpers - cfg.training.epochs                : 1
+2021-06-08 13:09:37,518 - INFO - joeynmt.helpers - cfg.training.validation_freq       : 1000
+2021-06-08 13:09:37,518 - INFO - joeynmt.helpers - cfg.training.logging_freq          : 100
+2021-06-08 13:09:37,519 - INFO - joeynmt.helpers - cfg.training.eval_metric           : bleu
+2021-06-08 13:09:37,519 - INFO - joeynmt.helpers - cfg.training.model_dir             : reverse_model
+2021-06-08 13:09:37,519 - INFO - joeynmt.helpers - cfg.training.overwrite             : True
+2021-06-08 13:09:37,519 - INFO - joeynmt.helpers - cfg.training.shuffle               : True
+2021-06-08 13:09:37,519 - INFO - joeynmt.helpers - cfg.training.use_cuda              : False
+2021-06-08 13:09:37,519 - INFO - joeynmt.helpers - cfg.training.max_output_length     : 30
+2021-06-08 13:09:37,519 - INFO - joeynmt.helpers - cfg.training.print_valid_sents     : [0, 3, 6]
+2021-06-08 13:09:37,520 - INFO - joeynmt.helpers - cfg.training.keep_last_ckpts       : 2
+2021-06-08 13:09:37,520 - INFO - joeynmt.helpers - cfg.model.initializer              : xavier
+2021-06-08 13:09:37,520 - INFO - joeynmt.helpers - cfg.model.embed_initializer        : normal
+2021-06-08 13:09:37,520 - INFO - joeynmt.helpers - cfg.model.embed_init_weight        : 0.1
+2021-06-08 13:09:37,520 - INFO - joeynmt.helpers - cfg.model.bias_initializer         : zeros
+2021-06-08 13:09:37,520 - INFO - joeynmt.helpers - cfg.model.init_rnn_orthogonal      : False
+2021-06-08 13:09:37,520 - INFO - joeynmt.helpers - cfg.model.lstm_forget_gate         : 0.0
+2021-06-08 13:09:37,520 - INFO - joeynmt.helpers - cfg.model.encoder.rnn_type         : lstm
+2021-06-08 13:09:37,520 - INFO - joeynmt.helpers - cfg.model.encoder.embeddings.embedding_dim : 16
+2021-06-08 13:09:37,520 - INFO - joeynmt.helpers - cfg.model.encoder.embeddings.scale : False
+2021-06-08 13:09:37,520 - INFO - joeynmt.helpers - cfg.model.encoder.hidden_size      : 64
+2021-06-08 13:09:37,520 - INFO - joeynmt.helpers - cfg.model.encoder.bidirectional    : True
+2021-06-08 13:09:37,520 - INFO - joeynmt.helpers - cfg.model.encoder.dropout          : 0.1
+2021-06-08 13:09:37,520 - INFO - joeynmt.helpers - cfg.model.encoder.num_layers       : 1
+2021-06-08 13:09:37,521 - INFO - joeynmt.helpers - cfg.model.decoder.rnn_type         : lstm
+2021-06-08 13:09:37,521 - INFO - joeynmt.helpers - cfg.model.decoder.embeddings.embedding_dim : 16
+2021-06-08 13:09:37,521 - INFO - joeynmt.helpers - cfg.model.decoder.embeddings.scale : False
+2021-06-08 13:09:37,521 - INFO - joeynmt.helpers - cfg.model.decoder.hidden_size      : 64
+2021-06-08 13:09:37,521 - INFO - joeynmt.helpers - cfg.model.decoder.dropout          : 0.1
+2021-06-08 13:09:37,521 - INFO - joeynmt.helpers - cfg.model.decoder.hidden_dropout   : 0.1
+2021-06-08 13:09:37,521 - INFO - joeynmt.helpers - cfg.model.decoder.num_layers       : 1
+2021-06-08 13:09:37,521 - INFO - joeynmt.helpers - cfg.model.decoder.input_feeding    : True
+2021-06-08 13:09:37,521 - INFO - joeynmt.helpers - cfg.model.decoder.init_hidden      : zero
+2021-06-08 13:09:37,521 - INFO - joeynmt.helpers - cfg.model.decoder.attention        : luong
+2021-06-08 13:09:37,521 - INFO - joeynmt.helpers - Data set sizes: 
 	train 50000,
 	valid 1000,
 	test 1000
-2021-06-08 11:31:07,854 - INFO - joeynmt.helpers - First training example:
+2021-06-08 13:09:37,521 - INFO - joeynmt.helpers - First training example:
 	[SRC] 28 14 42 7 20 38 18
 	[TRG] 18 38 20 7 42 14 28
-2021-06-08 11:31:07,854 - INFO - joeynmt.helpers - First 10 words (src): (0) <unk> (1) <pad> (2) <s> (3) </s> (4) 15 (5) 35 (6) 44 (7) 18 (8) 36 (9) 16
-2021-06-08 11:31:07,854 - INFO - joeynmt.helpers - First 10 words (trg): (0) <unk> (1) <pad> (2) <s> (3) </s> (4) 15 (5) 35 (6) 44 (7) 18 (8) 36 (9) 16
-2021-06-08 11:31:07,854 - INFO - joeynmt.helpers - Number of Src words (types): 54
-2021-06-08 11:31:07,854 - INFO - joeynmt.helpers - Number of Trg words (types): 54
-2021-06-08 11:31:07,855 - INFO - joeynmt.training - Model(
+2021-06-08 13:09:37,521 - INFO - joeynmt.helpers - First 10 words (src): (0) <unk> (1) <pad> (2) <s> (3) </s> (4) 15 (5) 35 (6) 44 (7) 18 (8) 36 (9) 16
+2021-06-08 13:09:37,522 - INFO - joeynmt.helpers - First 10 words (trg): (0) <unk> (1) <pad> (2) <s> (3) </s> (4) 15 (5) 35 (6) 44 (7) 18 (8) 36 (9) 16
+2021-06-08 13:09:37,522 - INFO - joeynmt.helpers - Number of Src words (types): 54
+2021-06-08 13:09:37,522 - INFO - joeynmt.helpers - Number of Trg words (types): 54
+2021-06-08 13:09:37,522 - INFO - joeynmt.training - Model(
 	encoder=RecurrentEncoder(LSTM(16, 64, batch_first=True, bidirectional=True)),
 	decoder=RecurrentDecoder(rnn=LSTM(80, 64, batch_first=True), attention=LuongAttention),
 	src_embed=Embeddings(embedding_dim=16, vocab_size=54),
 	trg_embed=Embeddings(embedding_dim=16, vocab_size=54))
-2021-06-08 11:31:07,855 - INFO - joeynmt.training - Train stats:
+2021-06-08 13:09:37,522 - INFO - joeynmt.training - Train stats:
 	device: cpu
 	n_gpu: 0
 	16-bits training: False
 	gradient accumulation: 1
 	batch size per device: 10
 	total batch size (w. parallel & accumulation): 10
-2021-06-08 11:31:07,855 - INFO - joeynmt.training - EPOCH 1
-2021-06-08 11:31:10,449 - INFO - joeynmt.training - Epoch   1, Step:      100, Batch Loss:    57.867035, Tokens per Sec:     5251, Lr: 0.001000
-2021-06-08 11:31:13,020 - INFO - joeynmt.training - Epoch   1, Step:      200, Batch Loss:     8.945168, Tokens per Sec:     5500, Lr: 0.001000
-2021-06-08 11:31:15,528 - INFO - joeynmt.training - Epoch   1, Step:      300, Batch Loss:    44.317406, Tokens per Sec:     5559, Lr: 0.001000
-2021-06-08 11:31:18,113 - INFO - joeynmt.training - Epoch   1, Step:      400, Batch Loss:    73.479065, Tokens per Sec:     5504, Lr: 0.001000
-2021-06-08 11:31:20,756 - INFO - joeynmt.training - Epoch   1, Step:      500, Batch Loss:    39.308754, Tokens per Sec:     5253, Lr: 0.001000
-2021-06-08 11:31:23,387 - INFO - joeynmt.training - Epoch   1, Step:      600, Batch Loss:    36.889931, Tokens per Sec:     5346, Lr: 0.001000
-2021-06-08 11:31:25,892 - INFO - joeynmt.training - Epoch   1, Step:      700, Batch Loss:     7.642076, Tokens per Sec:     5532, Lr: 0.001000
-2021-06-08 11:31:28,427 - INFO - joeynmt.training - Epoch   1, Step:      800, Batch Loss:    60.596691, Tokens per Sec:     5459, Lr: 0.001000
-2021-06-08 11:31:31,034 - INFO - joeynmt.training - Epoch   1, Step:      900, Batch Loss:    77.322479, Tokens per Sec:     5385, Lr: 0.001000
-2021-06-08 11:31:33,546 - INFO - joeynmt.training - Epoch   1, Step:     1000, Batch Loss:    63.305077, Tokens per Sec:     5555, Lr: 0.001000
-2021-06-08 11:31:37,016 - INFO - joeynmt.training - Hooray! New best validation result [eval_metric]!
-2021-06-08 11:31:37,017 - INFO - joeynmt.training - Saving new checkpoint.
-2021-06-08 11:31:37,022 - INFO - joeynmt.training - Example #0
-2021-06-08 11:31:37,022 - DEBUG - joeynmt.training - 	Raw source:     ['33', '9', '15', '3', '14', '33', '32', '42', '23', '12', '14', '17', '4', '35', '0', '48', '46', '36', '46', '27', '2', '34', '35', '17', '36', '39', '7', '14', '9', '0']
-2021-06-08 11:31:37,022 - DEBUG - joeynmt.training - 	Raw hypothesis: ['0', '9', '14', '7', '39', '36', '17', '35', '34', '2', '27', '46', '22', '22', '22', '40', '42', '42', '42', '16', '16', '16', '16', '33', '39', '15']
-2021-06-08 11:31:37,022 - INFO - joeynmt.training - 	Source:     33 9 15 3 14 33 32 42 23 12 14 17 4 35 0 48 46 36 46 27 2 34 35 17 36 39 7 14 9 0
-2021-06-08 11:31:37,022 - INFO - joeynmt.training - 	Reference:  0 9 14 7 39 36 17 35 34 2 27 46 36 46 48 0 35 4 17 14 12 23 42 32 33 14 3 15 9 33
-2021-06-08 11:31:37,022 - INFO - joeynmt.training - 	Hypothesis: 0 9 14 7 39 36 17 35 34 2 27 46 22 22 22 40 42 42 42 16 16 16 16 33 39 15
-2021-06-08 11:31:37,022 - INFO - joeynmt.training - Example #3
-2021-06-08 11:31:37,022 - DEBUG - joeynmt.training - 	Raw source:     ['10', '43', '37', '32', '6', '9', '25', '36', '21', '29', '16', '7', '18', '27', '30', '46', '37', '15', '7', '48', '18']
-2021-06-08 11:31:37,022 - DEBUG - joeynmt.training - 	Raw hypothesis: ['18', '48', '7', '15', '37', '46', '30', '27', '18', '16', '16', '37', '1', '25', '41', '41', '43']
-2021-06-08 11:31:37,023 - INFO - joeynmt.training - 	Source:     10 43 37 32 6 9 25 36 21 29 16 7 18 27 30 46 37 15 7 48 18
-2021-06-08 11:31:37,023 - INFO - joeynmt.training - 	Reference:  18 48 7 15 37 46 30 27 18 7 16 29 21 36 25 9 6 32 37 43 10
-2021-06-08 11:31:37,023 - INFO - joeynmt.training - 	Hypothesis: 18 48 7 15 37 46 30 27 18 16 16 37 1 25 41 41 43
-2021-06-08 11:31:37,023 - INFO - joeynmt.training - Example #6
-2021-06-08 11:31:37,023 - DEBUG - joeynmt.training - 	Raw source:     ['0', '38', '14', '26', '20', '34', '10', '36', '11', '32', '29', '21']
-2021-06-08 11:31:37,023 - DEBUG - joeynmt.training - 	Raw hypothesis: ['21', '29', '32', '11', '36', '10', '34', '20', '26', '14', '40']
-2021-06-08 11:31:37,023 - INFO - joeynmt.training - 	Source:     0 38 14 26 20 34 10 36 11 32 29 21
-2021-06-08 11:31:37,023 - INFO - joeynmt.training - 	Reference:  21 29 32 11 36 10 34 20 26 14 38 0
-2021-06-08 11:31:37,023 - INFO - joeynmt.training - 	Hypothesis: 21 29 32 11 36 10 34 20 26 14 40
-2021-06-08 11:31:37,023 - INFO - joeynmt.training - Validation result (greedy) at epoch   1, step     1000: bleu:  46.27, loss: 31183.8438, ppl:   6.7575, duration: 3.4768s
-2021-06-08 11:31:37,168 - DEBUG - matplotlib.font_manager - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=8.333333333333332.
-2021-06-08 11:31:37,168 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUni.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:37,168 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymReg.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:37,168 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmb10' (cmb10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmmi10' (cmmi10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmr10' (cmr10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniIta.ttf) italic normal 400 normal>) = 11.05
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymReg.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymReg.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymReg.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmex10' (cmex10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralBolIta.ttf) italic normal 700 normal>) = 11.335
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Display' (DejaVuSansDisplay.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:37,169 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif Display' (DejaVuSerifDisplay.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBolIta.ttf) italic normal 700 normal>) = 11.335
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFiveSym' (STIXSizFiveSymReg.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneral.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmss10' (cmss10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralItalic.ttf) italic normal 400 normal>) = 11.05
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmtt10' (cmtt10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmsy10' (cmsy10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-Italic.ttf) italic normal 400 condensed>) = 11.25
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-Bold.ttf) normal normal 700 condensed>) = 10.535
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Math TeX Gyre' (DejaVuMathTeXGyre.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-BoldOblique.ttf) oblique normal 700 condensed>) = 1.535
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
-2021-06-08 11:31:37,170 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
-2021-06-08 11:31:37,171 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-Bold.ttf) normal normal 700 condensed>) = 0.5349999999999999
-2021-06-08 11:31:37,171 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed.ttf) normal normal 400 condensed>) = 0.25
-2021-06-08 11:31:37,171 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:37,171 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-BoldItalic.ttf) italic normal 700 condensed>) = 11.535
-2021-06-08 11:31:37,171 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
-2021-06-08 11:31:37,171 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-Oblique.ttf) oblique normal 400 condensed>) = 1.25
-2021-06-08 11:31:37,171 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-ExtraLight.ttf) normal normal 200 normal>) = 0.24
-2021-06-08 11:31:37,171 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:37,171 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed.ttf) normal normal 400 condensed>) = 10.25
-2021-06-08 11:31:37,171 - DEBUG - matplotlib.font_manager - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=8.333333333333332 to DejaVu Sans ('/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf') with score of 0.050000.
-2021-06-08 11:31:37,632 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
-2021-06-08 11:31:37,675 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
-2021-06-08 11:31:37,675 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
-2021-06-08 11:31:38,133 - DEBUG - matplotlib.font_manager - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=11.904761904761903.
-2021-06-08 11:31:38,133 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUni.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,133 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymReg.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,133 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
-2021-06-08 11:31:38,133 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmb10' (cmb10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,133 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
-2021-06-08 11:31:38,133 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:38,133 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
-2021-06-08 11:31:38,133 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmmi10' (cmmi10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,133 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmr10' (cmr10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,133 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniIta.ttf) italic normal 400 normal>) = 11.05
-2021-06-08 11:31:38,133 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymReg.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,133 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
-2021-06-08 11:31:38,133 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymReg.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,133 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:38,133 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymReg.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmex10' (cmex10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralBolIta.ttf) italic normal 700 normal>) = 11.335
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Display' (DejaVuSansDisplay.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif Display' (DejaVuSerifDisplay.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBolIta.ttf) italic normal 700 normal>) = 11.335
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFiveSym' (STIXSizFiveSymReg.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneral.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmss10' (cmss10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralItalic.ttf) italic normal 400 normal>) = 11.05
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmtt10' (cmtt10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmsy10' (cmsy10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-Italic.ttf) italic normal 400 condensed>) = 11.25
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,134 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:38,135 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
-2021-06-08 11:31:38,135 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
-2021-06-08 11:31:38,135 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
-2021-06-08 11:31:38,135 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
-2021-06-08 11:31:38,135 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-Bold.ttf) normal normal 700 condensed>) = 10.535
-2021-06-08 11:31:38,135 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Math TeX Gyre' (DejaVuMathTeXGyre.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,135 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-BoldOblique.ttf) oblique normal 700 condensed>) = 1.535
-2021-06-08 11:31:38,135 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
-2021-06-08 11:31:38,135 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
-2021-06-08 11:31:38,135 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-Bold.ttf) normal normal 700 condensed>) = 0.5349999999999999
-2021-06-08 11:31:38,135 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed.ttf) normal normal 400 condensed>) = 0.25
-2021-06-08 11:31:38,135 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,135 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-BoldItalic.ttf) italic normal 700 condensed>) = 11.535
-2021-06-08 11:31:38,135 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
-2021-06-08 11:31:38,135 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-Oblique.ttf) oblique normal 400 condensed>) = 1.25
-2021-06-08 11:31:38,135 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-ExtraLight.ttf) normal normal 200 normal>) = 0.24
-2021-06-08 11:31:38,135 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:38,135 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed.ttf) normal normal 400 condensed>) = 10.25
-2021-06-08 11:31:38,136 - DEBUG - matplotlib.font_manager - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=11.904761904761903 to DejaVu Sans ('/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf') with score of 0.050000.
-2021-06-08 11:31:38,240 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
-2021-06-08 11:31:38,272 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
-2021-06-08 11:31:38,272 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
-2021-06-08 11:31:38,530 - DEBUG - matplotlib.font_manager - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=20.833333333333336.
-2021-06-08 11:31:38,531 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUni.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,531 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymReg.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,531 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
-2021-06-08 11:31:38,531 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmb10' (cmb10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,531 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
-2021-06-08 11:31:38,531 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:38,531 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
-2021-06-08 11:31:38,531 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmmi10' (cmmi10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,531 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmr10' (cmr10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,531 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniIta.ttf) italic normal 400 normal>) = 11.05
-2021-06-08 11:31:38,531 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymReg.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,531 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
-2021-06-08 11:31:38,531 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymReg.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymReg.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmex10' (cmex10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralBolIta.ttf) italic normal 700 normal>) = 11.335
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Display' (DejaVuSansDisplay.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif Display' (DejaVuSerifDisplay.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBolIta.ttf) italic normal 700 normal>) = 11.335
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFiveSym' (STIXSizFiveSymReg.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneral.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmss10' (cmss10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralItalic.ttf) italic normal 400 normal>) = 11.05
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmtt10' (cmtt10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmsy10' (cmsy10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-Italic.ttf) italic normal 400 condensed>) = 11.25
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,532 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:38,533 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
-2021-06-08 11:31:38,533 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
-2021-06-08 11:31:38,533 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
-2021-06-08 11:31:38,533 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
-2021-06-08 11:31:38,533 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-Bold.ttf) normal normal 700 condensed>) = 10.535
-2021-06-08 11:31:38,533 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Math TeX Gyre' (DejaVuMathTeXGyre.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,533 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-BoldOblique.ttf) oblique normal 700 condensed>) = 1.535
-2021-06-08 11:31:38,533 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
-2021-06-08 11:31:38,533 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
-2021-06-08 11:31:38,533 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-Bold.ttf) normal normal 700 condensed>) = 0.5349999999999999
-2021-06-08 11:31:38,533 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed.ttf) normal normal 400 condensed>) = 0.25
-2021-06-08 11:31:38,533 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:31:38,533 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-BoldItalic.ttf) italic normal 700 condensed>) = 11.535
-2021-06-08 11:31:38,533 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
-2021-06-08 11:31:38,533 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-Oblique.ttf) oblique normal 400 condensed>) = 1.25
-2021-06-08 11:31:38,533 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-ExtraLight.ttf) normal normal 200 normal>) = 0.24
-2021-06-08 11:31:38,533 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:31:38,533 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed.ttf) normal normal 400 condensed>) = 10.25
-2021-06-08 11:31:38,533 - DEBUG - matplotlib.font_manager - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=20.833333333333336 to DejaVu Sans ('/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf') with score of 0.050000.
-2021-06-08 11:31:38,695 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
-2021-06-08 11:31:38,713 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
-2021-06-08 11:31:38,713 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
-2021-06-08 11:31:41,454 - INFO - joeynmt.training - Epoch   1, Step:     1100, Batch Loss:    28.133450, Tokens per Sec:     3114, Lr: 0.001000
-2021-06-08 11:31:44,124 - INFO - joeynmt.training - Epoch   1, Step:     1200, Batch Loss:    13.938107, Tokens per Sec:     5286, Lr: 0.001000
-2021-06-08 11:31:46,774 - INFO - joeynmt.training - Epoch   1, Step:     1300, Batch Loss:     2.630973, Tokens per Sec:     5329, Lr: 0.001000
-2021-06-08 11:31:49,487 - INFO - joeynmt.training - Epoch   1, Step:     1400, Batch Loss:     1.281729, Tokens per Sec:     5134, Lr: 0.001000
-2021-06-08 11:31:52,255 - INFO - joeynmt.training - Epoch   1, Step:     1500, Batch Loss:     1.887677, Tokens per Sec:     5095, Lr: 0.001000
-2021-06-08 11:31:54,926 - INFO - joeynmt.training - Epoch   1, Step:     1600, Batch Loss:     0.751604, Tokens per Sec:     5277, Lr: 0.001000
-2021-06-08 11:31:57,484 - INFO - joeynmt.training - Epoch   1, Step:     1700, Batch Loss:    27.321651, Tokens per Sec:     5325, Lr: 0.001000
-2021-06-08 11:32:00,198 - INFO - joeynmt.training - Epoch   1, Step:     1800, Batch Loss:    68.136574, Tokens per Sec:     5137, Lr: 0.001000
-2021-06-08 11:32:02,811 - INFO - joeynmt.training - Epoch   1, Step:     1900, Batch Loss:    18.535353, Tokens per Sec:     5353, Lr: 0.001000
-2021-06-08 11:32:05,480 - INFO - joeynmt.training - Epoch   1, Step:     2000, Batch Loss:     5.142752, Tokens per Sec:     5370, Lr: 0.001000
-2021-06-08 11:32:08,705 - INFO - joeynmt.training - Hooray! New best validation result [eval_metric]!
-2021-06-08 11:32:08,706 - INFO - joeynmt.training - Saving new checkpoint.
-2021-06-08 11:32:08,710 - INFO - joeynmt.training - Example #0
-2021-06-08 11:32:08,710 - DEBUG - joeynmt.training - 	Raw source:     ['33', '9', '15', '3', '14', '33', '32', '42', '23', '12', '14', '17', '4', '35', '0', '48', '46', '36', '46', '27', '2', '34', '35', '17', '36', '39', '7', '14', '9', '0']
-2021-06-08 11:32:08,710 - DEBUG - joeynmt.training - 	Raw hypothesis: ['0', '9', '14', '7', '39', '36', '17', '35', '34', '2', '27', '46', '36', '36', '48', '13', '35', '16', '16', '42', '16', '16', '39', '9', '33']
-2021-06-08 11:32:08,710 - INFO - joeynmt.training - 	Source:     33 9 15 3 14 33 32 42 23 12 14 17 4 35 0 48 46 36 46 27 2 34 35 17 36 39 7 14 9 0
-2021-06-08 11:32:08,710 - INFO - joeynmt.training - 	Reference:  0 9 14 7 39 36 17 35 34 2 27 46 36 46 48 0 35 4 17 14 12 23 42 32 33 14 3 15 9 33
-2021-06-08 11:32:08,710 - INFO - joeynmt.training - 	Hypothesis: 0 9 14 7 39 36 17 35 34 2 27 46 36 36 48 13 35 16 16 42 16 16 39 9 33
-2021-06-08 11:32:08,711 - INFO - joeynmt.training - Example #3
-2021-06-08 11:32:08,711 - DEBUG - joeynmt.training - 	Raw source:     ['10', '43', '37', '32', '6', '9', '25', '36', '21', '29', '16', '7', '18', '27', '30', '46', '37', '15', '7', '48', '18']
-2021-06-08 11:32:08,711 - DEBUG - joeynmt.training - 	Raw hypothesis: ['18', '48', '7', '15', '37', '46', '30', '27', '18', '7', '16', '4', '21', '36', '36', '41', '24', '43', '10']
-2021-06-08 11:32:08,711 - INFO - joeynmt.training - 	Source:     10 43 37 32 6 9 25 36 21 29 16 7 18 27 30 46 37 15 7 48 18
-2021-06-08 11:32:08,711 - INFO - joeynmt.training - 	Reference:  18 48 7 15 37 46 30 27 18 7 16 29 21 36 25 9 6 32 37 43 10
-2021-06-08 11:32:08,711 - INFO - joeynmt.training - 	Hypothesis: 18 48 7 15 37 46 30 27 18 7 16 4 21 36 36 41 24 43 10
-2021-06-08 11:32:08,711 - INFO - joeynmt.training - Example #6
-2021-06-08 11:32:08,711 - DEBUG - joeynmt.training - 	Raw source:     ['0', '38', '14', '26', '20', '34', '10', '36', '11', '32', '29', '21']
-2021-06-08 11:32:08,711 - DEBUG - joeynmt.training - 	Raw hypothesis: ['21', '29', '32', '11', '36', '10', '34', '20', '26', '14', '38', '0']
-2021-06-08 11:32:08,711 - INFO - joeynmt.training - 	Source:     0 38 14 26 20 34 10 36 11 32 29 21
-2021-06-08 11:32:08,711 - INFO - joeynmt.training - 	Reference:  21 29 32 11 36 10 34 20 26 14 38 0
-2021-06-08 11:32:08,711 - INFO - joeynmt.training - 	Hypothesis: 21 29 32 11 36 10 34 20 26 14 38 0
-2021-06-08 11:32:08,711 - INFO - joeynmt.training - Validation result (greedy) at epoch   1, step     2000: bleu:  74.26, loss: 25488.1230, ppl:   4.7668, duration: 3.2311s
-2021-06-08 11:32:08,982 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
-2021-06-08 11:32:09,036 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
-2021-06-08 11:32:09,036 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
-2021-06-08 11:32:09,536 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
-2021-06-08 11:32:09,578 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
-2021-06-08 11:32:09,578 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
-2021-06-08 11:32:10,260 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
-2021-06-08 11:32:10,289 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
-2021-06-08 11:32:10,289 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
-2021-06-08 11:32:13,852 - INFO - joeynmt.training - Epoch   1, Step:     2100, Batch Loss:     0.456415, Tokens per Sec:     2719, Lr: 0.001000
-2021-06-08 11:32:17,196 - INFO - joeynmt.training - Epoch   1, Step:     2200, Batch Loss:    12.104485, Tokens per Sec:     4151, Lr: 0.001000
-2021-06-08 11:32:20,659 - INFO - joeynmt.training - Epoch   1, Step:     2300, Batch Loss:     0.997927, Tokens per Sec:     4061, Lr: 0.001000
-2021-06-08 11:32:23,872 - INFO - joeynmt.training - Epoch   1, Step:     2400, Batch Loss:     2.042418, Tokens per Sec:     4449, Lr: 0.001000
-2021-06-08 11:32:26,492 - INFO - joeynmt.training - Epoch   1, Step:     2500, Batch Loss:     0.493272, Tokens per Sec:     5287, Lr: 0.001000
-2021-06-08 11:32:29,160 - INFO - joeynmt.training - Epoch   1, Step:     2600, Batch Loss:    57.569111, Tokens per Sec:     5221, Lr: 0.001000
-2021-06-08 11:32:31,826 - INFO - joeynmt.training - Epoch   1, Step:     2700, Batch Loss:     0.053240, Tokens per Sec:     5120, Lr: 0.001000
-2021-06-08 11:32:34,462 - INFO - joeynmt.training - Epoch   1, Step:     2800, Batch Loss:     0.024577, Tokens per Sec:     5313, Lr: 0.001000
-2021-06-08 11:32:37,081 - INFO - joeynmt.training - Epoch   1, Step:     2900, Batch Loss:    18.344999, Tokens per Sec:     5369, Lr: 0.001000
-2021-06-08 11:32:40,949 - INFO - joeynmt.training - Epoch   1, Step:     3000, Batch Loss:    31.713501, Tokens per Sec:     3644, Lr: 0.001000
-2021-06-08 11:32:44,375 - INFO - joeynmt.training - Hooray! New best validation result [eval_metric]!
-2021-06-08 11:32:44,375 - INFO - joeynmt.training - Saving new checkpoint.
-2021-06-08 11:32:44,379 - INFO - joeynmt.training - Example #0
-2021-06-08 11:32:44,379 - DEBUG - joeynmt.training - 	Raw source:     ['33', '9', '15', '3', '14', '33', '32', '42', '23', '12', '14', '17', '4', '35', '0', '48', '46', '36', '46', '27', '2', '34', '35', '17', '36', '39', '7', '14', '9', '0']
-2021-06-08 11:32:44,379 - DEBUG - joeynmt.training - 	Raw hypothesis: ['0', '9', '14', '7', '39', '36', '17', '35', '34', '2', '27', '46', '36', '46', '48', '0', '35', '4', '4', '14', '16', '12', '16', '42', '42', '39', '39', '39', '39', '36']
-2021-06-08 11:32:44,379 - INFO - joeynmt.training - 	Source:     33 9 15 3 14 33 32 42 23 12 14 17 4 35 0 48 46 36 46 27 2 34 35 17 36 39 7 14 9 0
-2021-06-08 11:32:44,379 - INFO - joeynmt.training - 	Reference:  0 9 14 7 39 36 17 35 34 2 27 46 36 46 48 0 35 4 17 14 12 23 42 32 33 14 3 15 9 33
-2021-06-08 11:32:44,379 - INFO - joeynmt.training - 	Hypothesis: 0 9 14 7 39 36 17 35 34 2 27 46 36 46 48 0 35 4 4 14 16 12 16 42 42 39 39 39 39 36
-2021-06-08 11:32:44,380 - INFO - joeynmt.training - Example #3
-2021-06-08 11:32:44,380 - DEBUG - joeynmt.training - 	Raw source:     ['10', '43', '37', '32', '6', '9', '25', '36', '21', '29', '16', '7', '18', '27', '30', '46', '37', '15', '7', '48', '18']
-2021-06-08 11:32:44,380 - DEBUG - joeynmt.training - 	Raw hypothesis: ['18', '48', '7', '15', '37', '46', '30', '27', '18', '7', '16', '29', '21', '36', '25', '9', '6', '5', '32', '37', '10']
-2021-06-08 11:32:44,380 - INFO - joeynmt.training - 	Source:     10 43 37 32 6 9 25 36 21 29 16 7 18 27 30 46 37 15 7 48 18
-2021-06-08 11:32:44,380 - INFO - joeynmt.training - 	Reference:  18 48 7 15 37 46 30 27 18 7 16 29 21 36 25 9 6 32 37 43 10
-2021-06-08 11:32:44,380 - INFO - joeynmt.training - 	Hypothesis: 18 48 7 15 37 46 30 27 18 7 16 29 21 36 25 9 6 5 32 37 10
-2021-06-08 11:32:44,380 - INFO - joeynmt.training - Example #6
-2021-06-08 11:32:44,380 - DEBUG - joeynmt.training - 	Raw source:     ['0', '38', '14', '26', '20', '34', '10', '36', '11', '32', '29', '21']
-2021-06-08 11:32:44,380 - DEBUG - joeynmt.training - 	Raw hypothesis: ['21', '29', '32', '11', '36', '10', '34', '20', '26', '14', '38', '0']
-2021-06-08 11:32:44,380 - INFO - joeynmt.training - 	Source:     0 38 14 26 20 34 10 36 11 32 29 21
-2021-06-08 11:32:44,380 - INFO - joeynmt.training - 	Reference:  21 29 32 11 36 10 34 20 26 14 38 0
-2021-06-08 11:32:44,380 - INFO - joeynmt.training - 	Hypothesis: 21 29 32 11 36 10 34 20 26 14 38 0
-2021-06-08 11:32:44,380 - INFO - joeynmt.training - Validation result (greedy) at epoch   1, step     3000: bleu:  79.51, loss: 15131.5381, ppl:   2.5272, duration: 3.4304s
-2021-06-08 11:32:44,674 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
-2021-06-08 11:32:44,718 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
-2021-06-08 11:32:44,718 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
-2021-06-08 11:32:45,207 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
-2021-06-08 11:32:45,238 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
-2021-06-08 11:32:45,238 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
-2021-06-08 11:32:45,626 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
-2021-06-08 11:32:45,643 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
-2021-06-08 11:32:45,643 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
-2021-06-08 11:32:49,432 - INFO - joeynmt.training - Epoch   1, Step:     3100, Batch Loss:    16.991592, Tokens per Sec:     2742, Lr: 0.001000
-2021-06-08 11:32:53,319 - INFO - joeynmt.training - Epoch   1, Step:     3200, Batch Loss:     0.029333, Tokens per Sec:     3513, Lr: 0.001000
-2021-06-08 11:32:55,863 - INFO - joeynmt.training - Epoch   1, Step:     3300, Batch Loss:     0.066963, Tokens per Sec:     5417, Lr: 0.001000
-2021-06-08 11:32:58,506 - INFO - joeynmt.training - Epoch   1, Step:     3400, Batch Loss:     0.106536, Tokens per Sec:     5316, Lr: 0.001000
-2021-06-08 11:33:01,175 - INFO - joeynmt.training - Epoch   1, Step:     3500, Batch Loss:     0.081275, Tokens per Sec:     5351, Lr: 0.001000
-2021-06-08 11:33:03,799 - INFO - joeynmt.training - Epoch   1, Step:     3600, Batch Loss:     0.184084, Tokens per Sec:     5348, Lr: 0.001000
-2021-06-08 11:33:06,426 - INFO - joeynmt.training - Epoch   1, Step:     3700, Batch Loss:     0.033256, Tokens per Sec:     5410, Lr: 0.001000
-2021-06-08 11:33:09,074 - INFO - joeynmt.training - Epoch   1, Step:     3800, Batch Loss:     0.197599, Tokens per Sec:     5222, Lr: 0.001000
-2021-06-08 11:33:11,681 - INFO - joeynmt.training - Epoch   1, Step:     3900, Batch Loss:     0.027403, Tokens per Sec:     5392, Lr: 0.001000
-2021-06-08 11:33:14,386 - INFO - joeynmt.training - Epoch   1, Step:     4000, Batch Loss:     0.020691, Tokens per Sec:     5200, Lr: 0.001000
-2021-06-08 11:33:18,131 - INFO - joeynmt.training - Hooray! New best validation result [eval_metric]!
-2021-06-08 11:33:18,131 - INFO - joeynmt.training - Saving new checkpoint.
-2021-06-08 11:33:18,137 - INFO - joeynmt.training - Example #0
-2021-06-08 11:33:18,137 - DEBUG - joeynmt.training - 	Raw source:     ['33', '9', '15', '3', '14', '33', '32', '42', '23', '12', '14', '17', '4', '35', '0', '48', '46', '36', '46', '27', '2', '34', '35', '17', '36', '39', '7', '14', '9', '0']
-2021-06-08 11:33:18,137 - DEBUG - joeynmt.training - 	Raw hypothesis: ['0', '9', '14', '7', '39', '36', '17', '35', '34', '2', '27', '46', '36', '46', '48', '0', '35', '4', '14', '14', '23', '23', '42', '33', '33', '33', '14', '3', '35', '34']
-2021-06-08 11:33:18,137 - INFO - joeynmt.training - 	Source:     33 9 15 3 14 33 32 42 23 12 14 17 4 35 0 48 46 36 46 27 2 34 35 17 36 39 7 14 9 0
-2021-06-08 11:33:18,137 - INFO - joeynmt.training - 	Reference:  0 9 14 7 39 36 17 35 34 2 27 46 36 46 48 0 35 4 17 14 12 23 42 32 33 14 3 15 9 33
-2021-06-08 11:33:18,137 - INFO - joeynmt.training - 	Hypothesis: 0 9 14 7 39 36 17 35 34 2 27 46 36 46 48 0 35 4 14 14 23 23 42 33 33 33 14 3 35 34
-2021-06-08 11:33:18,137 - INFO - joeynmt.training - Example #3
-2021-06-08 11:33:18,138 - DEBUG - joeynmt.training - 	Raw source:     ['10', '43', '37', '32', '6', '9', '25', '36', '21', '29', '16', '7', '18', '27', '30', '46', '37', '15', '7', '48', '18']
-2021-06-08 11:33:18,138 - DEBUG - joeynmt.training - 	Raw hypothesis: ['18', '48', '7', '15', '37', '46', '30', '27', '18', '7', '16', '29', '21', '36', '25', '30', '6', '32', '37', '10']
-2021-06-08 11:33:18,138 - INFO - joeynmt.training - 	Source:     10 43 37 32 6 9 25 36 21 29 16 7 18 27 30 46 37 15 7 48 18
-2021-06-08 11:33:18,138 - INFO - joeynmt.training - 	Reference:  18 48 7 15 37 46 30 27 18 7 16 29 21 36 25 9 6 32 37 43 10
-2021-06-08 11:33:18,138 - INFO - joeynmt.training - 	Hypothesis: 18 48 7 15 37 46 30 27 18 7 16 29 21 36 25 30 6 32 37 10
-2021-06-08 11:33:18,138 - INFO - joeynmt.training - Example #6
-2021-06-08 11:33:18,138 - DEBUG - joeynmt.training - 	Raw source:     ['0', '38', '14', '26', '20', '34', '10', '36', '11', '32', '29', '21']
-2021-06-08 11:33:18,138 - DEBUG - joeynmt.training - 	Raw hypothesis: ['21', '29', '32', '11', '36', '10', '34', '20', '26', '14', '38', '0']
-2021-06-08 11:33:18,138 - INFO - joeynmt.training - 	Source:     0 38 14 26 20 34 10 36 11 32 29 21
-2021-06-08 11:33:18,138 - INFO - joeynmt.training - 	Reference:  21 29 32 11 36 10 34 20 26 14 38 0
-2021-06-08 11:33:18,138 - INFO - joeynmt.training - 	Hypothesis: 21 29 32 11 36 10 34 20 26 14 38 0
-2021-06-08 11:33:18,138 - INFO - joeynmt.training - Validation result (greedy) at epoch   1, step     4000: bleu:  86.10, loss: 11241.2549, ppl:   1.9912, duration: 3.7523s
-2021-06-08 11:33:18,317 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
-2021-06-08 11:33:18,361 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
-2021-06-08 11:33:18,361 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
-2021-06-08 11:33:18,744 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
-2021-06-08 11:33:18,781 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
-2021-06-08 11:33:18,782 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
-2021-06-08 11:33:19,075 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
-2021-06-08 11:33:19,092 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
-2021-06-08 11:33:19,092 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
-2021-06-08 11:33:22,114 - INFO - joeynmt.training - Epoch   1, Step:     4100, Batch Loss:     0.052997, Tokens per Sec:     3512, Lr: 0.001000
-2021-06-08 11:33:25,673 - INFO - joeynmt.training - Epoch   1, Step:     4200, Batch Loss:    38.641075, Tokens per Sec:     3843, Lr: 0.001000
-2021-06-08 11:33:28,584 - INFO - joeynmt.training - Epoch   1, Step:     4300, Batch Loss:    11.881091, Tokens per Sec:     4848, Lr: 0.001000
-2021-06-08 11:33:31,197 - INFO - joeynmt.training - Epoch   1, Step:     4400, Batch Loss:     0.009150, Tokens per Sec:     5130, Lr: 0.001000
-2021-06-08 11:33:33,769 - INFO - joeynmt.training - Epoch   1, Step:     4500, Batch Loss:     0.300315, Tokens per Sec:     5424, Lr: 0.001000
-2021-06-08 11:33:36,436 - INFO - joeynmt.training - Epoch   1, Step:     4600, Batch Loss:    56.553661, Tokens per Sec:     5115, Lr: 0.001000
-2021-06-08 11:33:39,079 - INFO - joeynmt.training - Epoch   1, Step:     4700, Batch Loss:     0.538972, Tokens per Sec:     5275, Lr: 0.001000
-2021-06-08 11:33:41,736 - INFO - joeynmt.training - Epoch   1, Step:     4800, Batch Loss:     0.179761, Tokens per Sec:     5268, Lr: 0.001000
-2021-06-08 11:33:45,124 - INFO - joeynmt.training - Epoch   1, Step:     4900, Batch Loss:    14.508352, Tokens per Sec:     4218, Lr: 0.001000
-2021-06-08 11:33:49,024 - INFO - joeynmt.training - Epoch   1, Step:     5000, Batch Loss:     5.542766, Tokens per Sec:     3615, Lr: 0.001000
-2021-06-08 11:33:54,135 - INFO - joeynmt.training - Example #0
-2021-06-08 11:33:54,135 - DEBUG - joeynmt.training - 	Raw source:     ['33', '9', '15', '3', '14', '33', '32', '42', '23', '12', '14', '17', '4', '35', '0', '48', '46', '36', '46', '27', '2', '34', '35', '17', '36', '39', '7', '14', '9', '0']
-2021-06-08 11:33:54,135 - DEBUG - joeynmt.training - 	Raw hypothesis: ['0', '9', '14', '7', '39', '36', '17', '35', '34', '2', '27', '46', '36', '46', '48', '0', '35', '4', '17', '14', '14', '12', '23', '42', '35', '33', '19', '27', '15', '9']
-2021-06-08 11:33:54,135 - INFO - joeynmt.training - 	Source:     33 9 15 3 14 33 32 42 23 12 14 17 4 35 0 48 46 36 46 27 2 34 35 17 36 39 7 14 9 0
-2021-06-08 11:33:54,135 - INFO - joeynmt.training - 	Reference:  0 9 14 7 39 36 17 35 34 2 27 46 36 46 48 0 35 4 17 14 12 23 42 32 33 14 3 15 9 33
-2021-06-08 11:33:54,135 - INFO - joeynmt.training - 	Hypothesis: 0 9 14 7 39 36 17 35 34 2 27 46 36 46 48 0 35 4 17 14 14 12 23 42 35 33 19 27 15 9
-2021-06-08 11:33:54,135 - INFO - joeynmt.training - Example #3
-2021-06-08 11:33:54,135 - DEBUG - joeynmt.training - 	Raw source:     ['10', '43', '37', '32', '6', '9', '25', '36', '21', '29', '16', '7', '18', '27', '30', '46', '37', '15', '7', '48', '18']
-2021-06-08 11:33:54,135 - DEBUG - joeynmt.training - 	Raw hypothesis: ['18', '48', '7', '15', '37', '46', '30', '27', '18', '7', '16', '29', '21', '36', '25', '25', '6', '32', '37', '37', '43', '10']
-2021-06-08 11:33:54,135 - INFO - joeynmt.training - 	Source:     10 43 37 32 6 9 25 36 21 29 16 7 18 27 30 46 37 15 7 48 18
-2021-06-08 11:33:54,135 - INFO - joeynmt.training - 	Reference:  18 48 7 15 37 46 30 27 18 7 16 29 21 36 25 9 6 32 37 43 10
-2021-06-08 11:33:54,136 - INFO - joeynmt.training - 	Hypothesis: 18 48 7 15 37 46 30 27 18 7 16 29 21 36 25 25 6 32 37 37 43 10
-2021-06-08 11:33:54,136 - INFO - joeynmt.training - Example #6
-2021-06-08 11:33:54,136 - DEBUG - joeynmt.training - 	Raw source:     ['0', '38', '14', '26', '20', '34', '10', '36', '11', '32', '29', '21']
-2021-06-08 11:33:54,136 - DEBUG - joeynmt.training - 	Raw hypothesis: ['21', '29', '32', '11', '36', '10', '34', '20', '26', '14', '38', '0']
-2021-06-08 11:33:54,136 - INFO - joeynmt.training - 	Source:     0 38 14 26 20 34 10 36 11 32 29 21
-2021-06-08 11:33:54,136 - INFO - joeynmt.training - 	Reference:  21 29 32 11 36 10 34 20 26 14 38 0
-2021-06-08 11:33:54,136 - INFO - joeynmt.training - 	Hypothesis: 21 29 32 11 36 10 34 20 26 14 38 0
-2021-06-08 11:33:54,136 - INFO - joeynmt.training - Validation result (greedy) at epoch   1, step     5000: bleu:  81.63, loss: 37014.7930, ppl:   9.6593, duration: 5.1117s
-2021-06-08 11:33:54,305 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
-2021-06-08 11:33:54,348 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
-2021-06-08 11:33:54,348 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
-2021-06-08 11:33:54,745 - DEBUG - matplotlib.font_manager - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=11.363636363636363.
-2021-06-08 11:33:54,746 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUni.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:33:54,746 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymReg.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:33:54,746 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
-2021-06-08 11:33:54,746 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmb10' (cmb10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:33:54,746 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
-2021-06-08 11:33:54,746 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:33:54,746 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
-2021-06-08 11:33:54,746 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmmi10' (cmmi10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:33:54,746 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmr10' (cmr10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:33:54,746 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniIta.ttf) italic normal 400 normal>) = 11.05
-2021-06-08 11:33:54,746 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymReg.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:33:54,746 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
-2021-06-08 11:33:54,746 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymReg.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymReg.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmex10' (cmex10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralBolIta.ttf) italic normal 700 normal>) = 11.335
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Display' (DejaVuSansDisplay.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif Display' (DejaVuSerifDisplay.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBolIta.ttf) italic normal 700 normal>) = 11.335
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFiveSym' (STIXSizFiveSymReg.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneral.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmss10' (cmss10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralItalic.ttf) italic normal 400 normal>) = 11.05
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymBol.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmtt10' (cmtt10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmsy10' (cmsy10.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-Italic.ttf) italic normal 400 condensed>) = 11.25
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:33:54,747 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:33:54,748 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
-2021-06-08 11:33:54,748 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
-2021-06-08 11:33:54,748 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
-2021-06-08 11:33:54,748 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
-2021-06-08 11:33:54,748 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-Bold.ttf) normal normal 700 condensed>) = 10.535
-2021-06-08 11:33:54,748 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Math TeX Gyre' (DejaVuMathTeXGyre.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:33:54,748 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-BoldOblique.ttf) oblique normal 700 condensed>) = 1.535
-2021-06-08 11:33:54,748 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
-2021-06-08 11:33:54,748 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
-2021-06-08 11:33:54,748 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-Bold.ttf) normal normal 700 condensed>) = 0.5349999999999999
-2021-06-08 11:33:54,748 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed.ttf) normal normal 400 condensed>) = 0.25
-2021-06-08 11:33:54,748 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
-2021-06-08 11:33:54,748 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-BoldItalic.ttf) italic normal 700 condensed>) = 11.535
-2021-06-08 11:33:54,748 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
-2021-06-08 11:33:54,748 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-Oblique.ttf) oblique normal 400 condensed>) = 1.25
-2021-06-08 11:33:54,748 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-ExtraLight.ttf) normal normal 200 normal>) = 0.24
-2021-06-08 11:33:54,748 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
-2021-06-08 11:33:54,748 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed.ttf) normal normal 400 condensed>) = 10.25
-2021-06-08 11:33:54,748 - DEBUG - matplotlib.font_manager - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=11.363636363636363 to DejaVu Sans ('/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf') with score of 0.050000.
-2021-06-08 11:33:54,825 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
-2021-06-08 11:33:54,859 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
-2021-06-08 11:33:54,859 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
-2021-06-08 11:33:55,148 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
-2021-06-08 11:33:55,165 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
-2021-06-08 11:33:55,165 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
-2021-06-08 11:33:55,333 - INFO - joeynmt.training - Epoch   1: total training loss 91334.02
-2021-06-08 11:33:55,336 - INFO - joeynmt.training - Training ended after   1 epochs.
-2021-06-08 11:33:55,336 - INFO - joeynmt.training - Best validation result (greedy) at step     4000:  86.10 eval_metric.
-2021-06-08 11:33:55,345 - INFO - joeynmt.prediction - Process device: cpu, n_gpu: 0, batch_size per device: 10 (with beam_size)
-2021-06-08 11:33:55,347 - INFO - joeynmt.model - Building an encoder-decoder model...
-2021-06-08 11:33:55,350 - INFO - joeynmt.model - Enc-dec model built.
-2021-06-08 11:33:55,351 - INFO - joeynmt.prediction - Decoding on dev set (test/data/reverse/dev.trg)...
-2021-06-08 11:33:57,606 - INFO - joeynmt.prediction -  dev bleu[13a]:  86.10 [Greedy decoding]
-2021-06-08 11:33:57,606 - INFO - joeynmt.prediction - Translations saved to: reverse_model/00004000.hyps.dev
-2021-06-08 11:33:57,606 - INFO - joeynmt.prediction - Decoding on test set (test/data/reverse/test.trg)...
-2021-06-08 11:33:59,811 - INFO - joeynmt.prediction - test bleu[13a]:  85.85 [Greedy decoding]
-2021-06-08 11:33:59,814 - INFO - joeynmt.prediction - Translations saved to: reverse_model/00004000.hyps.test
+2021-06-08 13:09:37,523 - INFO - joeynmt.training - EPOCH 1
+2021-06-08 13:09:40,281 - INFO - joeynmt.training - Epoch   1, Step:      100, Batch Loss:    57.867035, Tokens per Sec:     4937, Lr: 0.001000
+2021-06-08 13:09:42,760 - INFO - joeynmt.training - Epoch   1, Step:      200, Batch Loss:     8.945168, Tokens per Sec:     5705, Lr: 0.001000
+2021-06-08 13:09:45,229 - INFO - joeynmt.training - Epoch   1, Step:      300, Batch Loss:    44.317406, Tokens per Sec:     5646, Lr: 0.001000
+2021-06-08 13:09:47,757 - INFO - joeynmt.training - Epoch   1, Step:      400, Batch Loss:    73.479065, Tokens per Sec:     5629, Lr: 0.001000
+2021-06-08 13:09:50,199 - INFO - joeynmt.training - Epoch   1, Step:      500, Batch Loss:    39.308754, Tokens per Sec:     5684, Lr: 0.001000
+2021-06-08 13:09:52,697 - INFO - joeynmt.training - Epoch   1, Step:      600, Batch Loss:    36.889931, Tokens per Sec:     5631, Lr: 0.001000
+2021-06-08 13:09:55,179 - INFO - joeynmt.training - Epoch   1, Step:      700, Batch Loss:     7.642076, Tokens per Sec:     5584, Lr: 0.001000
+2021-06-08 13:09:57,686 - INFO - joeynmt.training - Epoch   1, Step:      800, Batch Loss:    60.596691, Tokens per Sec:     5519, Lr: 0.001000
+2021-06-08 13:10:00,170 - INFO - joeynmt.training - Epoch   1, Step:      900, Batch Loss:    77.322479, Tokens per Sec:     5653, Lr: 0.001000
+2021-06-08 13:10:02,665 - INFO - joeynmt.training - Epoch   1, Step:     1000, Batch Loss:    63.305077, Tokens per Sec:     5592, Lr: 0.001000
+2021-06-08 13:10:06,007 - INFO - joeynmt.training - Hooray! New best validation result [eval_metric]!
+2021-06-08 13:10:06,008 - INFO - joeynmt.training - Saving new checkpoint.
+2021-06-08 13:10:06,016 - INFO - joeynmt.training - Example #0
+2021-06-08 13:10:06,016 - DEBUG - joeynmt.training - 	Raw source:     ['33', '9', '15', '3', '14', '33', '32', '42', '23', '12', '14', '17', '4', '35', '0', '48', '46', '36', '46', '27', '2', '34', '35', '17', '36', '39', '7', '14', '9', '0']
+2021-06-08 13:10:06,016 - DEBUG - joeynmt.training - 	Raw hypothesis: ['0', '9', '14', '7', '39', '36', '17', '35', '34', '2', '27', '46', '22', '22', '22', '40', '42', '42', '42', '16', '16', '16', '16', '33', '39', '15']
+2021-06-08 13:10:06,016 - INFO - joeynmt.training - 	Source:     33 9 15 3 14 33 32 42 23 12 14 17 4 35 0 48 46 36 46 27 2 34 35 17 36 39 7 14 9 0
+2021-06-08 13:10:06,016 - INFO - joeynmt.training - 	Reference:  0 9 14 7 39 36 17 35 34 2 27 46 36 46 48 0 35 4 17 14 12 23 42 32 33 14 3 15 9 33
+2021-06-08 13:10:06,016 - INFO - joeynmt.training - 	Hypothesis: 0 9 14 7 39 36 17 35 34 2 27 46 22 22 22 40 42 42 42 16 16 16 16 33 39 15
+2021-06-08 13:10:06,016 - INFO - joeynmt.training - Example #3
+2021-06-08 13:10:06,017 - DEBUG - joeynmt.training - 	Raw source:     ['10', '43', '37', '32', '6', '9', '25', '36', '21', '29', '16', '7', '18', '27', '30', '46', '37', '15', '7', '48', '18']
+2021-06-08 13:10:06,017 - DEBUG - joeynmt.training - 	Raw hypothesis: ['18', '48', '7', '15', '37', '46', '30', '27', '18', '16', '16', '37', '1', '25', '41', '41', '43']
+2021-06-08 13:10:06,017 - INFO - joeynmt.training - 	Source:     10 43 37 32 6 9 25 36 21 29 16 7 18 27 30 46 37 15 7 48 18
+2021-06-08 13:10:06,017 - INFO - joeynmt.training - 	Reference:  18 48 7 15 37 46 30 27 18 7 16 29 21 36 25 9 6 32 37 43 10
+2021-06-08 13:10:06,017 - INFO - joeynmt.training - 	Hypothesis: 18 48 7 15 37 46 30 27 18 16 16 37 1 25 41 41 43
+2021-06-08 13:10:06,017 - INFO - joeynmt.training - Example #6
+2021-06-08 13:10:06,017 - DEBUG - joeynmt.training - 	Raw source:     ['0', '38', '14', '26', '20', '34', '10', '36', '11', '32', '29', '21']
+2021-06-08 13:10:06,017 - DEBUG - joeynmt.training - 	Raw hypothesis: ['21', '29', '32', '11', '36', '10', '34', '20', '26', '14', '40']
+2021-06-08 13:10:06,017 - INFO - joeynmt.training - 	Source:     0 38 14 26 20 34 10 36 11 32 29 21
+2021-06-08 13:10:06,017 - INFO - joeynmt.training - 	Reference:  21 29 32 11 36 10 34 20 26 14 38 0
+2021-06-08 13:10:06,017 - INFO - joeynmt.training - 	Hypothesis: 21 29 32 11 36 10 34 20 26 14 40
+2021-06-08 13:10:06,017 - INFO - joeynmt.training - Validation result (greedy) at epoch   1, step     1000: bleu:  46.27, loss: 31183.8438, ppl:   6.7575, duration: 3.3521s
+2021-06-08 13:10:06,105 - DEBUG - matplotlib.font_manager - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=8.333333333333332.
+2021-06-08 13:10:06,105 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUni.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymReg.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmb10' (cmb10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmmi10' (cmmi10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmr10' (cmr10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniIta.ttf) italic normal 400 normal>) = 11.05
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymReg.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymReg.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymReg.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmex10' (cmex10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralBolIta.ttf) italic normal 700 normal>) = 11.335
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Display' (DejaVuSansDisplay.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif Display' (DejaVuSerifDisplay.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:06,106 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBolIta.ttf) italic normal 700 normal>) = 11.335
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFiveSym' (STIXSizFiveSymReg.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneral.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmss10' (cmss10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralItalic.ttf) italic normal 400 normal>) = 11.05
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmtt10' (cmtt10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmsy10' (cmsy10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-Italic.ttf) italic normal 400 condensed>) = 11.25
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-Bold.ttf) normal normal 700 condensed>) = 10.535
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Math TeX Gyre' (DejaVuMathTeXGyre.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-BoldOblique.ttf) oblique normal 700 condensed>) = 1.535
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-Bold.ttf) normal normal 700 condensed>) = 0.5349999999999999
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed.ttf) normal normal 400 condensed>) = 0.25
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-BoldItalic.ttf) italic normal 700 condensed>) = 11.535
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-Oblique.ttf) oblique normal 400 condensed>) = 1.25
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-ExtraLight.ttf) normal normal 200 normal>) = 0.24
+2021-06-08 13:10:06,107 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:06,108 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed.ttf) normal normal 400 condensed>) = 10.25
+2021-06-08 13:10:06,108 - DEBUG - matplotlib.font_manager - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=8.333333333333332 to DejaVu Sans ('/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf') with score of 0.050000.
+2021-06-08 13:10:06,248 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
+2021-06-08 13:10:06,304 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2021-06-08 13:10:06,304 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
+2021-06-08 13:10:06,779 - DEBUG - matplotlib.font_manager - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=11.904761904761903.
+2021-06-08 13:10:06,779 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUni.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,779 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymReg.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,779 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
+2021-06-08 13:10:06,779 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmb10' (cmb10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,779 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
+2021-06-08 13:10:06,779 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:06,779 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
+2021-06-08 13:10:06,780 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmmi10' (cmmi10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,780 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmr10' (cmr10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,780 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniIta.ttf) italic normal 400 normal>) = 11.05
+2021-06-08 13:10:06,780 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymReg.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,780 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
+2021-06-08 13:10:06,780 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymReg.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,780 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:06,780 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:06,780 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:06,780 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
+2021-06-08 13:10:06,780 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,780 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymReg.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,780 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmex10' (cmex10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,780 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2021-06-08 13:10:06,780 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralBolIta.ttf) italic normal 700 normal>) = 11.335
+2021-06-08 13:10:06,780 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
+2021-06-08 13:10:06,780 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:06,780 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Display' (DejaVuSansDisplay.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif Display' (DejaVuSerifDisplay.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBolIta.ttf) italic normal 700 normal>) = 11.335
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFiveSym' (STIXSizFiveSymReg.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneral.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmss10' (cmss10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralItalic.ttf) italic normal 400 normal>) = 11.05
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmtt10' (cmtt10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmsy10' (cmsy10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-Italic.ttf) italic normal 400 condensed>) = 11.25
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-Bold.ttf) normal normal 700 condensed>) = 10.535
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Math TeX Gyre' (DejaVuMathTeXGyre.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-BoldOblique.ttf) oblique normal 700 condensed>) = 1.535
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-Bold.ttf) normal normal 700 condensed>) = 0.5349999999999999
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed.ttf) normal normal 400 condensed>) = 0.25
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:06,781 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-BoldItalic.ttf) italic normal 700 condensed>) = 11.535
+2021-06-08 13:10:06,782 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
+2021-06-08 13:10:06,782 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-Oblique.ttf) oblique normal 400 condensed>) = 1.25
+2021-06-08 13:10:06,782 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-ExtraLight.ttf) normal normal 200 normal>) = 0.24
+2021-06-08 13:10:06,782 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:06,782 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed.ttf) normal normal 400 condensed>) = 10.25
+2021-06-08 13:10:06,782 - DEBUG - matplotlib.font_manager - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=11.904761904761903 to DejaVu Sans ('/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf') with score of 0.050000.
+2021-06-08 13:10:06,839 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
+2021-06-08 13:10:06,870 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2021-06-08 13:10:06,870 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
+2021-06-08 13:10:07,084 - DEBUG - matplotlib.font_manager - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=20.833333333333336.
+2021-06-08 13:10:07,084 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUni.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:07,085 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymReg.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:07,085 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
+2021-06-08 13:10:07,085 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmb10' (cmb10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:07,085 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
+2021-06-08 13:10:07,085 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:07,085 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
+2021-06-08 13:10:07,085 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmmi10' (cmmi10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:07,085 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmr10' (cmr10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:07,085 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniIta.ttf) italic normal 400 normal>) = 11.05
+2021-06-08 13:10:07,085 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymReg.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:07,086 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
+2021-06-08 13:10:07,086 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymReg.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:07,086 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:07,086 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:07,086 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:07,086 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
+2021-06-08 13:10:07,086 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:07,086 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymReg.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:07,087 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmex10' (cmex10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:07,087 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2021-06-08 13:10:07,087 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralBolIta.ttf) italic normal 700 normal>) = 11.335
+2021-06-08 13:10:07,087 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
+2021-06-08 13:10:07,087 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:07,087 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Display' (DejaVuSansDisplay.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:07,088 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:07,088 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif Display' (DejaVuSerifDisplay.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:07,088 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:07,088 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:07,088 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBolIta.ttf) italic normal 700 normal>) = 11.335
+2021-06-08 13:10:07,088 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFiveSym' (STIXSizFiveSymReg.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:07,088 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneral.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:07,088 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmss10' (cmss10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:07,088 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralItalic.ttf) italic normal 400 normal>) = 11.05
+2021-06-08 13:10:07,089 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:07,089 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
+2021-06-08 13:10:07,089 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmtt10' (cmtt10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:07,089 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmsy10' (cmsy10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:07,089 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
+2021-06-08 13:10:07,089 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-Italic.ttf) italic normal 400 condensed>) = 11.25
+2021-06-08 13:10:07,089 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:07,089 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:07,089 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
+2021-06-08 13:10:07,089 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
+2021-06-08 13:10:07,089 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
+2021-06-08 13:10:07,090 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
+2021-06-08 13:10:07,090 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-Bold.ttf) normal normal 700 condensed>) = 10.535
+2021-06-08 13:10:07,090 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Math TeX Gyre' (DejaVuMathTeXGyre.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:07,090 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-BoldOblique.ttf) oblique normal 700 condensed>) = 1.535
+2021-06-08 13:10:07,090 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2021-06-08 13:10:07,090 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
+2021-06-08 13:10:07,090 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-Bold.ttf) normal normal 700 condensed>) = 0.5349999999999999
+2021-06-08 13:10:07,090 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed.ttf) normal normal 400 condensed>) = 0.25
+2021-06-08 13:10:07,090 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:10:07,090 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-BoldItalic.ttf) italic normal 700 condensed>) = 11.535
+2021-06-08 13:10:07,090 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
+2021-06-08 13:10:07,090 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-Oblique.ttf) oblique normal 400 condensed>) = 1.25
+2021-06-08 13:10:07,090 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-ExtraLight.ttf) normal normal 200 normal>) = 0.24
+2021-06-08 13:10:07,090 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:10:07,090 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed.ttf) normal normal 400 condensed>) = 10.25
+2021-06-08 13:10:07,090 - DEBUG - matplotlib.font_manager - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=20.833333333333336 to DejaVu Sans ('/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf') with score of 0.050000.
+2021-06-08 13:10:07,159 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
+2021-06-08 13:10:07,176 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2021-06-08 13:10:07,176 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
+2021-06-08 13:10:09,886 - INFO - joeynmt.training - Epoch   1, Step:     1100, Batch Loss:    28.133450, Tokens per Sec:     3565, Lr: 0.001000
+2021-06-08 13:10:12,470 - INFO - joeynmt.training - Epoch   1, Step:     1200, Batch Loss:    13.938107, Tokens per Sec:     5464, Lr: 0.001000
+2021-06-08 13:10:15,068 - INFO - joeynmt.training - Epoch   1, Step:     1300, Batch Loss:     2.630973, Tokens per Sec:     5435, Lr: 0.001000
+2021-06-08 13:10:17,740 - INFO - joeynmt.training - Epoch   1, Step:     1400, Batch Loss:     1.281729, Tokens per Sec:     5211, Lr: 0.001000
+2021-06-08 13:10:20,375 - INFO - joeynmt.training - Epoch   1, Step:     1500, Batch Loss:     1.887677, Tokens per Sec:     5352, Lr: 0.001000
+2021-06-08 13:10:23,001 - INFO - joeynmt.training - Epoch   1, Step:     1600, Batch Loss:     0.751604, Tokens per Sec:     5369, Lr: 0.001000
+2021-06-08 13:10:25,608 - INFO - joeynmt.training - Epoch   1, Step:     1700, Batch Loss:    27.321651, Tokens per Sec:     5225, Lr: 0.001000
+2021-06-08 13:10:28,233 - INFO - joeynmt.training - Epoch   1, Step:     1800, Batch Loss:    68.136574, Tokens per Sec:     5312, Lr: 0.001000
+2021-06-08 13:10:30,883 - INFO - joeynmt.training - Epoch   1, Step:     1900, Batch Loss:    18.535353, Tokens per Sec:     5277, Lr: 0.001000
+2021-06-08 13:10:33,563 - INFO - joeynmt.training - Epoch   1, Step:     2000, Batch Loss:     5.142752, Tokens per Sec:     5348, Lr: 0.001000
+2021-06-08 13:10:36,862 - INFO - joeynmt.training - Hooray! New best validation result [eval_metric]!
+2021-06-08 13:10:36,862 - INFO - joeynmt.training - Saving new checkpoint.
+2021-06-08 13:10:36,870 - INFO - joeynmt.training - Example #0
+2021-06-08 13:10:36,870 - DEBUG - joeynmt.training - 	Raw source:     ['33', '9', '15', '3', '14', '33', '32', '42', '23', '12', '14', '17', '4', '35', '0', '48', '46', '36', '46', '27', '2', '34', '35', '17', '36', '39', '7', '14', '9', '0']
+2021-06-08 13:10:36,870 - DEBUG - joeynmt.training - 	Raw hypothesis: ['0', '9', '14', '7', '39', '36', '17', '35', '34', '2', '27', '46', '36', '36', '48', '13', '35', '16', '16', '42', '16', '16', '39', '9', '33']
+2021-06-08 13:10:36,870 - INFO - joeynmt.training - 	Source:     33 9 15 3 14 33 32 42 23 12 14 17 4 35 0 48 46 36 46 27 2 34 35 17 36 39 7 14 9 0
+2021-06-08 13:10:36,870 - INFO - joeynmt.training - 	Reference:  0 9 14 7 39 36 17 35 34 2 27 46 36 46 48 0 35 4 17 14 12 23 42 32 33 14 3 15 9 33
+2021-06-08 13:10:36,870 - INFO - joeynmt.training - 	Hypothesis: 0 9 14 7 39 36 17 35 34 2 27 46 36 36 48 13 35 16 16 42 16 16 39 9 33
+2021-06-08 13:10:36,870 - INFO - joeynmt.training - Example #3
+2021-06-08 13:10:36,870 - DEBUG - joeynmt.training - 	Raw source:     ['10', '43', '37', '32', '6', '9', '25', '36', '21', '29', '16', '7', '18', '27', '30', '46', '37', '15', '7', '48', '18']
+2021-06-08 13:10:36,870 - DEBUG - joeynmt.training - 	Raw hypothesis: ['18', '48', '7', '15', '37', '46', '30', '27', '18', '7', '16', '4', '21', '36', '36', '41', '24', '43', '10']
+2021-06-08 13:10:36,870 - INFO - joeynmt.training - 	Source:     10 43 37 32 6 9 25 36 21 29 16 7 18 27 30 46 37 15 7 48 18
+2021-06-08 13:10:36,870 - INFO - joeynmt.training - 	Reference:  18 48 7 15 37 46 30 27 18 7 16 29 21 36 25 9 6 32 37 43 10
+2021-06-08 13:10:36,871 - INFO - joeynmt.training - 	Hypothesis: 18 48 7 15 37 46 30 27 18 7 16 4 21 36 36 41 24 43 10
+2021-06-08 13:10:36,871 - INFO - joeynmt.training - Example #6
+2021-06-08 13:10:36,871 - DEBUG - joeynmt.training - 	Raw source:     ['0', '38', '14', '26', '20', '34', '10', '36', '11', '32', '29', '21']
+2021-06-08 13:10:36,871 - DEBUG - joeynmt.training - 	Raw hypothesis: ['21', '29', '32', '11', '36', '10', '34', '20', '26', '14', '38', '0']
+2021-06-08 13:10:36,871 - INFO - joeynmt.training - 	Source:     0 38 14 26 20 34 10 36 11 32 29 21
+2021-06-08 13:10:36,871 - INFO - joeynmt.training - 	Reference:  21 29 32 11 36 10 34 20 26 14 38 0
+2021-06-08 13:10:36,871 - INFO - joeynmt.training - 	Hypothesis: 21 29 32 11 36 10 34 20 26 14 38 0
+2021-06-08 13:10:36,871 - INFO - joeynmt.training - Validation result (greedy) at epoch   1, step     2000: bleu:  74.26, loss: 25488.1230, ppl:   4.7668, duration: 3.3078s
+2021-06-08 13:10:37,035 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
+2021-06-08 13:10:37,072 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2021-06-08 13:10:37,072 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
+2021-06-08 13:10:37,416 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
+2021-06-08 13:10:37,443 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2021-06-08 13:10:37,443 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
+2021-06-08 13:10:37,737 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
+2021-06-08 13:10:37,760 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2021-06-08 13:10:37,761 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
+2021-06-08 13:10:40,564 - INFO - joeynmt.training - Epoch   1, Step:     2100, Batch Loss:     0.456415, Tokens per Sec:     3785, Lr: 0.001000
+2021-06-08 13:10:43,226 - INFO - joeynmt.training - Epoch   1, Step:     2200, Batch Loss:    12.104485, Tokens per Sec:     5215, Lr: 0.001000
+2021-06-08 13:10:45,921 - INFO - joeynmt.training - Epoch   1, Step:     2300, Batch Loss:     0.997927, Tokens per Sec:     5218, Lr: 0.001000
+2021-06-08 13:10:48,667 - INFO - joeynmt.training - Epoch   1, Step:     2400, Batch Loss:     2.042418, Tokens per Sec:     5207, Lr: 0.001000
+2021-06-08 13:10:51,285 - INFO - joeynmt.training - Epoch   1, Step:     2500, Batch Loss:     0.493272, Tokens per Sec:     5291, Lr: 0.001000
+2021-06-08 13:10:53,966 - INFO - joeynmt.training - Epoch   1, Step:     2600, Batch Loss:    57.569111, Tokens per Sec:     5196, Lr: 0.001000
+2021-06-08 13:10:56,580 - INFO - joeynmt.training - Epoch   1, Step:     2700, Batch Loss:     0.053240, Tokens per Sec:     5223, Lr: 0.001000
+2021-06-08 13:10:59,276 - INFO - joeynmt.training - Epoch   1, Step:     2800, Batch Loss:     0.024577, Tokens per Sec:     5193, Lr: 0.001000
+2021-06-08 13:11:01,932 - INFO - joeynmt.training - Epoch   1, Step:     2900, Batch Loss:    18.344999, Tokens per Sec:     5295, Lr: 0.001000
+2021-06-08 13:11:04,595 - INFO - joeynmt.training - Epoch   1, Step:     3000, Batch Loss:    31.713501, Tokens per Sec:     5292, Lr: 0.001000
+2021-06-08 13:11:08,055 - INFO - joeynmt.training - Hooray! New best validation result [eval_metric]!
+2021-06-08 13:11:08,055 - INFO - joeynmt.training - Saving new checkpoint.
+2021-06-08 13:11:08,061 - INFO - joeynmt.training - Example #0
+2021-06-08 13:11:08,061 - DEBUG - joeynmt.training - 	Raw source:     ['33', '9', '15', '3', '14', '33', '32', '42', '23', '12', '14', '17', '4', '35', '0', '48', '46', '36', '46', '27', '2', '34', '35', '17', '36', '39', '7', '14', '9', '0']
+2021-06-08 13:11:08,061 - DEBUG - joeynmt.training - 	Raw hypothesis: ['0', '9', '14', '7', '39', '36', '17', '35', '34', '2', '27', '46', '36', '46', '48', '0', '35', '4', '4', '14', '16', '12', '16', '42', '42', '39', '39', '39', '39', '36']
+2021-06-08 13:11:08,061 - INFO - joeynmt.training - 	Source:     33 9 15 3 14 33 32 42 23 12 14 17 4 35 0 48 46 36 46 27 2 34 35 17 36 39 7 14 9 0
+2021-06-08 13:11:08,061 - INFO - joeynmt.training - 	Reference:  0 9 14 7 39 36 17 35 34 2 27 46 36 46 48 0 35 4 17 14 12 23 42 32 33 14 3 15 9 33
+2021-06-08 13:11:08,061 - INFO - joeynmt.training - 	Hypothesis: 0 9 14 7 39 36 17 35 34 2 27 46 36 46 48 0 35 4 4 14 16 12 16 42 42 39 39 39 39 36
+2021-06-08 13:11:08,061 - INFO - joeynmt.training - Example #3
+2021-06-08 13:11:08,062 - DEBUG - joeynmt.training - 	Raw source:     ['10', '43', '37', '32', '6', '9', '25', '36', '21', '29', '16', '7', '18', '27', '30', '46', '37', '15', '7', '48', '18']
+2021-06-08 13:11:08,062 - DEBUG - joeynmt.training - 	Raw hypothesis: ['18', '48', '7', '15', '37', '46', '30', '27', '18', '7', '16', '29', '21', '36', '25', '9', '6', '5', '32', '37', '10']
+2021-06-08 13:11:08,062 - INFO - joeynmt.training - 	Source:     10 43 37 32 6 9 25 36 21 29 16 7 18 27 30 46 37 15 7 48 18
+2021-06-08 13:11:08,062 - INFO - joeynmt.training - 	Reference:  18 48 7 15 37 46 30 27 18 7 16 29 21 36 25 9 6 32 37 43 10
+2021-06-08 13:11:08,062 - INFO - joeynmt.training - 	Hypothesis: 18 48 7 15 37 46 30 27 18 7 16 29 21 36 25 9 6 5 32 37 10
+2021-06-08 13:11:08,062 - INFO - joeynmt.training - Example #6
+2021-06-08 13:11:08,062 - DEBUG - joeynmt.training - 	Raw source:     ['0', '38', '14', '26', '20', '34', '10', '36', '11', '32', '29', '21']
+2021-06-08 13:11:08,062 - DEBUG - joeynmt.training - 	Raw hypothesis: ['21', '29', '32', '11', '36', '10', '34', '20', '26', '14', '38', '0']
+2021-06-08 13:11:08,062 - INFO - joeynmt.training - 	Source:     0 38 14 26 20 34 10 36 11 32 29 21
+2021-06-08 13:11:08,062 - INFO - joeynmt.training - 	Reference:  21 29 32 11 36 10 34 20 26 14 38 0
+2021-06-08 13:11:08,062 - INFO - joeynmt.training - 	Hypothesis: 21 29 32 11 36 10 34 20 26 14 38 0
+2021-06-08 13:11:08,062 - INFO - joeynmt.training - Validation result (greedy) at epoch   1, step     3000: bleu:  79.51, loss: 15131.5381, ppl:   2.5272, duration: 3.4668s
+2021-06-08 13:11:08,249 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
+2021-06-08 13:11:08,288 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2021-06-08 13:11:08,288 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
+2021-06-08 13:11:08,654 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
+2021-06-08 13:11:08,682 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2021-06-08 13:11:08,682 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
+2021-06-08 13:11:09,004 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
+2021-06-08 13:11:09,026 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2021-06-08 13:11:09,026 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
+2021-06-08 13:11:11,815 - INFO - joeynmt.training - Epoch   1, Step:     3100, Batch Loss:    16.991592, Tokens per Sec:     3691, Lr: 0.001000
+2021-06-08 13:11:14,426 - INFO - joeynmt.training - Epoch   1, Step:     3200, Batch Loss:     0.029333, Tokens per Sec:     5232, Lr: 0.001000
+2021-06-08 13:11:17,511 - INFO - joeynmt.training - Epoch   1, Step:     3300, Batch Loss:     0.066963, Tokens per Sec:     4467, Lr: 0.001000
+2021-06-08 13:11:20,608 - INFO - joeynmt.training - Epoch   1, Step:     3400, Batch Loss:     0.106536, Tokens per Sec:     4534, Lr: 0.001000
+2021-06-08 13:11:23,509 - INFO - joeynmt.training - Epoch   1, Step:     3500, Batch Loss:     0.081275, Tokens per Sec:     4924, Lr: 0.001000
+2021-06-08 13:11:26,590 - INFO - joeynmt.training - Epoch   1, Step:     3600, Batch Loss:     0.184084, Tokens per Sec:     4555, Lr: 0.001000
+2021-06-08 13:11:29,479 - INFO - joeynmt.training - Epoch   1, Step:     3700, Batch Loss:     0.033256, Tokens per Sec:     4920, Lr: 0.001000
+2021-06-08 13:11:32,575 - INFO - joeynmt.training - Epoch   1, Step:     3800, Batch Loss:     0.197599, Tokens per Sec:     4466, Lr: 0.001000
+2021-06-08 13:11:35,314 - INFO - joeynmt.training - Epoch   1, Step:     3900, Batch Loss:     0.027403, Tokens per Sec:     5130, Lr: 0.001000
+2021-06-08 13:11:38,341 - INFO - joeynmt.training - Epoch   1, Step:     4000, Batch Loss:     0.020691, Tokens per Sec:     4648, Lr: 0.001000
+2021-06-08 13:11:42,388 - INFO - joeynmt.training - Hooray! New best validation result [eval_metric]!
+2021-06-08 13:11:42,388 - INFO - joeynmt.training - Saving new checkpoint.
+2021-06-08 13:11:42,395 - INFO - joeynmt.training - Example #0
+2021-06-08 13:11:42,396 - DEBUG - joeynmt.training - 	Raw source:     ['33', '9', '15', '3', '14', '33', '32', '42', '23', '12', '14', '17', '4', '35', '0', '48', '46', '36', '46', '27', '2', '34', '35', '17', '36', '39', '7', '14', '9', '0']
+2021-06-08 13:11:42,396 - DEBUG - joeynmt.training - 	Raw hypothesis: ['0', '9', '14', '7', '39', '36', '17', '35', '34', '2', '27', '46', '36', '46', '48', '0', '35', '4', '14', '14', '23', '23', '42', '33', '33', '33', '14', '3', '35', '34']
+2021-06-08 13:11:42,396 - INFO - joeynmt.training - 	Source:     33 9 15 3 14 33 32 42 23 12 14 17 4 35 0 48 46 36 46 27 2 34 35 17 36 39 7 14 9 0
+2021-06-08 13:11:42,396 - INFO - joeynmt.training - 	Reference:  0 9 14 7 39 36 17 35 34 2 27 46 36 46 48 0 35 4 17 14 12 23 42 32 33 14 3 15 9 33
+2021-06-08 13:11:42,396 - INFO - joeynmt.training - 	Hypothesis: 0 9 14 7 39 36 17 35 34 2 27 46 36 46 48 0 35 4 14 14 23 23 42 33 33 33 14 3 35 34
+2021-06-08 13:11:42,396 - INFO - joeynmt.training - Example #3
+2021-06-08 13:11:42,396 - DEBUG - joeynmt.training - 	Raw source:     ['10', '43', '37', '32', '6', '9', '25', '36', '21', '29', '16', '7', '18', '27', '30', '46', '37', '15', '7', '48', '18']
+2021-06-08 13:11:42,396 - DEBUG - joeynmt.training - 	Raw hypothesis: ['18', '48', '7', '15', '37', '46', '30', '27', '18', '7', '16', '29', '21', '36', '25', '30', '6', '32', '37', '10']
+2021-06-08 13:11:42,396 - INFO - joeynmt.training - 	Source:     10 43 37 32 6 9 25 36 21 29 16 7 18 27 30 46 37 15 7 48 18
+2021-06-08 13:11:42,396 - INFO - joeynmt.training - 	Reference:  18 48 7 15 37 46 30 27 18 7 16 29 21 36 25 9 6 32 37 43 10
+2021-06-08 13:11:42,396 - INFO - joeynmt.training - 	Hypothesis: 18 48 7 15 37 46 30 27 18 7 16 29 21 36 25 30 6 32 37 10
+2021-06-08 13:11:42,396 - INFO - joeynmt.training - Example #6
+2021-06-08 13:11:42,396 - DEBUG - joeynmt.training - 	Raw source:     ['0', '38', '14', '26', '20', '34', '10', '36', '11', '32', '29', '21']
+2021-06-08 13:11:42,396 - DEBUG - joeynmt.training - 	Raw hypothesis: ['21', '29', '32', '11', '36', '10', '34', '20', '26', '14', '38', '0']
+2021-06-08 13:11:42,396 - INFO - joeynmt.training - 	Source:     0 38 14 26 20 34 10 36 11 32 29 21
+2021-06-08 13:11:42,397 - INFO - joeynmt.training - 	Reference:  21 29 32 11 36 10 34 20 26 14 38 0
+2021-06-08 13:11:42,397 - INFO - joeynmt.training - 	Hypothesis: 21 29 32 11 36 10 34 20 26 14 38 0
+2021-06-08 13:11:42,397 - INFO - joeynmt.training - Validation result (greedy) at epoch   1, step     4000: bleu:  86.10, loss: 11241.2549, ppl:   1.9912, duration: 4.0554s
+2021-06-08 13:11:42,568 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
+2021-06-08 13:11:42,607 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2021-06-08 13:11:42,607 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
+2021-06-08 13:11:43,009 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
+2021-06-08 13:11:43,041 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2021-06-08 13:11:43,041 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
+2021-06-08 13:11:43,358 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
+2021-06-08 13:11:43,379 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2021-06-08 13:11:43,379 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
+2021-06-08 13:11:46,199 - INFO - joeynmt.training - Epoch   1, Step:     4100, Batch Loss:     0.052997, Tokens per Sec:     3672, Lr: 0.001000
+2021-06-08 13:11:48,840 - INFO - joeynmt.training - Epoch   1, Step:     4200, Batch Loss:    38.641075, Tokens per Sec:     5178, Lr: 0.001000
+2021-06-08 13:11:51,534 - INFO - joeynmt.training - Epoch   1, Step:     4300, Batch Loss:    11.881091, Tokens per Sec:     5236, Lr: 0.001000
+2021-06-08 13:11:54,059 - INFO - joeynmt.training - Epoch   1, Step:     4400, Batch Loss:     0.009150, Tokens per Sec:     5307, Lr: 0.001000
+2021-06-08 13:11:56,742 - INFO - joeynmt.training - Epoch   1, Step:     4500, Batch Loss:     0.300315, Tokens per Sec:     5200, Lr: 0.001000
+2021-06-08 13:11:59,329 - INFO - joeynmt.training - Epoch   1, Step:     4600, Batch Loss:    56.553661, Tokens per Sec:     5272, Lr: 0.001000
+2021-06-08 13:12:01,976 - INFO - joeynmt.training - Epoch   1, Step:     4700, Batch Loss:     0.538972, Tokens per Sec:     5267, Lr: 0.001000
+2021-06-08 13:12:04,636 - INFO - joeynmt.training - Epoch   1, Step:     4800, Batch Loss:     0.179761, Tokens per Sec:     5262, Lr: 0.001000
+2021-06-08 13:12:07,319 - INFO - joeynmt.training - Epoch   1, Step:     4900, Batch Loss:    14.508352, Tokens per Sec:     5327, Lr: 0.001000
+2021-06-08 13:12:10,034 - INFO - joeynmt.training - Epoch   1, Step:     5000, Batch Loss:     5.542766, Tokens per Sec:     5193, Lr: 0.001000
+2021-06-08 13:12:13,513 - INFO - joeynmt.training - Example #0
+2021-06-08 13:12:13,513 - DEBUG - joeynmt.training - 	Raw source:     ['33', '9', '15', '3', '14', '33', '32', '42', '23', '12', '14', '17', '4', '35', '0', '48', '46', '36', '46', '27', '2', '34', '35', '17', '36', '39', '7', '14', '9', '0']
+2021-06-08 13:12:13,513 - DEBUG - joeynmt.training - 	Raw hypothesis: ['0', '9', '14', '7', '39', '36', '17', '35', '34', '2', '27', '46', '36', '46', '48', '0', '35', '4', '17', '14', '14', '12', '23', '42', '35', '33', '19', '27', '15', '9']
+2021-06-08 13:12:13,513 - INFO - joeynmt.training - 	Source:     33 9 15 3 14 33 32 42 23 12 14 17 4 35 0 48 46 36 46 27 2 34 35 17 36 39 7 14 9 0
+2021-06-08 13:12:13,514 - INFO - joeynmt.training - 	Reference:  0 9 14 7 39 36 17 35 34 2 27 46 36 46 48 0 35 4 17 14 12 23 42 32 33 14 3 15 9 33
+2021-06-08 13:12:13,514 - INFO - joeynmt.training - 	Hypothesis: 0 9 14 7 39 36 17 35 34 2 27 46 36 46 48 0 35 4 17 14 14 12 23 42 35 33 19 27 15 9
+2021-06-08 13:12:13,514 - INFO - joeynmt.training - Example #3
+2021-06-08 13:12:13,514 - DEBUG - joeynmt.training - 	Raw source:     ['10', '43', '37', '32', '6', '9', '25', '36', '21', '29', '16', '7', '18', '27', '30', '46', '37', '15', '7', '48', '18']
+2021-06-08 13:12:13,514 - DEBUG - joeynmt.training - 	Raw hypothesis: ['18', '48', '7', '15', '37', '46', '30', '27', '18', '7', '16', '29', '21', '36', '25', '25', '6', '32', '37', '37', '43', '10']
+2021-06-08 13:12:13,514 - INFO - joeynmt.training - 	Source:     10 43 37 32 6 9 25 36 21 29 16 7 18 27 30 46 37 15 7 48 18
+2021-06-08 13:12:13,514 - INFO - joeynmt.training - 	Reference:  18 48 7 15 37 46 30 27 18 7 16 29 21 36 25 9 6 32 37 43 10
+2021-06-08 13:12:13,514 - INFO - joeynmt.training - 	Hypothesis: 18 48 7 15 37 46 30 27 18 7 16 29 21 36 25 25 6 32 37 37 43 10
+2021-06-08 13:12:13,514 - INFO - joeynmt.training - Example #6
+2021-06-08 13:12:13,514 - DEBUG - joeynmt.training - 	Raw source:     ['0', '38', '14', '26', '20', '34', '10', '36', '11', '32', '29', '21']
+2021-06-08 13:12:13,514 - DEBUG - joeynmt.training - 	Raw hypothesis: ['21', '29', '32', '11', '36', '10', '34', '20', '26', '14', '38', '0']
+2021-06-08 13:12:13,514 - INFO - joeynmt.training - 	Source:     0 38 14 26 20 34 10 36 11 32 29 21
+2021-06-08 13:12:13,514 - INFO - joeynmt.training - 	Reference:  21 29 32 11 36 10 34 20 26 14 38 0
+2021-06-08 13:12:13,514 - INFO - joeynmt.training - 	Hypothesis: 21 29 32 11 36 10 34 20 26 14 38 0
+2021-06-08 13:12:13,514 - INFO - joeynmt.training - Validation result (greedy) at epoch   1, step     5000: bleu:  81.63, loss: 37014.7930, ppl:   9.6593, duration: 3.4802s
+2021-06-08 13:12:13,680 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
+2021-06-08 13:12:13,724 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2021-06-08 13:12:13,724 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
+2021-06-08 13:12:14,017 - DEBUG - matplotlib.font_manager - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=11.363636363636363.
+2021-06-08 13:12:14,017 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUni.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:12:14,017 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymReg.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:12:14,017 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
+2021-06-08 13:12:14,017 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmb10' (cmb10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:12:14,017 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
+2021-06-08 13:12:14,017 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:12:14,017 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
+2021-06-08 13:12:14,017 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmmi10' (cmmi10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:12:14,017 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmr10' (cmr10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:12:14,017 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniIta.ttf) italic normal 400 normal>) = 11.05
+2021-06-08 13:12:14,017 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymReg.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:12:14,017 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
+2021-06-08 13:12:14,017 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymReg.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:12:14,017 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:12:14,017 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymReg.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmex10' (cmex10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralBolIta.ttf) italic normal 700 normal>) = 11.335
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Display' (DejaVuSansDisplay.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif Display' (DejaVuSerifDisplay.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBolIta.ttf) italic normal 700 normal>) = 11.335
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFiveSym' (STIXSizFiveSymReg.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneral.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmss10' (cmss10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXGeneral' (STIXGeneralItalic.ttf) italic normal 400 normal>) = 11.05
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymBol.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmtt10' (cmtt10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'cmsy10' (cmsy10.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-Italic.ttf) italic normal 400 condensed>) = 11.25
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
+2021-06-08 13:12:14,018 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
+2021-06-08 13:12:14,019 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
+2021-06-08 13:12:14,019 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-Bold.ttf) normal normal 700 condensed>) = 10.535
+2021-06-08 13:12:14,019 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Math TeX Gyre' (DejaVuMathTeXGyre.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:12:14,019 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-BoldOblique.ttf) oblique normal 700 condensed>) = 1.535
+2021-06-08 13:12:14,019 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2021-06-08 13:12:14,019 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
+2021-06-08 13:12:14,019 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-Bold.ttf) normal normal 700 condensed>) = 0.5349999999999999
+2021-06-08 13:12:14,019 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed.ttf) normal normal 400 condensed>) = 0.25
+2021-06-08 13:12:14,019 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
+2021-06-08 13:12:14,019 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed-BoldItalic.ttf) italic normal 700 condensed>) = 11.535
+2021-06-08 13:12:14,019 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
+2021-06-08 13:12:14,019 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSansCondensed-Oblique.ttf) oblique normal 400 condensed>) = 1.25
+2021-06-08 13:12:14,019 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-ExtraLight.ttf) normal normal 200 normal>) = 0.24
+2021-06-08 13:12:14,019 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
+2021-06-08 13:12:14,019 - DEBUG - matplotlib.font_manager - findfont: score(<Font 'DejaVu Serif' (DejaVuSerifCondensed.ttf) normal normal 400 condensed>) = 10.25
+2021-06-08 13:12:14,019 - DEBUG - matplotlib.font_manager - findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=11.363636363636363 to DejaVu Sans ('/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf') with score of 0.050000.
+2021-06-08 13:12:14,084 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
+2021-06-08 13:12:14,117 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2021-06-08 13:12:14,117 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
+2021-06-08 13:12:14,446 - DEBUG - matplotlib.backends.backend_pdf - Assigning font /b'F1' = '/home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf'
+2021-06-08 13:12:14,469 - DEBUG - matplotlib.backends.backend_pdf - Embedding font /home/sethjsa/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf.
+2021-06-08 13:12:14,469 - DEBUG - matplotlib.backends.backend_pdf - Writing TrueType font.
+2021-06-08 13:12:14,645 - INFO - joeynmt.training - Epoch   1: total training loss 91334.02
+2021-06-08 13:12:14,648 - INFO - joeynmt.training - Training ended after   1 epochs.
+2021-06-08 13:12:14,648 - INFO - joeynmt.training - Best validation result (greedy) at step     4000:  86.10 eval_metric.
+2021-06-08 13:12:14,661 - INFO - joeynmt.prediction - Process device: cpu, n_gpu: 0, batch_size per device: 10 (with beam_size)
+2021-06-08 13:12:14,666 - INFO - joeynmt.model - Building an encoder-decoder model...
+2021-06-08 13:12:14,669 - INFO - joeynmt.model - Enc-dec model built.
+2021-06-08 13:12:14,669 - INFO - joeynmt.prediction - Decoding on dev set (test/data/reverse/dev.trg)...
+2021-06-08 13:12:16,875 - INFO - joeynmt.prediction -  dev bleu[13a]:  86.10 [Greedy decoding]
+2021-06-08 13:12:16,876 - INFO - joeynmt.prediction - Translations saved to: reverse_model/00004000.hyps.dev
+2021-06-08 13:12:16,876 - INFO - joeynmt.prediction - Decoding on test set (test/data/reverse/test.trg)...
+2021-06-08 13:12:19,104 - INFO - joeynmt.prediction - test bleu[13a]:  85.85 [Greedy decoding]
+2021-06-08 13:12:19,104 - INFO - joeynmt.prediction - Translations saved to: reverse_model/00004000.hyps.test
