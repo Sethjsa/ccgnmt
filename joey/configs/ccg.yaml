@@ -8,14 +8,15 @@ use_ccg: True
 data:
     src: "de"
     trg: "en"
-    train: "data/wmt17_ende/train.tok.clean.bpe"
-    dev:   "data/wmt17_ende/dev.tok.bpe"
-    test:  "data/wmt17_ende/test.tok.bpe"
+    train: "data/full/train_bpe"
+    dev:   "data/full/dev_bpe"
+    test:  "data/full/test_bpe"
     level: "bpe"
     lowercase: False
     max_sent_length: 100
-    src_vocab: "data/wmt17_ende/vocab.txt"
-    trg_vocab: "data/wmt17_ende/vocab.txt"
+    src_vocab: "data/full/joint.85000bpe.vocab"
+    trg_vocab: "data/full/joint.85000bpe.vocab"
+    tag_vocab: "data/full/vocab.tags"
     random_train_subset: 1000
 
 testing:
@@ -45,10 +46,10 @@ training:
     validation_freq: 4000
     logging_freq: 100
     eval_metric: "bleu"
-    model_dir: "models/wmt17_ende_transformer"
+    model_dir: "models/ccg_transformer"
     overwrite: False
     shuffle: True
-    use_cuda: True
+    #use_cuda: True
     max_output_length: 100
     print_valid_sents: [0, 1, 2, 3]
     keep_last_ckpts: 3
