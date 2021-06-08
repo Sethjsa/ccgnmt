@@ -11,6 +11,7 @@ data:
     max_sent_length: 100
     src_vocab: "data/wmt17_ende/vocab.txt"
     trg_vocab: "data/wmt17_ende/vocab.txt"
+    random_train_subset: 1000
 
 testing:
     beam_size: 5
@@ -46,6 +47,9 @@ training:
     max_output_length: 100
     print_valid_sents: [0, 1, 2, 3]
     keep_last_ckpts: 3
+
+#pass value to forward pass and modify model accordingly
+use_ccg: True
 
 model:
     initializer: "xavier"
