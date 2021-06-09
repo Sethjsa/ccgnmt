@@ -30,6 +30,8 @@ class Model(nn.Module):
                  decoder: Decoder,
                  src_embed: Embeddings,
                  trg_embed: Embeddings,
+                 # tag_embed: Embeddings,
+                 # tag_vocab: Vocabulary,
                  src_vocab: Vocabulary,
                  trg_vocab: Vocabulary) -> None:
         """
@@ -54,6 +56,10 @@ class Model(nn.Module):
         self.pad_index = self.trg_vocab.stoi[PAD_TOKEN]
         self.eos_index = self.trg_vocab.stoi[EOS_TOKEN]
         self._loss_function = None # set by the TrainManager
+
+        # mods
+        # self.tag_embed = tag_embed
+        # self.tag_vocab = tag_vocab
 
     @property
     def loss_function(self):
@@ -82,8 +88,18 @@ class Model(nn.Module):
         if return_type == "loss":
             assert self.loss_function is not None
 
-            out, _, _, _ = self._encode_decode(**kwargs)
+            # add tag prediction as output
+            # out, tag_out, _, _ 
 
+            out, _, _, _ = self._encode_decode(**kwargs)
+            
+            # mods
+            # add 2 part loss here
+            # log_probs_tags = F.log_softmax(tag_out, dim=-1)
+            # batch_loss_tags = self.loss_function(log_probs_tags, kwargs["tags"])
+            # how to combine losses - just sum loss?
+            # batch_loss += batch_loss_tags
+            
             # compute log probs
             log_probs = F.log_softmax(out, dim=-1)
 
@@ -202,6 +218,7 @@ class _DataParallel(nn.DataParallel):
 
 
 def build_model(cfg: dict = None,
+                # tag_vocab: Vocabulary = None
                 src_vocab: Vocabulary = None,
                 trg_vocab: Vocabulary = None) -> Model:
     """

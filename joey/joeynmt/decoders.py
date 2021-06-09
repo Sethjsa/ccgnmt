@@ -500,12 +500,27 @@ class TransformerDecoder(Decoder):
 
         self.emb_dropout = nn.Dropout(p=emb_dropout)
         self.output_layer = nn.Linear(hidden_size, vocab_size, bias=False)
+        
+        # mods
+        # extra ED attention
+        # self.src_trg_att = MultiHeadedAttention(num_heads, size, dropout=dropout)
+        # self.x_layer_norm = nn.LayerNorm(size, eps=1e-6)     
+
+        # add CCG prediction - relu plus linear? Another linear?
+        # self.tag_pred = nn.Linear(trg_embed + encoder_context + tag_embed, tag_vocab_size, dropout=dropout)
+        # activation = nn.ReLU
+        # no softmax, do this in model.py to go from logits to probs for loss
+
+        # add linear transformation from 640 > 512
+        # self.to_embed = nn.Linear(640, hidden_size, dropout=dropout)
 
         if freeze:
             freeze_params(self)
 
     def forward(self,
                 trg_embed: Tensor = None,
+                # mods
+                # tag_embed: Tensor = None,
                 encoder_output: Tensor = None,
                 encoder_hidden: Tensor = None,
                 src_mask: Tensor = None,
@@ -531,6 +546,23 @@ class TransformerDecoder(Decoder):
 
         x = self.pe(trg_embed)  # add position encoding to word embedding
         x = self.emb_dropout(x)
+
+        # mods
+        # ED attention between pred dec output and encoder output
+        # context = self.src_trg_att(x=x, encoder_output)
+
+        # CCG pred layer
+        # tag_output_dist = self.tag_pred(x + context + prev_tag_output)
+
+        # use predictions to make context vector (507 * 507)
+        # need access to full tag_embeddings
+        # tag_output = torch.bmm(tag_output_dist, tag_embeddings)
+
+        # x = concat(x, tag_output)
+
+        # linear transformation of output
+        # x = self.to_embed(x)
+
 
         trg_mask = trg_mask & subsequent_mask(
             trg_embed.size(1)).type_as(trg_mask)

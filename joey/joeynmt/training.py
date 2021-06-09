@@ -78,6 +78,10 @@ class TrainManager:
 
         # objective
         self.label_smoothing = train_config.get("label_smoothing", 0.0)
+        
+        # mods
+        # with modified model.py loss to include tag and out loss, this is ok
+
         self.model.loss_function = XentLoss(pad_index=self.model.pad_index,
                                             smoothing=self.label_smoothing)
         self.normalization = train_config.get("normalization", "batch")
@@ -501,6 +505,9 @@ class TrainManager:
         """
         # reactivate training
         self.model.train()
+
+        # mods
+        # loss will include tag and out CE loss 
 
         # get loss
         batch_loss, _, _, _ = self.model(return_type="loss", **vars(batch))

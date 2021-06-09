@@ -48,6 +48,8 @@ def load_data(data_cfg: dict, datasets: list = None)\
 
     # load data from files
     src_lang = data_cfg["src"]
+    # mods
+    # trg_tags = data_cfg["tags"]
     trg_lang = data_cfg["trg"]
     train_path = data_cfg.get("train", None)
     dev_path = data_cfg.get("dev", None)

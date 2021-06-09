@@ -8,6 +8,7 @@ use_ccg: True
 data:
     src: "de"
     trg: "en"
+    tags: "tags"
     train: "data/full/train_bpe"
     dev:   "data/full/dev_bpe"
     test:  "data/full/test_bpe"
@@ -87,3 +88,13 @@ model:
         ff_size: 2048
         dropout: 0.1
 
+"""
+ccg embeddings - 128
+concatenate to decoder = 640
+input to ccg layer = 640 dim vector
+
+TF encoder outputs 512-dim embeddings, and has 512-dim hidden layers
+CCG layer predicts attn distrib and summarises it into 128-dim context vector
+TF decoder takes in 128-dim context vector + 512-dim pred word vector, plus 512-dim encoder context vector
+
+"""

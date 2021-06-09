@@ -33,6 +33,9 @@ class Batch:
         self.use_cuda = use_cuda
         self.device = torch.device("cuda" if self.use_cuda else "cpu")
 
+        # mods
+        # self.tags = None
+
         if hasattr(torch_batch, "trg"):
             trg, trg_length = torch_batch.trg
             # trg_input is used for teacher forcing, last one is cut off
