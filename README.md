@@ -2,7 +2,7 @@
 
 Project for MSc Dissertation: Incorporating Target-side syntax into Transformer-based NMT. 
 
-Train with CCG tags and MG tags.
+Train with CCG tags (using EasyCCG) and MG tags (using MGBank).
 
 Modified transformer decoder in JoeyNMT based on PyTorch.
 
