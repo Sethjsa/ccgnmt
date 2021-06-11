@@ -471,6 +471,7 @@ class TransformerDecoder(Decoder):
                  emb_dropout: float = 0.1,
                  vocab_size: int = 1,
                  freeze: bool = False,
+                 # use_tags: bool = False,
                  **kwargs):
         """
         Initialize a Transformer decoder.
@@ -502,6 +503,17 @@ class TransformerDecoder(Decoder):
         self.output_layer = nn.Linear(hidden_size, vocab_size, bias=False)
         
         # mods
+
+        # self.use_tags = use_tags
+        
+        # self.tag_embeddings = tag_embeddings # size s_dim, embed_dim
+        # self.to_embed = nn.Linear(hidden_size, embed_dim)
+        # self.to_out = nn.Linear(embed_dim, hidden_size)
+        # self.tag_dec_att = LuongAttention(hidden_size=hidden_size, key_size=encoder.output_size)
+
+
+
+        """
         # extra ED attention
         # self.src_trg_att = MultiHeadedAttention(num_heads, size, dropout=dropout)
         # self.x_layer_norm = nn.LayerNorm(size, eps=1e-6)     
@@ -513,6 +525,7 @@ class TransformerDecoder(Decoder):
 
         # add linear transformation from 640 > 512
         # self.to_embed = nn.Linear(640, hidden_size, dropout=dropout)
+        """
 
         if freeze:
             freeze_params(self)
@@ -548,6 +561,8 @@ class TransformerDecoder(Decoder):
         x = self.emb_dropout(x)
 
         # mods
+
+        """
         # ED attention between pred dec output and encoder output
         # context = self.src_trg_att(x=x, encoder_output)
 
@@ -562,6 +577,7 @@ class TransformerDecoder(Decoder):
 
         # linear transformation of output
         # x = self.to_embed(x)
+        """
 
 
         trg_mask = trg_mask & subsequent_mask(
@@ -572,9 +588,21 @@ class TransformerDecoder(Decoder):
                       src_mask=src_mask, trg_mask=trg_mask)
 
         x = self.layer_norm(x)
+
+        # # predict tags
+        # if self.use_tags:
+        #     x = self.to_embed(x)
+
+        #     # compute context vector using attention mechanism
+        #     context, att_probs = self.attention(query=x, values=tag_embeddings, mask=src_mask)
+
+        #     out = self.to_out(context)
+
+        #     x = dec_input + out        
+
         output = self.output_layer(x)
 
-        return output, x, None, None
+        return output, x, out, att_probs
 
     def __repr__(self):
         return "%s(num_layers=%r, num_heads=%r)" % (

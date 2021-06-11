@@ -34,7 +34,9 @@ class Batch:
         self.device = torch.device("cuda" if self.use_cuda else "cpu")
 
         # mods
-        # self.tags = None
+        # self.tag = None
+        # self.tag_input = None
+        # self.tag_length = None
 
         if hasattr(torch_batch, "trg"):
             trg, trg_length = torch_batch.trg
@@ -46,6 +48,17 @@ class Batch:
             # we exclude the padded areas from the loss computation
             self.trg_mask = (self.trg_input != pad_index).unsqueeze(1)
             self.ntokens = (self.trg != pad_index).data.sum().item()
+
+        # if hasattr(torch_batch, "tag"):
+        #     tag, tag_length = torch_batch.tag
+        #     # trg_input is used for teacher forcing, last one is cut off
+        #     self.tag_input = tag[:, :-1]
+        #     self.tag_length = tag_length
+        #     # trg is used for loss computation, shifted by one since BOS
+        #     self.tag = tag[:, 1:]
+        #     # we exclude the padded areas from the loss computation
+        #     self.tag_mask = (self.tag_input != pad_index).unsqueeze(1)
+        #     self.ntokens = (self.tag != pad_index).data.sum().item()
 
         if self.use_cuda:
             self._make_cuda()
@@ -64,6 +77,10 @@ class Batch:
             self.trg_input = self.trg_input.to(self.device)
             self.trg = self.trg.to(self.device)
             self.trg_mask = self.trg_mask.to(self.device)
+        
+        # if self.tag_input is not None:
+        #     self.tag_input = self.tag_input.to(self.device)
+        #     self.tag = self.tag.to(self.device)
 
     def sort_by_src_length(self):
         """
@@ -85,6 +102,13 @@ class Batch:
             sorted_trg_mask = self.trg_mask[perm_index]
             sorted_trg = self.trg[perm_index]
 
+        # if self.tag_input is not None:
+        #     sorted_tag_input = self.tag_input[perm_index]
+        #     sorted_tag_length = self.tag_length[perm_index]
+        #     sorted_tag_mask = self.tag_mask[perm_index]
+        #     sorted_tag = self.tag[perm_index]
+
+
         self.src = sorted_src
         self.src_length = sorted_src_length
         self.src_mask = sorted_src_mask
@@ -94,6 +118,12 @@ class Batch:
             self.trg_mask = sorted_trg_mask
             self.trg_length = sorted_trg_length
             self.trg = sorted_trg
+
+        # if self.tag_input is not None:
+        #     self.tag_input = sorted_tag_input
+        #     self.tag_mask = sorted_tag_mask
+        #     self.tag_length = sorted_tag_length
+        #     self.tag = sorted_tag
 
         if self.use_cuda:
             self._make_cuda()

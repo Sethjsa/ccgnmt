@@ -177,7 +177,7 @@ class Model(nn.Module):
         :param encoder_hidden: last encoder state for decoder initialization
         :param src_mask: source mask, 1 at valid tokens
         :param trg_input: target inputs
-        :param unroll_steps: number of steps to unrol the decoder for
+        :param unroll_steps: number of steps to unroll the decoder for
         :param decoder_hidden: decoder hidden state (optional)
         :param att_vector: previous attention vector (optional)
         :param trg_mask: mask for target steps
