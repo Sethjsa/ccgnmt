@@ -3,7 +3,7 @@
 """
 Various decoders
 """
-from typing import Optional
+from typing import Optional, Tuple
 
 import torch
 import torch.nn as nn
@@ -208,7 +208,7 @@ class RecurrentDecoder(Decoder):
                       prev_att_vector: Tensor,  # context or att vector
                       encoder_output: Tensor,
                       src_mask: Tensor,
-                      hidden: Tensor) -> (Tensor, Tensor, Tensor):
+                      hidden: Tensor) -> Tuple[Tensor, Tensor, Tensor]:
         """
         Perform a single decoder step (1 token).
 
@@ -282,7 +282,7 @@ class RecurrentDecoder(Decoder):
                 hidden: Tensor = None,
                 prev_att_vector: Tensor = None,
                 **kwargs) \
-            -> (Tensor, Tensor, Tensor, Tensor):
+            -> Tuple[Tensor, Tensor, Tensor, Tensor]:
         """
          Unroll the decoder one step at a time for `unroll_steps` steps.
          For every step, the `_forward_step` function is called internally.
@@ -403,7 +403,7 @@ class RecurrentDecoder(Decoder):
         return outputs, hidden, att_probs, att_vectors
 
     def _init_hidden(self, encoder_final: Tensor = None) \
-            -> (Tensor, Optional[Tensor]):
+            -> Tuple[Tensor, Optional[Tensor]]:
         """
         Returns the initial decoder state,
         conditioned on the final encoder state of the last encoder layer.
@@ -533,7 +533,7 @@ class TransformerDecoder(Decoder):
     def forward(self,
                 trg_embed: Tensor = None,
                 # mods
-                # tag_embed: Tensor = None,
+                tag_embed: Tensor = None,
                 encoder_output: Tensor = None,
                 encoder_hidden: Tensor = None,
                 src_mask: Tensor = None,
@@ -590,15 +590,15 @@ class TransformerDecoder(Decoder):
         x = self.layer_norm(x)
 
         # # predict tags
-        # if self.use_tags:
-        #     x = self.to_embed(x)
+        if self.use_tags:
+            x = self.to_embed(x)
 
-        #     # compute context vector using attention mechanism
-        #     context, att_probs = self.attention(query=x, values=tag_embeddings, mask=src_mask)
+            # compute context vector using attention mechanism
+            context, att_probs = self.attention(query=x, values=tag_embed, mask=src_mask)
 
-        #     out = self.to_out(context)
+            out = self.to_out(context)
 
-        #     x = dec_input + out        
+            x = x + out        
 
         output = self.output_layer(x)
 

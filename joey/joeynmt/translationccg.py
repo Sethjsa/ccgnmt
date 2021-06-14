@@ -1,13 +1,9 @@
 import os
-try:
-    import defusedxml.ElementTree as ET
-except ImportError:
-    import xml.etree.ElementTree as ET
 import glob
 import io
 import codecs
 
-import torchtext.legacy.data
+import torchtext.legacy.data as data
 
 
 class TranslationDatasetCCG(data.Dataset):

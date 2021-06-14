@@ -2,7 +2,7 @@
 """
 Module to represents whole models
 """
-from typing import Callable
+from typing import Callable, Tuple
 import logging
 
 import torch.nn as nn
@@ -70,7 +70,7 @@ class Model(nn.Module):
         self._loss_function = loss_function
 
     def forward(self, return_type: str = None, **kwargs) \
-            -> (Tensor, Tensor, Tensor, Tensor):
+            -> Tuple[Tensor, Tensor, Tensor, Tensor]:
         """ Interface for multi-gpu
 
         For DataParallel, We need to encapsulate all model call: model.encode(),
@@ -127,7 +127,7 @@ class Model(nn.Module):
     # pylint: disable=arguments-differ
     def _encode_decode(self, src: Tensor, trg_input: Tensor, src_mask: Tensor,
                        src_length: Tensor, trg_mask: Tensor = None, **kwargs) \
-            -> (Tensor, Tensor, Tensor, Tensor):
+            -> Tuple[Tensor, Tensor, Tensor, Tensor]:
         """
         First encodes the source sentence.
         Then produces the target one word at a time.
@@ -153,7 +153,7 @@ class Model(nn.Module):
                             trg_mask=trg_mask, **kwargs)
 
     def _encode(self, src: Tensor, src_length: Tensor, src_mask: Tensor,
-                **_kwargs) -> (Tensor, Tensor):
+                **_kwargs) -> Tuple[Tensor, Tensor]:
         """
         Encodes the source sentence.
 
@@ -169,7 +169,7 @@ class Model(nn.Module):
                 src_mask: Tensor, trg_input: Tensor,
                 unroll_steps: int, decoder_hidden: Tensor = None,
                 att_vector: Tensor = None, trg_mask: Tensor = None, **_kwargs) \
-            -> (Tensor, Tensor, Tensor, Tensor):
+            -> Tuple[Tensor, Tensor, Tensor, Tensor]:
         """
         Decode, given an encoded source sentence.
 

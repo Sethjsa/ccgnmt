@@ -6,11 +6,13 @@ import sys
 import random
 import os
 import os.path
-from typing import Optional
+import io
+from typing import Optional, Tuple
 import logging
 
+#from joeynmt.translationccg import TranslationDatasetCCG
 from torchtext.legacy.datasets import TranslationDataset
-from translation import TranslationDatasetCCG
+
 from torchtext.legacy import data
 from torchtext.legacy.data import Dataset, Iterator, Field
 
@@ -21,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 
 def load_data(data_cfg: dict, datasets: list = None)\
-        -> (Dataset, Dataset, Optional[Dataset], Vocabulary, Vocabulary):
+        -> Tuple[Dataset, Dataset, Optional[Dataset], Vocabulary, Vocabulary]:
     """
     Load train, dev and optionally test data as specified in configuration.
     Vocabularies are created from the training set with a limit of `voc_limit`
