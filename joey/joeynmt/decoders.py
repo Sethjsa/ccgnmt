@@ -470,8 +470,10 @@ class TransformerDecoder(Decoder):
                  dropout: float = 0.1,
                  emb_dropout: float = 0.1,
                  vocab_size: int = 1,
+                 tag_vocab_size: int = 1,
                  freeze: bool = False,
-                 # use_tags: bool = False,
+                 use_tags: bool = False,
+                 tag_embed_size: int = 1,
                  **kwargs):
         """
         Initialize a Transformer decoder.
@@ -503,14 +505,13 @@ class TransformerDecoder(Decoder):
         self.output_layer = nn.Linear(hidden_size, vocab_size, bias=False)
         
         # mods
-
-        # self.use_tags = use_tags
-        
-        # self.tag_embeddings = tag_embeddings # size s_dim, embed_dim
-        # self.to_embed = nn.Linear(hidden_size, embed_dim)
-        # self.to_out = nn.Linear(embed_dim, hidden_size)
-        # self.tag_dec_att = LuongAttention(hidden_size=hidden_size, key_size=encoder.output_size)
-
+        self.tag_vocab_size = tag_vocab_size
+        self.use_tags = use_tags
+        self.tag_embed_dim = tag_embed_size
+        # self.tag_embeddings = self.tag_embed # size [tag_vocab_size, embed_dim] = self.tag_embed.vocab_size, self.tag_embed.embedding_dim; 511 x 128
+        self.to_embed = nn.Linear(self._hidden_size, self.tag_embed_dim, bias=False) # 512 -> 128
+        self.to_out = nn.Linear(self.tag_embed_dim, self._hidden_size, bias=False) # 128 -> 512
+        self.tag_dec_att = LuongAttention(hidden_size=self.tag_embed_dim, key_size=self.tag_embed_dim) # 128, 128
 
 
         """
@@ -532,7 +533,6 @@ class TransformerDecoder(Decoder):
 
     def forward(self,
                 trg_embed: Tensor = None,
-                # mods
                 tag_embed: Tensor = None,
                 encoder_output: Tensor = None,
                 encoder_hidden: Tensor = None,
@@ -579,28 +579,59 @@ class TransformerDecoder(Decoder):
         # x = self.to_embed(x)
         """
 
-
         trg_mask = trg_mask & subsequent_mask(
             trg_embed.size(1)).type_as(trg_mask)
+        #print(trg_mask[1][1])
 
         for layer in self.layers:
             x = layer(x=x, memory=encoder_output,
                       src_mask=src_mask, trg_mask=trg_mask)
 
         x = self.layer_norm(x)
+        
+        batch_size = x.size(0)
+        
+        print(x.size())
+        #query = hidden[0][-1].unsqueeze(1)
 
-        # # predict tags
-        if self.use_tags:
-            x = self.to_embed(x)
+        # predict tags
+        # if self.use_tags:
+        #     x = self.to_embed(x)
 
-            # compute context vector using attention mechanism
-            context, att_probs = self.attention(query=x, values=tag_embed, mask=src_mask)
+        #     #compute embedding matrix
+        #     embs = torch.zeros(self.tag_vocab_size, self.tag_embed_dim)
+        #     for i in range(self.tag_vocab_size):
+        #         torch.cat((embs, tag_embed(torch.tensor([i]))), 0)
 
-            out = self.to_out(context)
+        #     embs = embs.unsqueeze(0)
 
-            x = x + out        
+        #     emb = embs.detach().clone()
+            
+        #     #duplicate by batches
+        #     for i in range(batch_size-1):
+        #         embs = torch.cat((embs, emb), 0)
+
+        #     print(embs.size(), x.size(), trg_mask.size())
+
+        #     #precompute keys
+        #     self.tag_dec_att.compute_proj_keys(keys=embs)
+
+        #     # compute context vector using attention mechanism
+        #     print(x.size(1), trg_mask.size(1))
+
+        #     # x = x[1][-1].unsqueeze(1)
+        #     # print(x.size())
+
+        #     context, att_probs = self.tag_dec_att(query=x, values=embs, mask=trg_mask)
+
+        #     out = self.to_out(context)
+
+        #     x = x + out
+        
+        out, att_probs = None, None        
 
         output = self.output_layer(x)
+        print(output[0][1])
 
         return output, x, out, att_probs
 

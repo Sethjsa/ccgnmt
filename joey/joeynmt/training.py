@@ -779,11 +779,11 @@ def train(cfg_file: str, skip_test: bool = False) -> None:
     set_seed(seed=cfg["training"].get("random_seed", 42))
 
     # load the data
-    train_data, dev_data, test_data, src_vocab, trg_vocab = load_data(
+    train_data, dev_data, test_data, src_vocab, trg_vocab, tag_vocab = load_data(
         data_cfg=cfg["data"])
 
     # build an encoder-decoder model
-    model = build_model(cfg["model"], src_vocab=src_vocab, trg_vocab=trg_vocab)
+    model = build_model(cfg["model"], src_vocab=src_vocab, trg_vocab=trg_vocab, tag_vocab=tag_vocab)
 
     # for training management, e.g. early stopping and model selection
     trainer = TrainManager(model=model, config=cfg)
@@ -798,7 +798,8 @@ def train(cfg_file: str, skip_test: bool = False) -> None:
                   valid_data=dev_data,
                   test_data=test_data,
                   src_vocab=src_vocab,
-                  trg_vocab=trg_vocab)
+                  trg_vocab=trg_vocab,
+                  tag_vocab=tag_vocab)
 
     logger.info(str(model))
 
@@ -807,6 +808,8 @@ def train(cfg_file: str, skip_test: bool = False) -> None:
     src_vocab.to_file(src_vocab_file)
     trg_vocab_file = "{}/trg_vocab.txt".format(cfg["training"]["model_dir"])
     trg_vocab.to_file(trg_vocab_file)
+    tag_vocab_file = "{}/tag_vocab.txt".format(cfg["training"]["model_dir"])
+    tag_vocab.to_file(tag_vocab_file)
 
     # train the model
     trainer.train_and_validate(train_data=train_data, valid_data=dev_data)

@@ -183,6 +183,8 @@ def build_vocab(field: str, max_size: int, min_freq: int, dataset: Dataset,
                 tokens.extend(i.src)
             elif field == "trg":
                 tokens.extend(i.trg)
+            elif field == "tag":
+                tokens.extend(i.tag)
 
         counter = Counter(tokens)
         if min_freq > -1:

@@ -4,7 +4,7 @@ This modules holds methods for generating predictions from a model.
 """
 import os
 import sys
-from typing import List, Optional
+from typing import List, Optional, Tuple
 import logging
 import numpy as np
 
@@ -39,8 +39,8 @@ def validate_on_data(model: Model, data: Dataset,
                      bpe_type: str = "subword-nmt",
                      sacrebleu: dict = None,
                      n_best: int = 1) \
-        -> (float, float, float, List[str], List[List[str]], List[str],
-            List[str], List[List[str]], List[np.array]):
+        -> Tuple[float, float, float, List[str], List[List[str]], List[str],
+            List[str], List[List[str]], List[np.array]]:
     """
     Generate translations for the given data.
     If `compute_loss` is True and references are given,
@@ -296,6 +296,7 @@ def test(cfg_file,
         data_to_predict = {"dev": datasets["dev"], "test": datasets["test"]}
         src_vocab = datasets["src_vocab"]
         trg_vocab = datasets["trg_vocab"]
+        tag_vocab = datasets["tag_vocab"]
 
     # parse test args
     batch_size, batch_type, use_cuda, device, n_gpu, level, eval_metric, \

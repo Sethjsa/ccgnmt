@@ -52,7 +52,7 @@ def load_data(data_cfg: dict, datasets: list = None)\
     # load data from files
     src_lang = data_cfg["src"]
     # mods
-    trg_tags= data_cfg["tag"]
+    trg_tag= data_cfg["tag"]
     trg_lang = data_cfg["trg"]
     train_path = data_cfg.get("train", None)
     dev_path = data_cfg.get("dev", None)
@@ -91,7 +91,7 @@ def load_data(data_cfg: dict, datasets: list = None)\
     if "train" in datasets and train_path is not None:
         logger.info("Loading training data...")
         train_data = TranslationDatasetCCG(path=train_path,
-                                        exts=("." + src_lang, "." + trg_lang, "." + trg_tags),
+                                        exts=("." + src_lang, "." + trg_lang, "." + trg_tag),
                                         fields=(src_field, trg_field, tag_field),
                                         filter_pred=
                                         lambda x: len(vars(x)['src'])
@@ -139,7 +139,7 @@ def load_data(data_cfg: dict, datasets: list = None)\
     if "dev" in datasets and dev_path is not None:
         logger.info("Loading dev data...")
         dev_data = TranslationDataset(path=dev_path,
-                                      exts=("." + src_lang, "." + trg_lang, "."),
+                                      exts=("." + src_lang, "." + trg_lang),
                                       fields=(src_field, trg_field))
 
     test_data = None
@@ -158,20 +158,21 @@ def load_data(data_cfg: dict, datasets: list = None)\
     trg_field.vocab = trg_vocab
     tag_field.vocab = tag_vocab
     logger.info("Data loaded.")
-    return train_data, dev_data, test_data, src_vocab, trg_vocab
+    return train_data, dev_data, test_data, src_vocab, trg_vocab, tag_vocab
 
 
 # pylint: disable=global-at-module-level
-global max_src_in_batch, max_tgt_in_batch
+global max_src_in_batch, max_tgt_in_batch, max_tag_in_batch
 
-# adapt for tags
+# adapt for tags (?)
 # pylint: disable=unused-argument,global-variable-undefined
 def token_batch_size_fn(new, count, sofar):
     """Compute batch size based on number of tokens (+padding)."""
-    global max_src_in_batch, max_tgt_in_batch
+    global max_src_in_batch, max_tgt_in_batch, max_tag_in_batch
     if count == 1:
         max_src_in_batch = 0
         max_tgt_in_batch = 0
+        max_tag_in_batch = 0
     max_src_in_batch = max(max_src_in_batch, len(new.src))
     src_elements = count * max_src_in_batch
     if hasattr(new, 'trg'):  # for monolingual data sets ("translate" mode)
@@ -179,7 +180,13 @@ def token_batch_size_fn(new, count, sofar):
         tgt_elements = count * max_tgt_in_batch
     else:
         tgt_elements = 0
-    return max(src_elements, tgt_elements)
+
+    if hasattr(new, 'tag'):  # for monolingual data sets ("translate" mode)
+        max_tag_in_batch = max(max_tag_in_batch, len(new.tag) + 2)
+        tag_elements = count * max_tag_in_batch
+    else:
+        tag_elements = 0
+    return max(src_elements, tgt_elements, tag_elements)
 
 
 def make_data_iter(dataset: Dataset,
@@ -259,12 +266,12 @@ class MonoDataset(Dataset):
         super().__init__(examples, fields, **kwargs)
 
 
-class TranslationDatasetCCG(data.Dataset):
+class TranslationDatasetCCG(Dataset):
     """Defines a dataset for machine translation."""
 
     @staticmethod
     def sort_key(ex):
-        return data.interleave_keys(len(ex.src), len(ex.trg))
+        return data.interleave_keys(len(ex.src), len(ex.trg), len(ex.tag))
 
     def __init__(self, path, exts, fields, **kwargs):
         """Create a TranslationDataset given paths and fields.
@@ -286,7 +293,7 @@ class TranslationDatasetCCG(data.Dataset):
                 io.open(trg_path, mode='r', encoding='utf-8') as trg_file, \
                 io.open(tag_path, mode='r', encoding='utf-8') as tag_file:
             for src_line, trg_line, tag_line in zip(src_file, trg_file, tag_file):
-                src_line, trg_line, tag_line = src_line.strip(), trg_line.strip(), tag_line.strip
+                src_line, trg_line, tag_line = src_line.strip(), trg_line.strip(), tag_line.strip()
                 if src_line != '' and trg_line != '' and tag_line != '':
                     examples.append(data.Example.fromlist(
                         [src_line, trg_line, tag_line], fields))

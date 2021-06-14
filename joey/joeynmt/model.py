@@ -30,8 +30,8 @@ class Model(nn.Module):
                  decoder: Decoder,
                  src_embed: Embeddings,
                  trg_embed: Embeddings,
-                 # tag_embed: Embeddings,
-                 # tag_vocab: Vocabulary,
+                 tag_embed: Embeddings,
+                 tag_vocab: Vocabulary,
                  src_vocab: Vocabulary,
                  trg_vocab: Vocabulary) -> None:
         """
@@ -48,18 +48,16 @@ class Model(nn.Module):
 
         self.src_embed = src_embed
         self.trg_embed = trg_embed
+        self.tag_embed = tag_embed
         self.encoder = encoder
         self.decoder = decoder
         self.src_vocab = src_vocab
         self.trg_vocab = trg_vocab
+        self.tag_vocab = tag_vocab
         self.bos_index = self.trg_vocab.stoi[BOS_TOKEN]
         self.pad_index = self.trg_vocab.stoi[PAD_TOKEN]
         self.eos_index = self.trg_vocab.stoi[EOS_TOKEN]
         self._loss_function = None # set by the TrainManager
-
-        # mods
-        # self.tag_embed = tag_embed
-        # self.tag_vocab = tag_vocab
 
     @property
     def loss_function(self):
@@ -90,8 +88,9 @@ class Model(nn.Module):
 
             # add tag prediction as output
             # out, tag_out, _, _ 
-
+            
             out, _, _, _ = self._encode_decode(**kwargs)
+            print(out.size())
             
             # mods
             # add 2 part loss here
@@ -168,7 +167,8 @@ class Model(nn.Module):
     def _decode(self, encoder_output: Tensor, encoder_hidden: Tensor,
                 src_mask: Tensor, trg_input: Tensor,
                 unroll_steps: int, decoder_hidden: Tensor = None,
-                att_vector: Tensor = None, trg_mask: Tensor = None, **_kwargs) \
+                att_vector: Tensor = None, trg_mask: Tensor = None,
+                tag_embed: Tensor = None, **_kwargs) \
             -> Tuple[Tensor, Tensor, Tensor, Tensor]:
         """
         Decode, given an encoded source sentence.
@@ -191,6 +191,7 @@ class Model(nn.Module):
                             hidden=decoder_hidden,
                             prev_att_vector=att_vector,
                             trg_mask=trg_mask,
+                            tag_embed=self.tag_embed,
                             **_kwargs)
 
     def __repr__(self) -> str:
@@ -203,9 +204,10 @@ class Model(nn.Module):
                "\tencoder=%s,\n" \
                "\tdecoder=%s,\n" \
                "\tsrc_embed=%s,\n" \
-               "\ttrg_embed=%s)" % (self.__class__.__name__, self.encoder,
+               "\ttrg_embed=%s,\n" \
+               "\ttag_embed=%s,\n   )" % (self.__class__.__name__, self.encoder,
                                     self.decoder, self.src_embed,
-                                    self.trg_embed)
+                                    self.trg_embed, self.tag_embed)
 
 
 class _DataParallel(nn.DataParallel):
@@ -218,9 +220,9 @@ class _DataParallel(nn.DataParallel):
 
 
 def build_model(cfg: dict = None,
-                # tag_vocab: Vocabulary = None
                 src_vocab: Vocabulary = None,
-                trg_vocab: Vocabulary = None) -> Model:
+                trg_vocab: Vocabulary = None,
+                tag_vocab: Vocabulary = None) -> Model:
     """
     Build and initialize the model according to the configuration.
 
@@ -232,6 +234,7 @@ def build_model(cfg: dict = None,
     logger.info("Building an encoder-decoder model...")
     src_padding_idx = src_vocab.stoi[PAD_TOKEN]
     trg_padding_idx = trg_vocab.stoi[PAD_TOKEN]
+    tag_padding_idx = tag_vocab.stoi[PAD_TOKEN]
 
     src_embed = Embeddings(
         **cfg["encoder"]["embeddings"], vocab_size=len(src_vocab),
@@ -250,6 +253,10 @@ def build_model(cfg: dict = None,
         trg_embed = Embeddings(
             **cfg["decoder"]["embeddings"], vocab_size=len(trg_vocab),
             padding_idx=trg_padding_idx)
+    
+    tag_embed = Embeddings(
+        **cfg["decoder"]["tag_embeddings"], vocab_size=len(tag_vocab),
+        padding_idx=tag_padding_idx)
 
     # build encoder
     enc_dropout = cfg["encoder"].get("dropout", 0.)
@@ -273,6 +280,7 @@ def build_model(cfg: dict = None,
     if cfg["decoder"].get("type", "recurrent") == "transformer":
         decoder = TransformerDecoder(
             **cfg["decoder"], encoder=encoder, vocab_size=len(trg_vocab),
+            tag_vocab_size=len(tag_vocab), tag_embed_size=tag_embed.embedding_dim,
             emb_size=trg_embed.embedding_dim, emb_dropout=dec_emb_dropout)
     else:
         decoder = RecurrentDecoder(
@@ -281,7 +289,8 @@ def build_model(cfg: dict = None,
 
     model = Model(encoder=encoder, decoder=decoder,
                   src_embed=src_embed, trg_embed=trg_embed,
-                  src_vocab=src_vocab, trg_vocab=trg_vocab)
+                  src_vocab=src_vocab, trg_vocab=trg_vocab,
+                  tag_vocab=tag_vocab, tag_embed=tag_embed)
 
     # tie softmax layer with trg embeddings
     if cfg.get("tied_softmax", False):
@@ -296,7 +305,7 @@ def build_model(cfg: dict = None,
                 "The decoder must be a Transformer.")
 
     # custom initialization of model parameters
-    initialize_model(model, cfg, src_padding_idx, trg_padding_idx)
+    initialize_model(model, cfg, src_padding_idx, trg_padding_idx, tag_padding_idx)
 
     # initialize embeddings from file
     pretrained_enc_embed_path = cfg["encoder"]["embeddings"].get(
@@ -304,10 +313,10 @@ def build_model(cfg: dict = None,
     pretrained_dec_embed_path = cfg["decoder"]["embeddings"].get(
         "load_pretrained", None)
     if pretrained_enc_embed_path:
-        logger.info("Loading pretraind src embeddings...")
+        logger.info("Loading pretrained src embeddings...")
         model.src_embed.load_from_file(pretrained_enc_embed_path, src_vocab)
     if pretrained_dec_embed_path and not cfg.get("tied_embeddings", False):
-        logger.info("Loading pretraind trg embeddings...")
+        logger.info("Loading pretrained trg embeddings...")
         model.trg_embed.load_from_file(pretrained_dec_embed_path, trg_vocab)
 
     logger.info("Enc-dec model built.")

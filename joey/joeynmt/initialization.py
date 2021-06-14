@@ -58,7 +58,7 @@ def xavier_uniform_n_(w: Tensor, gain: float = 1., n: int = 4) -> None:
 
 # pylint: disable=too-many-branches
 def initialize_model(model: nn.Module, cfg: dict, src_padding_idx: int,
-                     trg_padding_idx: int) -> None:
+                     trg_padding_idx: int, tag_padding_idx: int) -> None:
     """
     This initializes a model based on the provided config.
 
@@ -153,6 +153,7 @@ def initialize_model(model: nn.Module, cfg: dict, src_padding_idx: int,
         # zero out paddings
         model.src_embed.lut.weight.data[src_padding_idx].zero_()
         model.trg_embed.lut.weight.data[trg_padding_idx].zero_()
+        model.tag_embed.lut.weight.data[tag_padding_idx].zero_()
 
         orthogonal = cfg.get("init_rnn_orthogonal", False)
         lstm_forget_gate = cfg.get("lstm_forget_gate", 1.)

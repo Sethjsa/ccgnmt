@@ -138,7 +138,7 @@ def set_seed(seed: int) -> None:
 
 
 def log_data_info(train_data: Dataset, valid_data: Dataset, test_data: Dataset,
-                  src_vocab: Vocabulary, trg_vocab: Vocabulary) -> None:
+                  src_vocab: Vocabulary, trg_vocab: Vocabulary, tag_vocab: Vocabulary) -> None:
     """
     Log statistics of data and vocabulary.
 
@@ -153,9 +153,16 @@ def log_data_info(train_data: Dataset, valid_data: Dataset, test_data: Dataset,
                 len(train_data), len(valid_data),
                 len(test_data) if test_data is not None else 0)
 
-    logger.info("First training example:\n\t[SRC] %s\n\t[TRG] %s",
+    # #print(train_data[0])
+    # print(" ".join(vars(train_data[0])['src']), type(" ".join(vars(train_data[0])['src'])))
+    # print(" ".join(vars(train_data[0])['trg']), type(" ".join(vars(train_data[0])['trg'])))
+    # print(" ".join(vars(train_data[0])['tag']), type(" ".join(vars(train_data[0])['tag'])))
+
+
+    logger.info("First training example:\n\t[SRC] %s\n\t[TRG] %s\n\t[TAG] %s",
                 " ".join(vars(train_data[0])['src']),
-                " ".join(vars(train_data[0])['trg']))
+                " ".join(vars(train_data[0])['trg']),
+                " ".join(vars(train_data[0])['tag']))
 
     logger.info(
         "First 10 words (src): %s",
@@ -163,9 +170,13 @@ def log_data_info(train_data: Dataset, valid_data: Dataset, test_data: Dataset,
     logger.info(
         "First 10 words (trg): %s",
         " ".join('(%d) %s' % (i, t) for i, t in enumerate(trg_vocab.itos[:10])))
+    logger.info(
+        "First 10 words (tag): %s",
+        " ".join('(%d) %s' % (i, t) for i, t in enumerate(tag_vocab.itos[:10])))
 
     logger.info("Number of Src words (types): %d", len(src_vocab))
     logger.info("Number of Trg words (types): %d", len(trg_vocab))
+    logger.info("Number of Tags (types): %d", len(tag_vocab))
 
 
 def load_config(path="configs/default.yaml") -> dict:
