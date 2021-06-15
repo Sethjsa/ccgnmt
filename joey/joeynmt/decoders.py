@@ -1,4 +1,5 @@
 # coding: utf-8
+# to run: python3 -m joeynmt train configs/ccg.yaml
 
 """
 Various decoders
@@ -7,13 +8,24 @@ from typing import Optional, Tuple
 
 import torch
 import torch.nn as nn
+import numpy as np
 from torch import Tensor
 from joeynmt.attention import BahdanauAttention, LuongAttention
 from joeynmt.encoders import Encoder
-from joeynmt.helpers import freeze_params, ConfigurationError, subsequent_mask
+from joeynmt.helpers import freeze_params, ConfigurationError, subsequent_mask#, current_word_mask
 from joeynmt.transformer_layers import PositionalEncoding, \
     TransformerDecoderLayer
 
+def current_word_mask(size: int) -> Tensor:
+    """
+    Mask out previous and subsequent positions (to prevent attending to past and future positions)
+    Transformer helper function.
+
+    :param size: size of mask (2nd and 3rd dim)
+    :return: Tensor with 0s and 1s of shape (1, size, size)
+    """
+    mask = np.triu(np.ones((size, size)), k=0).astype('uint8') & np.tril(np.ones((size, size)), k=0).astype('uint8')
+    return torch.from_numpy(mask) == 1
 
 # pylint: disable=abstract-method
 class Decoder(nn.Module):
@@ -504,29 +516,19 @@ class TransformerDecoder(Decoder):
         self.emb_dropout = nn.Dropout(p=emb_dropout)
         self.output_layer = nn.Linear(hidden_size, vocab_size, bias=False)
         
-        # mods
+###################### Modifications ######################
+
         self.tag_vocab_size = tag_vocab_size
         self.use_tags = use_tags
         self.tag_embed_dim = tag_embed_size
-        # self.tag_embeddings = self.tag_embed # size [tag_vocab_size, embed_dim] = self.tag_embed.vocab_size, self.tag_embed.embedding_dim; 511 x 128
+        self.tag_embeddings = None # self.tag_embed # size [tag_vocab_size, embed_dim] = self.tag_embed.vocab_size, self.tag_embed.embedding_dim; 511 x 128
         self.to_embed = nn.Linear(self._hidden_size, self.tag_embed_dim, bias=False) # 512 -> 128
         self.to_out = nn.Linear(self.tag_embed_dim, self._hidden_size, bias=False) # 128 -> 512
         self.tag_dec_att = LuongAttention(hidden_size=self.tag_embed_dim, key_size=self.tag_embed_dim) # 128, 128
 
+###################### End ######################
 
-        """
-        # extra ED attention
-        # self.src_trg_att = MultiHeadedAttention(num_heads, size, dropout=dropout)
-        # self.x_layer_norm = nn.LayerNorm(size, eps=1e-6)     
 
-        # add CCG prediction - relu plus linear? Another linear?
-        # self.tag_pred = nn.Linear(trg_embed + encoder_context + tag_embed, tag_vocab_size, dropout=dropout)
-        # activation = nn.ReLU
-        # no softmax, do this in model.py to go from logits to probs for loss
-
-        # add linear transformation from 640 > 512
-        # self.to_embed = nn.Linear(640, hidden_size, dropout=dropout)
-        """
 
         if freeze:
             freeze_params(self)
@@ -559,79 +561,58 @@ class TransformerDecoder(Decoder):
 
         x = self.pe(trg_embed)  # add position encoding to word embedding
         x = self.emb_dropout(x)
-
-        # mods
-
-        """
-        # ED attention between pred dec output and encoder output
-        # context = self.src_trg_att(x=x, encoder_output)
-
-        # CCG pred layer
-        # tag_output_dist = self.tag_pred(x + context + prev_tag_output)
-
-        # use predictions to make context vector (507 * 507)
-        # need access to full tag_embeddings
-        # tag_output = torch.bmm(tag_output_dist, tag_embeddings)
-
-        # x = concat(x, tag_output)
-
-        # linear transformation of output
-        # x = self.to_embed(x)
-        """
-
+       
+       # dim = [batch x tgt_len x tgt_len] (batch x word position x masked words (subsequent + padding))
         trg_mask = trg_mask & subsequent_mask(
             trg_embed.size(1)).type_as(trg_mask)
-        #print(trg_mask[1][1])
-
+        
         for layer in self.layers:
             x = layer(x=x, memory=encoder_output,
                       src_mask=src_mask, trg_mask=trg_mask)
-
+        
+        # dim = [batch x tgt_len x hidden_size] (decoder state for each output word)
         x = self.layer_norm(x)
         
-        batch_size = x.size(0)
-        
-        print(x.size())
-        #query = hidden[0][-1].unsqueeze(1)
+##################### Modifications ######################
 
         # predict tags
-        # if self.use_tags:
-        #     x = self.to_embed(x)
+        if self.use_tags:
 
-        #     #compute embedding matrix
-        #     embs = torch.zeros(self.tag_vocab_size, self.tag_embed_dim)
-        #     for i in range(self.tag_vocab_size):
-        #         torch.cat((embs, tag_embed(torch.tensor([i]))), 0)
+            # dim = [batch x tgt_len x embed_dim]
+            x = self.to_embed(x)
 
-        #     embs = embs.unsqueeze(0)
+            # dim = [tag_vocab x embed_dim] = [511 x 128]     
+            embs = self.tag_embeddings
 
-        #     emb = embs.detach().clone()
+            # dim = [1 x tag_vocab x embed_dim] = [1 x 511 x 128]
+            embs = embs.unsqueeze(0)
+
+            # precompute keys
+            self.tag_dec_att.compute_proj_keys(keys=embs)
+
+            # compute context vector using attention mechanism
+
+            # zero out all words + padding except current word
+            # dim = [1 x tgt_len x embed_dim]
+            x_mask = current_word_mask(x.size(1)) & trg_mask
+
+            print(embs.size(), x.size(), x_mask.size(), trg_mask.size())
+
+            # not sure we actually need a mask, if x is just the predicted hidden state for each word
+            # x = x.masked_fill(x_mask, float('-inf'))
             
-        #     #duplicate by batches
-        #     for i in range(batch_size-1):
-        #         embs = torch.cat((embs, emb), 0)
+            # context: dim = [batch x tgt_len x embed_dim]
+            # att_probs: dim = [batch x tgt_len x tag_vocab]
+            context, att_probs = self.tag_dec_att(query=x, values=embs, mask=x_mask)
 
-        #     print(embs.size(), x.size(), trg_mask.size())
+            out = self.to_out(context)
 
-        #     #precompute keys
-        #     self.tag_dec_att.compute_proj_keys(keys=embs)
+            # dim = [batch x tgt_len x hidden_size]
+            x = x + out
 
-        #     # compute context vector using attention mechanism
-        #     print(x.size(1), trg_mask.size(1))
-
-        #     # x = x[1][-1].unsqueeze(1)
-        #     # print(x.size())
-
-        #     context, att_probs = self.tag_dec_att(query=x, values=embs, mask=trg_mask)
-
-        #     out = self.to_out(context)
-
-        #     x = x + out
-        
-        out, att_probs = None, None        
+###################### End ###################### 
 
         output = self.output_layer(x)
-        print(output[0][1])
 
         return output, x, out, att_probs
 

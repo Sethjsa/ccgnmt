@@ -257,6 +257,8 @@ def build_model(cfg: dict = None,
     tag_embed = Embeddings(
         **cfg["decoder"]["tag_embeddings"], vocab_size=len(tag_vocab),
         padding_idx=tag_padding_idx)
+    
+    #tag_embed = tag_emb.lut.weight
 
     # build encoder
     enc_dropout = cfg["encoder"].get("dropout", 0.)
@@ -286,7 +288,7 @@ def build_model(cfg: dict = None,
         decoder = RecurrentDecoder(
             **cfg["decoder"], encoder=encoder, vocab_size=len(trg_vocab),
             emb_size=trg_embed.embedding_dim, emb_dropout=dec_emb_dropout)
-
+    
     model = Model(encoder=encoder, decoder=decoder,
                   src_embed=src_embed, trg_embed=trg_embed,
                   src_vocab=src_vocab, trg_vocab=trg_vocab,
@@ -303,6 +305,8 @@ def build_model(cfg: dict = None,
                 "For tied_softmax, the decoder embedding_dim and decoder "
                 "hidden_size must be the same."
                 "The decoder must be a Transformer.")
+    
+    model.decoder.tag_embeddings = tag_embed.lut.weight
 
     # custom initialization of model parameters
     initialize_model(model, cfg, src_padding_idx, trg_padding_idx, tag_padding_idx)
