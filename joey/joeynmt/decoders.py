@@ -8,6 +8,7 @@ from typing import Optional, Tuple
 
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 import numpy as np
 from torch import Tensor
 from joeynmt.attention import BahdanauAttention, LuongAttention
@@ -579,32 +580,29 @@ class TransformerDecoder(Decoder):
         if self.use_tags:
 
             # dim = [batch x tgt_len x embed_dim]
-            x = self.to_embed(x)
+            y = self.to_embed(x)
 
             # dim = [tag_vocab x embed_dim] = [511 x 128]     
             embs = self.tag_embeddings
 
-            # dim = [1 x tag_vocab x embed_dim] = [1 x 511 x 128]
-            embs = embs.unsqueeze(0)
+            # dim = [batch x tgt_len x tag_vocab]
+            att_probs = F.softmax(y @ embs.transpose(0,1), dim=2)
 
-            # precompute keys
-            self.tag_dec_att.compute_proj_keys(keys=embs)
+            # dim = [1 x 1 x tag_vocab x embed_dim]
+            embs = embs.unsqueeze(0).unsqueeze(0)
 
-            # compute context vector using attention mechanism
+            # dim = [batch x trg_len x tag_vocab x 1]
+            att_probs = att_probs.unsqueeze(3)
 
-            # zero out all words + padding except current word
-            # dim = [1 x tgt_len x embed_dim]
-            x_mask = current_word_mask(x.size(1)) & trg_mask
+            # elementwise hadamard product - attention scaling
+            # dim = [batch x tgt_len x tag_vocab x embed_dim]
+            context_weights = att_probs * embs # torch.mul(att_probs, embs)
 
-            print(embs.size(), x.size(), x_mask.size(), trg_mask.size())
+            # weighted sum of scaled embeddings
+            # dim = [batch x tgt_len x embed_dim]
+            context = torch.sum(context_weights, dim=2)
 
-            # not sure we actually need a mask, if x is just the predicted hidden state for each word
-            # x = x.masked_fill(x_mask, float('-inf'))
-            
-            # context: dim = [batch x tgt_len x embed_dim]
-            # att_probs: dim = [batch x tgt_len x tag_vocab]
-            context, att_probs = self.tag_dec_att(query=x, values=embs, mask=x_mask)
-
+            # dim = [batch x tgt_len x hidden_size]
             out = self.to_out(context)
 
             # dim = [batch x tgt_len x hidden_size]

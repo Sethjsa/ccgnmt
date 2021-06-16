@@ -1,111 +1,284 @@
-2021-06-15 16:10:20,914 - INFO - root - Hello! This is Joey-NMT (version 1.3).
-2021-06-15 16:10:20,915 - INFO - joeynmt.data - Loading training data...
-2021-06-15 16:10:21,092 - INFO - joeynmt.data - Building vocabulary...
-2021-06-15 16:10:21,093 - INFO - joeynmt.data - Loading dev data...
-2021-06-15 16:10:21,126 - INFO - joeynmt.data - Loading test data...
-2021-06-15 16:10:21,154 - INFO - joeynmt.data - Data loaded.
-2021-06-15 16:10:21,172 - INFO - joeynmt.model - Building an encoder-decoder model...
-2021-06-15 16:10:21,659 - INFO - joeynmt.model - Enc-dec model built.
-2021-06-15 16:10:21,664 - INFO - joeynmt.training - Total params: 44421504
-2021-06-15 16:10:21,665 - DEBUG - joeynmt.training - Trainable parameters: ['decoder.layer_norm.bias', 'decoder.layer_norm.weight', 'decoder.layers.0.dec_layer_norm.bias', 'decoder.layers.0.dec_layer_norm.weight', 'decoder.layers.0.feed_forward.layer_norm.bias', 'decoder.layers.0.feed_forward.layer_norm.weight', 'decoder.layers.0.feed_forward.pwff_layer.0.bias', 'decoder.layers.0.feed_forward.pwff_layer.0.weight', 'decoder.layers.0.feed_forward.pwff_layer.3.bias', 'decoder.layers.0.feed_forward.pwff_layer.3.weight', 'decoder.layers.0.src_trg_att.k_layer.bias', 'decoder.layers.0.src_trg_att.k_layer.weight', 'decoder.layers.0.src_trg_att.output_layer.bias', 'decoder.layers.0.src_trg_att.output_layer.weight', 'decoder.layers.0.src_trg_att.q_layer.bias', 'decoder.layers.0.src_trg_att.q_layer.weight', 'decoder.layers.0.src_trg_att.v_layer.bias', 'decoder.layers.0.src_trg_att.v_layer.weight', 'decoder.layers.0.trg_trg_att.k_layer.bias', 'decoder.layers.0.trg_trg_att.k_layer.weight', 'decoder.layers.0.trg_trg_att.output_layer.bias', 'decoder.layers.0.trg_trg_att.output_layer.weight', 'decoder.layers.0.trg_trg_att.q_layer.bias', 'decoder.layers.0.trg_trg_att.q_layer.weight', 'decoder.layers.0.trg_trg_att.v_layer.bias', 'decoder.layers.0.trg_trg_att.v_layer.weight', 'decoder.layers.0.x_layer_norm.bias', 'decoder.layers.0.x_layer_norm.weight', 'decoder.layers.1.dec_layer_norm.bias', 'decoder.layers.1.dec_layer_norm.weight', 'decoder.layers.1.feed_forward.layer_norm.bias', 'decoder.layers.1.feed_forward.layer_norm.weight', 'decoder.layers.1.feed_forward.pwff_layer.0.bias', 'decoder.layers.1.feed_forward.pwff_layer.0.weight', 'decoder.layers.1.feed_forward.pwff_layer.3.bias', 'decoder.layers.1.feed_forward.pwff_layer.3.weight', 'decoder.layers.1.src_trg_att.k_layer.bias', 'decoder.layers.1.src_trg_att.k_layer.weight', 'decoder.layers.1.src_trg_att.output_layer.bias', 'decoder.layers.1.src_trg_att.output_layer.weight', 'decoder.layers.1.src_trg_att.q_layer.bias', 'decoder.layers.1.src_trg_att.q_layer.weight', 'decoder.layers.1.src_trg_att.v_layer.bias', 'decoder.layers.1.src_trg_att.v_layer.weight', 'decoder.layers.1.trg_trg_att.k_layer.bias', 'decoder.layers.1.trg_trg_att.k_layer.weight', 'decoder.layers.1.trg_trg_att.output_layer.bias', 'decoder.layers.1.trg_trg_att.output_layer.weight', 'decoder.layers.1.trg_trg_att.q_layer.bias', 'decoder.layers.1.trg_trg_att.q_layer.weight', 'decoder.layers.1.trg_trg_att.v_layer.bias', 'decoder.layers.1.trg_trg_att.v_layer.weight', 'decoder.layers.1.x_layer_norm.bias', 'decoder.layers.1.x_layer_norm.weight', 'decoder.layers.2.dec_layer_norm.bias', 'decoder.layers.2.dec_layer_norm.weight', 'decoder.layers.2.feed_forward.layer_norm.bias', 'decoder.layers.2.feed_forward.layer_norm.weight', 'decoder.layers.2.feed_forward.pwff_layer.0.bias', 'decoder.layers.2.feed_forward.pwff_layer.0.weight', 'decoder.layers.2.feed_forward.pwff_layer.3.bias', 'decoder.layers.2.feed_forward.pwff_layer.3.weight', 'decoder.layers.2.src_trg_att.k_layer.bias', 'decoder.layers.2.src_trg_att.k_layer.weight', 'decoder.layers.2.src_trg_att.output_layer.bias', 'decoder.layers.2.src_trg_att.output_layer.weight', 'decoder.layers.2.src_trg_att.q_layer.bias', 'decoder.layers.2.src_trg_att.q_layer.weight', 'decoder.layers.2.src_trg_att.v_layer.bias', 'decoder.layers.2.src_trg_att.v_layer.weight', 'decoder.layers.2.trg_trg_att.k_layer.bias', 'decoder.layers.2.trg_trg_att.k_layer.weight', 'decoder.layers.2.trg_trg_att.output_layer.bias', 'decoder.layers.2.trg_trg_att.output_layer.weight', 'decoder.layers.2.trg_trg_att.q_layer.bias', 'decoder.layers.2.trg_trg_att.q_layer.weight', 'decoder.layers.2.trg_trg_att.v_layer.bias', 'decoder.layers.2.trg_trg_att.v_layer.weight', 'decoder.layers.2.x_layer_norm.bias', 'decoder.layers.2.x_layer_norm.weight', 'decoder.layers.3.dec_layer_norm.bias', 'decoder.layers.3.dec_layer_norm.weight', 'decoder.layers.3.feed_forward.layer_norm.bias', 'decoder.layers.3.feed_forward.layer_norm.weight', 'decoder.layers.3.feed_forward.pwff_layer.0.bias', 'decoder.layers.3.feed_forward.pwff_layer.0.weight', 'decoder.layers.3.feed_forward.pwff_layer.3.bias', 'decoder.layers.3.feed_forward.pwff_layer.3.weight', 'decoder.layers.3.src_trg_att.k_layer.bias', 'decoder.layers.3.src_trg_att.k_layer.weight', 'decoder.layers.3.src_trg_att.output_layer.bias', 'decoder.layers.3.src_trg_att.output_layer.weight', 'decoder.layers.3.src_trg_att.q_layer.bias', 'decoder.layers.3.src_trg_att.q_layer.weight', 'decoder.layers.3.src_trg_att.v_layer.bias', 'decoder.layers.3.src_trg_att.v_layer.weight', 'decoder.layers.3.trg_trg_att.k_layer.bias', 'decoder.layers.3.trg_trg_att.k_layer.weight', 'decoder.layers.3.trg_trg_att.output_layer.bias', 'decoder.layers.3.trg_trg_att.output_layer.weight', 'decoder.layers.3.trg_trg_att.q_layer.bias', 'decoder.layers.3.trg_trg_att.q_layer.weight', 'decoder.layers.3.trg_trg_att.v_layer.bias', 'decoder.layers.3.trg_trg_att.v_layer.weight', 'decoder.layers.3.x_layer_norm.bias', 'decoder.layers.3.x_layer_norm.weight', 'decoder.layers.4.dec_layer_norm.bias', 'decoder.layers.4.dec_layer_norm.weight', 'decoder.layers.4.feed_forward.layer_norm.bias', 'decoder.layers.4.feed_forward.layer_norm.weight', 'decoder.layers.4.feed_forward.pwff_layer.0.bias', 'decoder.layers.4.feed_forward.pwff_layer.0.weight', 'decoder.layers.4.feed_forward.pwff_layer.3.bias', 'decoder.layers.4.feed_forward.pwff_layer.3.weight', 'decoder.layers.4.src_trg_att.k_layer.bias', 'decoder.layers.4.src_trg_att.k_layer.weight', 'decoder.layers.4.src_trg_att.output_layer.bias', 'decoder.layers.4.src_trg_att.output_layer.weight', 'decoder.layers.4.src_trg_att.q_layer.bias', 'decoder.layers.4.src_trg_att.q_layer.weight', 'decoder.layers.4.src_trg_att.v_layer.bias', 'decoder.layers.4.src_trg_att.v_layer.weight', 'decoder.layers.4.trg_trg_att.k_layer.bias', 'decoder.layers.4.trg_trg_att.k_layer.weight', 'decoder.layers.4.trg_trg_att.output_layer.bias', 'decoder.layers.4.trg_trg_att.output_layer.weight', 'decoder.layers.4.trg_trg_att.q_layer.bias', 'decoder.layers.4.trg_trg_att.q_layer.weight', 'decoder.layers.4.trg_trg_att.v_layer.bias', 'decoder.layers.4.trg_trg_att.v_layer.weight', 'decoder.layers.4.x_layer_norm.bias', 'decoder.layers.4.x_layer_norm.weight', 'decoder.layers.5.dec_layer_norm.bias', 'decoder.layers.5.dec_layer_norm.weight', 'decoder.layers.5.feed_forward.layer_norm.bias', 'decoder.layers.5.feed_forward.layer_norm.weight', 'decoder.layers.5.feed_forward.pwff_layer.0.bias', 'decoder.layers.5.feed_forward.pwff_layer.0.weight', 'decoder.layers.5.feed_forward.pwff_layer.3.bias', 'decoder.layers.5.feed_forward.pwff_layer.3.weight', 'decoder.layers.5.src_trg_att.k_layer.bias', 'decoder.layers.5.src_trg_att.k_layer.weight', 'decoder.layers.5.src_trg_att.output_layer.bias', 'decoder.layers.5.src_trg_att.output_layer.weight', 'decoder.layers.5.src_trg_att.q_layer.bias', 'decoder.layers.5.src_trg_att.q_layer.weight', 'decoder.layers.5.src_trg_att.v_layer.bias', 'decoder.layers.5.src_trg_att.v_layer.weight', 'decoder.layers.5.trg_trg_att.k_layer.bias', 'decoder.layers.5.trg_trg_att.k_layer.weight', 'decoder.layers.5.trg_trg_att.output_layer.bias', 'decoder.layers.5.trg_trg_att.output_layer.weight', 'decoder.layers.5.trg_trg_att.q_layer.bias', 'decoder.layers.5.trg_trg_att.q_layer.weight', 'decoder.layers.5.trg_trg_att.v_layer.bias', 'decoder.layers.5.trg_trg_att.v_layer.weight', 'decoder.layers.5.x_layer_norm.bias', 'decoder.layers.5.x_layer_norm.weight', 'decoder.tag_dec_att.key_layer.weight', 'decoder.to_embed.weight', 'decoder.to_out.weight', 'encoder.layer_norm.bias', 'encoder.layer_norm.weight', 'encoder.layers.0.feed_forward.layer_norm.bias', 'encoder.layers.0.feed_forward.layer_norm.weight', 'encoder.layers.0.feed_forward.pwff_layer.0.bias', 'encoder.layers.0.feed_forward.pwff_layer.0.weight', 'encoder.layers.0.feed_forward.pwff_layer.3.bias', 'encoder.layers.0.feed_forward.pwff_layer.3.weight', 'encoder.layers.0.layer_norm.bias', 'encoder.layers.0.layer_norm.weight', 'encoder.layers.0.src_src_att.k_layer.bias', 'encoder.layers.0.src_src_att.k_layer.weight', 'encoder.layers.0.src_src_att.output_layer.bias', 'encoder.layers.0.src_src_att.output_layer.weight', 'encoder.layers.0.src_src_att.q_layer.bias', 'encoder.layers.0.src_src_att.q_layer.weight', 'encoder.layers.0.src_src_att.v_layer.bias', 'encoder.layers.0.src_src_att.v_layer.weight', 'encoder.layers.1.feed_forward.layer_norm.bias', 'encoder.layers.1.feed_forward.layer_norm.weight', 'encoder.layers.1.feed_forward.pwff_layer.0.bias', 'encoder.layers.1.feed_forward.pwff_layer.0.weight', 'encoder.layers.1.feed_forward.pwff_layer.3.bias', 'encoder.layers.1.feed_forward.pwff_layer.3.weight', 'encoder.layers.1.layer_norm.bias', 'encoder.layers.1.layer_norm.weight', 'encoder.layers.1.src_src_att.k_layer.bias', 'encoder.layers.1.src_src_att.k_layer.weight', 'encoder.layers.1.src_src_att.output_layer.bias', 'encoder.layers.1.src_src_att.output_layer.weight', 'encoder.layers.1.src_src_att.q_layer.bias', 'encoder.layers.1.src_src_att.q_layer.weight', 'encoder.layers.1.src_src_att.v_layer.bias', 'encoder.layers.1.src_src_att.v_layer.weight', 'encoder.layers.2.feed_forward.layer_norm.bias', 'encoder.layers.2.feed_forward.layer_norm.weight', 'encoder.layers.2.feed_forward.pwff_layer.0.bias', 'encoder.layers.2.feed_forward.pwff_layer.0.weight', 'encoder.layers.2.feed_forward.pwff_layer.3.bias', 'encoder.layers.2.feed_forward.pwff_layer.3.weight', 'encoder.layers.2.layer_norm.bias', 'encoder.layers.2.layer_norm.weight', 'encoder.layers.2.src_src_att.k_layer.bias', 'encoder.layers.2.src_src_att.k_layer.weight', 'encoder.layers.2.src_src_att.output_layer.bias', 'encoder.layers.2.src_src_att.output_layer.weight', 'encoder.layers.2.src_src_att.q_layer.bias', 'encoder.layers.2.src_src_att.q_layer.weight', 'encoder.layers.2.src_src_att.v_layer.bias', 'encoder.layers.2.src_src_att.v_layer.weight', 'encoder.layers.3.feed_forward.layer_norm.bias', 'encoder.layers.3.feed_forward.layer_norm.weight', 'encoder.layers.3.feed_forward.pwff_layer.0.bias', 'encoder.layers.3.feed_forward.pwff_layer.0.weight', 'encoder.layers.3.feed_forward.pwff_layer.3.bias', 'encoder.layers.3.feed_forward.pwff_layer.3.weight', 'encoder.layers.3.layer_norm.bias', 'encoder.layers.3.layer_norm.weight', 'encoder.layers.3.src_src_att.k_layer.bias', 'encoder.layers.3.src_src_att.k_layer.weight', 'encoder.layers.3.src_src_att.output_layer.bias', 'encoder.layers.3.src_src_att.output_layer.weight', 'encoder.layers.3.src_src_att.q_layer.bias', 'encoder.layers.3.src_src_att.q_layer.weight', 'encoder.layers.3.src_src_att.v_layer.bias', 'encoder.layers.3.src_src_att.v_layer.weight', 'encoder.layers.4.feed_forward.layer_norm.bias', 'encoder.layers.4.feed_forward.layer_norm.weight', 'encoder.layers.4.feed_forward.pwff_layer.0.bias', 'encoder.layers.4.feed_forward.pwff_layer.0.weight', 'encoder.layers.4.feed_forward.pwff_layer.3.bias', 'encoder.layers.4.feed_forward.pwff_layer.3.weight', 'encoder.layers.4.layer_norm.bias', 'encoder.layers.4.layer_norm.weight', 'encoder.layers.4.src_src_att.k_layer.bias', 'encoder.layers.4.src_src_att.k_layer.weight', 'encoder.layers.4.src_src_att.output_layer.bias', 'encoder.layers.4.src_src_att.output_layer.weight', 'encoder.layers.4.src_src_att.q_layer.bias', 'encoder.layers.4.src_src_att.q_layer.weight', 'encoder.layers.4.src_src_att.v_layer.bias', 'encoder.layers.4.src_src_att.v_layer.weight', 'encoder.layers.5.feed_forward.layer_norm.bias', 'encoder.layers.5.feed_forward.layer_norm.weight', 'encoder.layers.5.feed_forward.pwff_layer.0.bias', 'encoder.layers.5.feed_forward.pwff_layer.0.weight', 'encoder.layers.5.feed_forward.pwff_layer.3.bias', 'encoder.layers.5.feed_forward.pwff_layer.3.weight', 'encoder.layers.5.layer_norm.bias', 'encoder.layers.5.layer_norm.weight', 'encoder.layers.5.src_src_att.k_layer.bias', 'encoder.layers.5.src_src_att.k_layer.weight', 'encoder.layers.5.src_src_att.output_layer.bias', 'encoder.layers.5.src_src_att.output_layer.weight', 'encoder.layers.5.src_src_att.q_layer.bias', 'encoder.layers.5.src_src_att.q_layer.weight', 'encoder.layers.5.src_src_att.v_layer.bias', 'encoder.layers.5.src_src_att.v_layer.weight', 'src_embed.lut.weight', 'tag_embed.lut.weight', 'trg_embed.lut.weight']
-2021-06-15 16:10:21,667 - INFO - joeynmt.helpers - cfg.name                           : ccg_transformer
-2021-06-15 16:10:21,667 - INFO - joeynmt.helpers - cfg.data.src                       : de
-2021-06-15 16:10:21,667 - INFO - joeynmt.helpers - cfg.data.trg                       : en
-2021-06-15 16:10:21,667 - INFO - joeynmt.helpers - cfg.data.tag                       : tags
-2021-06-15 16:10:21,667 - INFO - joeynmt.helpers - cfg.data.train                     : ../data/mini/train_mini
-2021-06-15 16:10:21,667 - INFO - joeynmt.helpers - cfg.data.dev                       : ../data/full/dev_bpe
-2021-06-15 16:10:21,667 - INFO - joeynmt.helpers - cfg.data.test                      : ../data/full/test_bpe
-2021-06-15 16:10:21,667 - INFO - joeynmt.helpers - cfg.data.level                     : bpe
-2021-06-15 16:10:21,667 - INFO - joeynmt.helpers - cfg.data.lowercase                 : False
-2021-06-15 16:10:21,667 - INFO - joeynmt.helpers - cfg.data.max_sent_length           : 100
-2021-06-15 16:10:21,667 - INFO - joeynmt.helpers - cfg.data.tag_vocab                 : ../data/full/vocab.tags
-2021-06-15 16:10:21,667 - INFO - joeynmt.helpers - cfg.data.random_train_subset       : 3
-2021-06-15 16:10:21,668 - INFO - joeynmt.helpers - cfg.testing.beam_size              : 5
-2021-06-15 16:10:21,668 - INFO - joeynmt.helpers - cfg.testing.alpha                  : 1.0
-2021-06-15 16:10:21,668 - INFO - joeynmt.helpers - cfg.training.random_seed           : 42
-2021-06-15 16:10:21,668 - INFO - joeynmt.helpers - cfg.training.optimizer             : adam
-2021-06-15 16:10:21,668 - INFO - joeynmt.helpers - cfg.training.normalization         : tokens
-2021-06-15 16:10:21,668 - INFO - joeynmt.helpers - cfg.training.adam_betas            : [0.9, 0.999]
-2021-06-15 16:10:21,668 - INFO - joeynmt.helpers - cfg.training.scheduling            : plateau
-2021-06-15 16:10:21,668 - INFO - joeynmt.helpers - cfg.training.patience              : 8
-2021-06-15 16:10:21,668 - INFO - joeynmt.helpers - cfg.training.decrease_factor       : 0.7
-2021-06-15 16:10:21,668 - INFO - joeynmt.helpers - cfg.training.loss                  : crossentropy
-2021-06-15 16:10:21,668 - INFO - joeynmt.helpers - cfg.training.learning_rate         : 0.0002
-2021-06-15 16:10:21,668 - INFO - joeynmt.helpers - cfg.training.learning_rate_min     : 1e-08
-2021-06-15 16:10:21,668 - INFO - joeynmt.helpers - cfg.training.weight_decay          : 0.0
-2021-06-15 16:10:21,668 - INFO - joeynmt.helpers - cfg.training.label_smoothing       : 0.1
-2021-06-15 16:10:21,668 - INFO - joeynmt.helpers - cfg.training.batch_size            : 100
-2021-06-15 16:10:21,668 - INFO - joeynmt.helpers - cfg.training.batch_type            : token
-2021-06-15 16:10:21,668 - INFO - joeynmt.helpers - cfg.training.eval_batch_size       : 100
-2021-06-15 16:10:21,669 - INFO - joeynmt.helpers - cfg.training.eval_batch_type       : token
-2021-06-15 16:10:21,669 - INFO - joeynmt.helpers - cfg.training.batch_multiplier      : 1
-2021-06-15 16:10:21,669 - INFO - joeynmt.helpers - cfg.training.early_stopping_metric : ppl
-2021-06-15 16:10:21,669 - INFO - joeynmt.helpers - cfg.training.epochs                : 100
-2021-06-15 16:10:21,669 - INFO - joeynmt.helpers - cfg.training.validation_freq       : 4000
-2021-06-15 16:10:21,669 - INFO - joeynmt.helpers - cfg.training.logging_freq          : 100
-2021-06-15 16:10:21,669 - INFO - joeynmt.helpers - cfg.training.eval_metric           : bleu
-2021-06-15 16:10:21,669 - INFO - joeynmt.helpers - cfg.training.model_dir             : models/ccg_transformer
-2021-06-15 16:10:21,669 - INFO - joeynmt.helpers - cfg.training.overwrite             : True
-2021-06-15 16:10:21,669 - INFO - joeynmt.helpers - cfg.training.shuffle               : True
-2021-06-15 16:10:21,669 - INFO - joeynmt.helpers - cfg.training.use_cuda              : False
-2021-06-15 16:10:21,669 - INFO - joeynmt.helpers - cfg.training.max_output_length     : 100
-2021-06-15 16:10:21,669 - INFO - joeynmt.helpers - cfg.training.print_valid_sents     : [0, 1, 2, 3]
-2021-06-15 16:10:21,670 - INFO - joeynmt.helpers - cfg.training.keep_last_ckpts       : 3
-2021-06-15 16:10:21,670 - INFO - joeynmt.helpers - cfg.model.initializer              : xavier
-2021-06-15 16:10:21,670 - INFO - joeynmt.helpers - cfg.model.bias_initializer         : zeros
-2021-06-15 16:10:21,670 - INFO - joeynmt.helpers - cfg.model.init_gain                : 1.0
-2021-06-15 16:10:21,670 - INFO - joeynmt.helpers - cfg.model.embed_initializer        : xavier
-2021-06-15 16:10:21,670 - INFO - joeynmt.helpers - cfg.model.embed_init_gain          : 1.0
-2021-06-15 16:10:21,670 - INFO - joeynmt.helpers - cfg.model.tied_embeddings          : False
-2021-06-15 16:10:21,670 - INFO - joeynmt.helpers - cfg.model.tied_softmax             : True
-2021-06-15 16:10:21,670 - INFO - joeynmt.helpers - cfg.model.encoder.type             : transformer
-2021-06-15 16:10:21,670 - INFO - joeynmt.helpers - cfg.model.encoder.num_layers       : 6
-2021-06-15 16:10:21,670 - INFO - joeynmt.helpers - cfg.model.encoder.num_heads        : 8
-2021-06-15 16:10:21,670 - INFO - joeynmt.helpers - cfg.model.encoder.embeddings.embedding_dim : 512
-2021-06-15 16:10:21,670 - INFO - joeynmt.helpers - cfg.model.encoder.embeddings.scale : True
-2021-06-15 16:10:21,671 - INFO - joeynmt.helpers - cfg.model.encoder.embeddings.dropout : 0.0
-2021-06-15 16:10:21,671 - INFO - joeynmt.helpers - cfg.model.encoder.hidden_size      : 512
-2021-06-15 16:10:21,671 - INFO - joeynmt.helpers - cfg.model.encoder.ff_size          : 2048
-2021-06-15 16:10:21,671 - INFO - joeynmt.helpers - cfg.model.encoder.dropout          : 0.1
-2021-06-15 16:10:21,671 - INFO - joeynmt.helpers - cfg.model.decoder.type             : transformer
-2021-06-15 16:10:21,671 - INFO - joeynmt.helpers - cfg.model.decoder.num_layers       : 6
-2021-06-15 16:10:21,671 - INFO - joeynmt.helpers - cfg.model.decoder.num_heads        : 8
-2021-06-15 16:10:21,671 - INFO - joeynmt.helpers - cfg.model.decoder.embeddings.embedding_dim : 512
-2021-06-15 16:10:21,671 - INFO - joeynmt.helpers - cfg.model.decoder.embeddings.scale : True
-2021-06-15 16:10:21,671 - INFO - joeynmt.helpers - cfg.model.decoder.embeddings.dropout : 0.0
-2021-06-15 16:10:21,671 - INFO - joeynmt.helpers - cfg.model.decoder.hidden_size      : 512
-2021-06-15 16:10:21,671 - INFO - joeynmt.helpers - cfg.model.decoder.ff_size          : 2048
-2021-06-15 16:10:21,671 - INFO - joeynmt.helpers - cfg.model.decoder.dropout          : 0.1
-2021-06-15 16:10:21,672 - INFO - joeynmt.helpers - cfg.model.decoder.use_tags         : True
-2021-06-15 16:10:21,672 - INFO - joeynmt.helpers - cfg.model.decoder.tag_embeddings.embedding_dim : 128
-2021-06-15 16:10:21,672 - INFO - joeynmt.helpers - cfg.model.decoder.tag_embeddings.scale : True
-2021-06-15 16:10:21,672 - INFO - joeynmt.helpers - cfg.model.decoder.tag_embeddings.dropout : 0.0
-2021-06-15 16:10:21,672 - INFO - joeynmt.helpers - Data set sizes: 
-	train 3,
+2021-06-16 10:45:54,853 - INFO - root - Hello! This is Joey-NMT (version 1.3).
+2021-06-16 10:45:54,854 - INFO - joeynmt.data - Loading training data...
+2021-06-16 10:45:55,012 - INFO - joeynmt.data - Building vocabulary...
+2021-06-16 10:45:55,024 - INFO - joeynmt.data - Loading dev data...
+2021-06-16 10:45:55,064 - INFO - joeynmt.data - Loading test data...
+2021-06-16 10:45:55,099 - INFO - joeynmt.data - Data loaded.
+2021-06-16 10:45:55,118 - INFO - joeynmt.model - Building an encoder-decoder model...
+2021-06-16 10:45:55,627 - INFO - joeynmt.model - Enc-dec model built.
+2021-06-16 10:45:55,631 - INFO - joeynmt.training - Total params: 45020748
+2021-06-16 10:45:55,632 - DEBUG - joeynmt.training - Trainable parameters: ['decoder.layer_norm.bias', 'decoder.layer_norm.weight', 'decoder.layers.0.dec_layer_norm.bias', 'decoder.layers.0.dec_layer_norm.weight', 'decoder.layers.0.feed_forward.layer_norm.bias', 'decoder.layers.0.feed_forward.layer_norm.weight', 'decoder.layers.0.feed_forward.pwff_layer.0.bias', 'decoder.layers.0.feed_forward.pwff_layer.0.weight', 'decoder.layers.0.feed_forward.pwff_layer.3.bias', 'decoder.layers.0.feed_forward.pwff_layer.3.weight', 'decoder.layers.0.src_trg_att.k_layer.bias', 'decoder.layers.0.src_trg_att.k_layer.weight', 'decoder.layers.0.src_trg_att.output_layer.bias', 'decoder.layers.0.src_trg_att.output_layer.weight', 'decoder.layers.0.src_trg_att.q_layer.bias', 'decoder.layers.0.src_trg_att.q_layer.weight', 'decoder.layers.0.src_trg_att.v_layer.bias', 'decoder.layers.0.src_trg_att.v_layer.weight', 'decoder.layers.0.trg_trg_att.k_layer.bias', 'decoder.layers.0.trg_trg_att.k_layer.weight', 'decoder.layers.0.trg_trg_att.output_layer.bias', 'decoder.layers.0.trg_trg_att.output_layer.weight', 'decoder.layers.0.trg_trg_att.q_layer.bias', 'decoder.layers.0.trg_trg_att.q_layer.weight', 'decoder.layers.0.trg_trg_att.v_layer.bias', 'decoder.layers.0.trg_trg_att.v_layer.weight', 'decoder.layers.0.x_layer_norm.bias', 'decoder.layers.0.x_layer_norm.weight', 'decoder.layers.1.dec_layer_norm.bias', 'decoder.layers.1.dec_layer_norm.weight', 'decoder.layers.1.feed_forward.layer_norm.bias', 'decoder.layers.1.feed_forward.layer_norm.weight', 'decoder.layers.1.feed_forward.pwff_layer.0.bias', 'decoder.layers.1.feed_forward.pwff_layer.0.weight', 'decoder.layers.1.feed_forward.pwff_layer.3.bias', 'decoder.layers.1.feed_forward.pwff_layer.3.weight', 'decoder.layers.1.src_trg_att.k_layer.bias', 'decoder.layers.1.src_trg_att.k_layer.weight', 'decoder.layers.1.src_trg_att.output_layer.bias', 'decoder.layers.1.src_trg_att.output_layer.weight', 'decoder.layers.1.src_trg_att.q_layer.bias', 'decoder.layers.1.src_trg_att.q_layer.weight', 'decoder.layers.1.src_trg_att.v_layer.bias', 'decoder.layers.1.src_trg_att.v_layer.weight', 'decoder.layers.1.trg_trg_att.k_layer.bias', 'decoder.layers.1.trg_trg_att.k_layer.weight', 'decoder.layers.1.trg_trg_att.output_layer.bias', 'decoder.layers.1.trg_trg_att.output_layer.weight', 'decoder.layers.1.trg_trg_att.q_layer.bias', 'decoder.layers.1.trg_trg_att.q_layer.weight', 'decoder.layers.1.trg_trg_att.v_layer.bias', 'decoder.layers.1.trg_trg_att.v_layer.weight', 'decoder.layers.1.x_layer_norm.bias', 'decoder.layers.1.x_layer_norm.weight', 'decoder.layers.2.dec_layer_norm.bias', 'decoder.layers.2.dec_layer_norm.weight', 'decoder.layers.2.feed_forward.layer_norm.bias', 'decoder.layers.2.feed_forward.layer_norm.weight', 'decoder.layers.2.feed_forward.pwff_layer.0.bias', 'decoder.layers.2.feed_forward.pwff_layer.0.weight', 'decoder.layers.2.feed_forward.pwff_layer.3.bias', 'decoder.layers.2.feed_forward.pwff_layer.3.weight', 'decoder.layers.2.src_trg_att.k_layer.bias', 'decoder.layers.2.src_trg_att.k_layer.weight', 'decoder.layers.2.src_trg_att.output_layer.bias', 'decoder.layers.2.src_trg_att.output_layer.weight', 'decoder.layers.2.src_trg_att.q_layer.bias', 'decoder.layers.2.src_trg_att.q_layer.weight', 'decoder.layers.2.src_trg_att.v_layer.bias', 'decoder.layers.2.src_trg_att.v_layer.weight', 'decoder.layers.2.trg_trg_att.k_layer.bias', 'decoder.layers.2.trg_trg_att.k_layer.weight', 'decoder.layers.2.trg_trg_att.output_layer.bias', 'decoder.layers.2.trg_trg_att.output_layer.weight', 'decoder.layers.2.trg_trg_att.q_layer.bias', 'decoder.layers.2.trg_trg_att.q_layer.weight', 'decoder.layers.2.trg_trg_att.v_layer.bias', 'decoder.layers.2.trg_trg_att.v_layer.weight', 'decoder.layers.2.x_layer_norm.bias', 'decoder.layers.2.x_layer_norm.weight', 'decoder.layers.3.dec_layer_norm.bias', 'decoder.layers.3.dec_layer_norm.weight', 'decoder.layers.3.feed_forward.layer_norm.bias', 'decoder.layers.3.feed_forward.layer_norm.weight', 'decoder.layers.3.feed_forward.pwff_layer.0.bias', 'decoder.layers.3.feed_forward.pwff_layer.0.weight', 'decoder.layers.3.feed_forward.pwff_layer.3.bias', 'decoder.layers.3.feed_forward.pwff_layer.3.weight', 'decoder.layers.3.src_trg_att.k_layer.bias', 'decoder.layers.3.src_trg_att.k_layer.weight', 'decoder.layers.3.src_trg_att.output_layer.bias', 'decoder.layers.3.src_trg_att.output_layer.weight', 'decoder.layers.3.src_trg_att.q_layer.bias', 'decoder.layers.3.src_trg_att.q_layer.weight', 'decoder.layers.3.src_trg_att.v_layer.bias', 'decoder.layers.3.src_trg_att.v_layer.weight', 'decoder.layers.3.trg_trg_att.k_layer.bias', 'decoder.layers.3.trg_trg_att.k_layer.weight', 'decoder.layers.3.trg_trg_att.output_layer.bias', 'decoder.layers.3.trg_trg_att.output_layer.weight', 'decoder.layers.3.trg_trg_att.q_layer.bias', 'decoder.layers.3.trg_trg_att.q_layer.weight', 'decoder.layers.3.trg_trg_att.v_layer.bias', 'decoder.layers.3.trg_trg_att.v_layer.weight', 'decoder.layers.3.x_layer_norm.bias', 'decoder.layers.3.x_layer_norm.weight', 'decoder.layers.4.dec_layer_norm.bias', 'decoder.layers.4.dec_layer_norm.weight', 'decoder.layers.4.feed_forward.layer_norm.bias', 'decoder.layers.4.feed_forward.layer_norm.weight', 'decoder.layers.4.feed_forward.pwff_layer.0.bias', 'decoder.layers.4.feed_forward.pwff_layer.0.weight', 'decoder.layers.4.feed_forward.pwff_layer.3.bias', 'decoder.layers.4.feed_forward.pwff_layer.3.weight', 'decoder.layers.4.src_trg_att.k_layer.bias', 'decoder.layers.4.src_trg_att.k_layer.weight', 'decoder.layers.4.src_trg_att.output_layer.bias', 'decoder.layers.4.src_trg_att.output_layer.weight', 'decoder.layers.4.src_trg_att.q_layer.bias', 'decoder.layers.4.src_trg_att.q_layer.weight', 'decoder.layers.4.src_trg_att.v_layer.bias', 'decoder.layers.4.src_trg_att.v_layer.weight', 'decoder.layers.4.trg_trg_att.k_layer.bias', 'decoder.layers.4.trg_trg_att.k_layer.weight', 'decoder.layers.4.trg_trg_att.output_layer.bias', 'decoder.layers.4.trg_trg_att.output_layer.weight', 'decoder.layers.4.trg_trg_att.q_layer.bias', 'decoder.layers.4.trg_trg_att.q_layer.weight', 'decoder.layers.4.trg_trg_att.v_layer.bias', 'decoder.layers.4.trg_trg_att.v_layer.weight', 'decoder.layers.4.x_layer_norm.bias', 'decoder.layers.4.x_layer_norm.weight', 'decoder.layers.5.dec_layer_norm.bias', 'decoder.layers.5.dec_layer_norm.weight', 'decoder.layers.5.feed_forward.layer_norm.bias', 'decoder.layers.5.feed_forward.layer_norm.weight', 'decoder.layers.5.feed_forward.pwff_layer.0.bias', 'decoder.layers.5.feed_forward.pwff_layer.0.weight', 'decoder.layers.5.feed_forward.pwff_layer.3.bias', 'decoder.layers.5.feed_forward.pwff_layer.3.weight', 'decoder.layers.5.src_trg_att.k_layer.bias', 'decoder.layers.5.src_trg_att.k_layer.weight', 'decoder.layers.5.src_trg_att.output_layer.bias', 'decoder.layers.5.src_trg_att.output_layer.weight', 'decoder.layers.5.src_trg_att.q_layer.bias', 'decoder.layers.5.src_trg_att.q_layer.weight', 'decoder.layers.5.src_trg_att.v_layer.bias', 'decoder.layers.5.src_trg_att.v_layer.weight', 'decoder.layers.5.trg_trg_att.k_layer.bias', 'decoder.layers.5.trg_trg_att.k_layer.weight', 'decoder.layers.5.trg_trg_att.output_layer.bias', 'decoder.layers.5.trg_trg_att.output_layer.weight', 'decoder.layers.5.trg_trg_att.q_layer.bias', 'decoder.layers.5.trg_trg_att.q_layer.weight', 'decoder.layers.5.trg_trg_att.v_layer.bias', 'decoder.layers.5.trg_trg_att.v_layer.weight', 'decoder.layers.5.x_layer_norm.bias', 'decoder.layers.5.x_layer_norm.weight', 'decoder.tag_dec_att.key_layer.weight', 'decoder.to_embed.weight', 'decoder.to_out.weight', 'encoder.layer_norm.bias', 'encoder.layer_norm.weight', 'encoder.layers.0.feed_forward.layer_norm.bias', 'encoder.layers.0.feed_forward.layer_norm.weight', 'encoder.layers.0.feed_forward.pwff_layer.0.bias', 'encoder.layers.0.feed_forward.pwff_layer.0.weight', 'encoder.layers.0.feed_forward.pwff_layer.3.bias', 'encoder.layers.0.feed_forward.pwff_layer.3.weight', 'encoder.layers.0.layer_norm.bias', 'encoder.layers.0.layer_norm.weight', 'encoder.layers.0.src_src_att.k_layer.bias', 'encoder.layers.0.src_src_att.k_layer.weight', 'encoder.layers.0.src_src_att.output_layer.bias', 'encoder.layers.0.src_src_att.output_layer.weight', 'encoder.layers.0.src_src_att.q_layer.bias', 'encoder.layers.0.src_src_att.q_layer.weight', 'encoder.layers.0.src_src_att.v_layer.bias', 'encoder.layers.0.src_src_att.v_layer.weight', 'encoder.layers.1.feed_forward.layer_norm.bias', 'encoder.layers.1.feed_forward.layer_norm.weight', 'encoder.layers.1.feed_forward.pwff_layer.0.bias', 'encoder.layers.1.feed_forward.pwff_layer.0.weight', 'encoder.layers.1.feed_forward.pwff_layer.3.bias', 'encoder.layers.1.feed_forward.pwff_layer.3.weight', 'encoder.layers.1.layer_norm.bias', 'encoder.layers.1.layer_norm.weight', 'encoder.layers.1.src_src_att.k_layer.bias', 'encoder.layers.1.src_src_att.k_layer.weight', 'encoder.layers.1.src_src_att.output_layer.bias', 'encoder.layers.1.src_src_att.output_layer.weight', 'encoder.layers.1.src_src_att.q_layer.bias', 'encoder.layers.1.src_src_att.q_layer.weight', 'encoder.layers.1.src_src_att.v_layer.bias', 'encoder.layers.1.src_src_att.v_layer.weight', 'encoder.layers.2.feed_forward.layer_norm.bias', 'encoder.layers.2.feed_forward.layer_norm.weight', 'encoder.layers.2.feed_forward.pwff_layer.0.bias', 'encoder.layers.2.feed_forward.pwff_layer.0.weight', 'encoder.layers.2.feed_forward.pwff_layer.3.bias', 'encoder.layers.2.feed_forward.pwff_layer.3.weight', 'encoder.layers.2.layer_norm.bias', 'encoder.layers.2.layer_norm.weight', 'encoder.layers.2.src_src_att.k_layer.bias', 'encoder.layers.2.src_src_att.k_layer.weight', 'encoder.layers.2.src_src_att.output_layer.bias', 'encoder.layers.2.src_src_att.output_layer.weight', 'encoder.layers.2.src_src_att.q_layer.bias', 'encoder.layers.2.src_src_att.q_layer.weight', 'encoder.layers.2.src_src_att.v_layer.bias', 'encoder.layers.2.src_src_att.v_layer.weight', 'encoder.layers.3.feed_forward.layer_norm.bias', 'encoder.layers.3.feed_forward.layer_norm.weight', 'encoder.layers.3.feed_forward.pwff_layer.0.bias', 'encoder.layers.3.feed_forward.pwff_layer.0.weight', 'encoder.layers.3.feed_forward.pwff_layer.3.bias', 'encoder.layers.3.feed_forward.pwff_layer.3.weight', 'encoder.layers.3.layer_norm.bias', 'encoder.layers.3.layer_norm.weight', 'encoder.layers.3.src_src_att.k_layer.bias', 'encoder.layers.3.src_src_att.k_layer.weight', 'encoder.layers.3.src_src_att.output_layer.bias', 'encoder.layers.3.src_src_att.output_layer.weight', 'encoder.layers.3.src_src_att.q_layer.bias', 'encoder.layers.3.src_src_att.q_layer.weight', 'encoder.layers.3.src_src_att.v_layer.bias', 'encoder.layers.3.src_src_att.v_layer.weight', 'encoder.layers.4.feed_forward.layer_norm.bias', 'encoder.layers.4.feed_forward.layer_norm.weight', 'encoder.layers.4.feed_forward.pwff_layer.0.bias', 'encoder.layers.4.feed_forward.pwff_layer.0.weight', 'encoder.layers.4.feed_forward.pwff_layer.3.bias', 'encoder.layers.4.feed_forward.pwff_layer.3.weight', 'encoder.layers.4.layer_norm.bias', 'encoder.layers.4.layer_norm.weight', 'encoder.layers.4.src_src_att.k_layer.bias', 'encoder.layers.4.src_src_att.k_layer.weight', 'encoder.layers.4.src_src_att.output_layer.bias', 'encoder.layers.4.src_src_att.output_layer.weight', 'encoder.layers.4.src_src_att.q_layer.bias', 'encoder.layers.4.src_src_att.q_layer.weight', 'encoder.layers.4.src_src_att.v_layer.bias', 'encoder.layers.4.src_src_att.v_layer.weight', 'encoder.layers.5.feed_forward.layer_norm.bias', 'encoder.layers.5.feed_forward.layer_norm.weight', 'encoder.layers.5.feed_forward.pwff_layer.0.bias', 'encoder.layers.5.feed_forward.pwff_layer.0.weight', 'encoder.layers.5.feed_forward.pwff_layer.3.bias', 'encoder.layers.5.feed_forward.pwff_layer.3.weight', 'encoder.layers.5.layer_norm.bias', 'encoder.layers.5.layer_norm.weight', 'encoder.layers.5.src_src_att.k_layer.bias', 'encoder.layers.5.src_src_att.k_layer.weight', 'encoder.layers.5.src_src_att.output_layer.bias', 'encoder.layers.5.src_src_att.output_layer.weight', 'encoder.layers.5.src_src_att.q_layer.bias', 'encoder.layers.5.src_src_att.q_layer.weight', 'encoder.layers.5.src_src_att.v_layer.bias', 'encoder.layers.5.src_src_att.v_layer.weight', 'src_embed.lut.weight', 'tag_embed.lut.weight', 'trg_embed.lut.weight']
+2021-06-16 10:45:55,634 - INFO - joeynmt.helpers - cfg.name                           : ccg_transformer
+2021-06-16 10:45:55,634 - INFO - joeynmt.helpers - cfg.data.src                       : de
+2021-06-16 10:45:55,634 - INFO - joeynmt.helpers - cfg.data.trg                       : en
+2021-06-16 10:45:55,634 - INFO - joeynmt.helpers - cfg.data.tag                       : tags
+2021-06-16 10:45:55,634 - INFO - joeynmt.helpers - cfg.data.train                     : ../data/mini/train_mini
+2021-06-16 10:45:55,634 - INFO - joeynmt.helpers - cfg.data.dev                       : ../data/full/dev_bpe
+2021-06-16 10:45:55,634 - INFO - joeynmt.helpers - cfg.data.test                      : ../data/full/test_bpe
+2021-06-16 10:45:55,634 - INFO - joeynmt.helpers - cfg.data.level                     : bpe
+2021-06-16 10:45:55,634 - INFO - joeynmt.helpers - cfg.data.lowercase                 : False
+2021-06-16 10:45:55,635 - INFO - joeynmt.helpers - cfg.data.max_sent_length           : 100
+2021-06-16 10:45:55,635 - INFO - joeynmt.helpers - cfg.data.random_train_subset       : 100
+2021-06-16 10:45:55,635 - INFO - joeynmt.helpers - cfg.testing.beam_size              : 5
+2021-06-16 10:45:55,635 - INFO - joeynmt.helpers - cfg.testing.alpha                  : 1.0
+2021-06-16 10:45:55,635 - INFO - joeynmt.helpers - cfg.training.random_seed           : 42
+2021-06-16 10:45:55,635 - INFO - joeynmt.helpers - cfg.training.optimizer             : adam
+2021-06-16 10:45:55,635 - INFO - joeynmt.helpers - cfg.training.normalization         : tokens
+2021-06-16 10:45:55,635 - INFO - joeynmt.helpers - cfg.training.adam_betas            : [0.9, 0.999]
+2021-06-16 10:45:55,635 - INFO - joeynmt.helpers - cfg.training.scheduling            : plateau
+2021-06-16 10:45:55,635 - INFO - joeynmt.helpers - cfg.training.patience              : 8
+2021-06-16 10:45:55,635 - INFO - joeynmt.helpers - cfg.training.decrease_factor       : 0.7
+2021-06-16 10:45:55,635 - INFO - joeynmt.helpers - cfg.training.loss                  : crossentropy
+2021-06-16 10:45:55,636 - INFO - joeynmt.helpers - cfg.training.learning_rate         : 0.0002
+2021-06-16 10:45:55,636 - INFO - joeynmt.helpers - cfg.training.learning_rate_min     : 1e-08
+2021-06-16 10:45:55,636 - INFO - joeynmt.helpers - cfg.training.weight_decay          : 0.0
+2021-06-16 10:45:55,636 - INFO - joeynmt.helpers - cfg.training.label_smoothing       : 0.1
+2021-06-16 10:45:55,636 - INFO - joeynmt.helpers - cfg.training.batch_size            : 100
+2021-06-16 10:45:55,636 - INFO - joeynmt.helpers - cfg.training.batch_type            : token
+2021-06-16 10:45:55,636 - INFO - joeynmt.helpers - cfg.training.eval_batch_size       : 100
+2021-06-16 10:45:55,636 - INFO - joeynmt.helpers - cfg.training.eval_batch_type       : token
+2021-06-16 10:45:55,636 - INFO - joeynmt.helpers - cfg.training.batch_multiplier      : 1
+2021-06-16 10:45:55,636 - INFO - joeynmt.helpers - cfg.training.early_stopping_metric : ppl
+2021-06-16 10:45:55,636 - INFO - joeynmt.helpers - cfg.training.epochs                : 100
+2021-06-16 10:45:55,636 - INFO - joeynmt.helpers - cfg.training.validation_freq       : 4000
+2021-06-16 10:45:55,637 - INFO - joeynmt.helpers - cfg.training.logging_freq          : 100
+2021-06-16 10:45:55,637 - INFO - joeynmt.helpers - cfg.training.eval_metric           : bleu
+2021-06-16 10:45:55,637 - INFO - joeynmt.helpers - cfg.training.model_dir             : models/ccg_transformer
+2021-06-16 10:45:55,637 - INFO - joeynmt.helpers - cfg.training.overwrite             : True
+2021-06-16 10:45:55,637 - INFO - joeynmt.helpers - cfg.training.shuffle               : True
+2021-06-16 10:45:55,637 - INFO - joeynmt.helpers - cfg.training.use_cuda              : False
+2021-06-16 10:45:55,637 - INFO - joeynmt.helpers - cfg.training.max_output_length     : 100
+2021-06-16 10:45:55,637 - INFO - joeynmt.helpers - cfg.training.print_valid_sents     : [0, 1, 2, 3]
+2021-06-16 10:45:55,637 - INFO - joeynmt.helpers - cfg.training.keep_last_ckpts       : 3
+2021-06-16 10:45:55,637 - INFO - joeynmt.helpers - cfg.model.initializer              : xavier
+2021-06-16 10:45:55,637 - INFO - joeynmt.helpers - cfg.model.bias_initializer         : zeros
+2021-06-16 10:45:55,638 - INFO - joeynmt.helpers - cfg.model.init_gain                : 1.0
+2021-06-16 10:45:55,638 - INFO - joeynmt.helpers - cfg.model.embed_initializer        : xavier
+2021-06-16 10:45:55,638 - INFO - joeynmt.helpers - cfg.model.embed_init_gain          : 1.0
+2021-06-16 10:45:55,638 - INFO - joeynmt.helpers - cfg.model.tied_embeddings          : False
+2021-06-16 10:45:55,638 - INFO - joeynmt.helpers - cfg.model.tied_softmax             : True
+2021-06-16 10:45:55,638 - INFO - joeynmt.helpers - cfg.model.encoder.type             : transformer
+2021-06-16 10:45:55,638 - INFO - joeynmt.helpers - cfg.model.encoder.num_layers       : 6
+2021-06-16 10:45:55,638 - INFO - joeynmt.helpers - cfg.model.encoder.num_heads        : 8
+2021-06-16 10:45:55,638 - INFO - joeynmt.helpers - cfg.model.encoder.embeddings.embedding_dim : 512
+2021-06-16 10:45:55,638 - INFO - joeynmt.helpers - cfg.model.encoder.embeddings.scale : True
+2021-06-16 10:45:55,638 - INFO - joeynmt.helpers - cfg.model.encoder.embeddings.dropout : 0.0
+2021-06-16 10:45:55,638 - INFO - joeynmt.helpers - cfg.model.encoder.hidden_size      : 512
+2021-06-16 10:45:55,639 - INFO - joeynmt.helpers - cfg.model.encoder.ff_size          : 2048
+2021-06-16 10:45:55,639 - INFO - joeynmt.helpers - cfg.model.encoder.dropout          : 0.1
+2021-06-16 10:45:55,639 - INFO - joeynmt.helpers - cfg.model.decoder.type             : transformer
+2021-06-16 10:45:55,639 - INFO - joeynmt.helpers - cfg.model.decoder.num_layers       : 6
+2021-06-16 10:45:55,639 - INFO - joeynmt.helpers - cfg.model.decoder.num_heads        : 8
+2021-06-16 10:45:55,639 - INFO - joeynmt.helpers - cfg.model.decoder.embeddings.embedding_dim : 512
+2021-06-16 10:45:55,639 - INFO - joeynmt.helpers - cfg.model.decoder.embeddings.scale : True
+2021-06-16 10:45:55,639 - INFO - joeynmt.helpers - cfg.model.decoder.embeddings.dropout : 0.0
+2021-06-16 10:45:55,639 - INFO - joeynmt.helpers - cfg.model.decoder.hidden_size      : 512
+2021-06-16 10:45:55,639 - INFO - joeynmt.helpers - cfg.model.decoder.ff_size          : 2048
+2021-06-16 10:45:55,639 - INFO - joeynmt.helpers - cfg.model.decoder.dropout          : 0.1
+2021-06-16 10:45:55,639 - INFO - joeynmt.helpers - cfg.model.decoder.use_tags         : True
+2021-06-16 10:45:55,640 - INFO - joeynmt.helpers - cfg.model.decoder.tag_embeddings.embedding_dim : 10
+2021-06-16 10:45:55,640 - INFO - joeynmt.helpers - cfg.model.decoder.tag_embeddings.scale : True
+2021-06-16 10:45:55,640 - INFO - joeynmt.helpers - cfg.model.decoder.tag_embeddings.dropout : 0.0
+2021-06-16 10:45:55,640 - INFO - joeynmt.helpers - Data set sizes: 
+	train 100,
 	valid 3526,
 	test 2582
-2021-06-15 16:10:21,672 - INFO - joeynmt.helpers - First training example:
+2021-06-16 10:45:55,640 - INFO - joeynmt.helpers - First training example:
 	[SRC] beide Finanzierungs@@ operationen haben ihren Schwerpunkt auf der Finanzierung von KMU in einem Ziel @-@ 1 @-@ Gebiet der Europäischen Union und werden daher von der EIB als strategisch wichtig angesehen .
 	[TRG] both operations are considered strategically important for EIB given their focus on the financing of SMEs in an objective 1 region of the European Union .
 	[TAG] NP/N N (S[dcl]\NP)/(S[pss]\NP) (S[pss]\NP)/(S[adj]\NP) (S[adj]\NP)/(S[adj]\NP) S[adj]\NP ((S\NP)\(S\NP))/NP N ((S\NP)\(S\NP))/NP NP/(N/PP) (N/PP)/PP PP/NP NP/N N/PP PP/NP N (N\N)/NP NP/N N/N N/N N/PP PP/NP NP/N N/N N .
-2021-06-15 16:10:21,672 - INFO - joeynmt.helpers - First 10 words (src): (0) <unk> (1) <pad> (2) <s> (3) </s> (4) , (5) @-@ (6) der (7) . (8) : (9) EIB
-2021-06-15 16:10:21,672 - INFO - joeynmt.helpers - First 10 words (trg): (0) <unk> (1) <pad> (2) <s> (3) </s> (4) the (5) . (6) : (7) of (8) , (9) EIB
-2021-06-15 16:10:21,672 - INFO - joeynmt.helpers - First 10 words (tag): (0) <unk> (1) <pad> (2) <s> (3) </s> (4) N/N (5) N (6) (NP\NP)/NP (7) NP/N (8) : (9) N/PP
-2021-06-15 16:10:21,673 - INFO - joeynmt.helpers - Number of Src words (types): 70
-2021-06-15 16:10:21,673 - INFO - joeynmt.helpers - Number of Trg words (types): 63
-2021-06-15 16:10:21,673 - INFO - joeynmt.helpers - Number of Tags (types): 511
-2021-06-15 16:10:21,673 - INFO - joeynmt.training - Model(
+2021-06-16 10:45:55,640 - INFO - joeynmt.helpers - First 10 words (src): (0) <unk> (1) <pad> (2) <s> (3) </s> (4) der (5) die (6) . (7) , (8) und (9) @-@
+2021-06-16 10:45:55,640 - INFO - joeynmt.helpers - First 10 words (trg): (0) <unk> (1) <pad> (2) <s> (3) </s> (4) the (5) . (6) , (7) and (8) of (9) in
+2021-06-16 10:45:55,640 - INFO - joeynmt.helpers - First 10 words (tag): (0) <unk> (1) <pad> (2) <s> (3) </s> (4) N (5) N/N (6) NP/N (7) PP/NP (8) N/PP (9) .
+2021-06-16 10:45:55,640 - INFO - joeynmt.helpers - Number of Src words (types): 909
+2021-06-16 10:45:55,641 - INFO - joeynmt.helpers - Number of Trg words (types): 788
+2021-06-16 10:45:55,641 - INFO - joeynmt.helpers - Number of Tags (types): 100
+2021-06-16 10:45:55,641 - INFO - joeynmt.training - Model(
 	encoder=TransformerEncoder(num_layers=6, num_heads=8),
 	decoder=TransformerDecoder(num_layers=6, num_heads=8),
-	src_embed=Embeddings(embedding_dim=512, vocab_size=70),
-	trg_embed=Embeddings(embedding_dim=512, vocab_size=63),
-	tag_embed=Embeddings(embedding_dim=128, vocab_size=511),
+	src_embed=Embeddings(embedding_dim=512, vocab_size=909),
+	trg_embed=Embeddings(embedding_dim=512, vocab_size=788),
+	tag_embed=Embeddings(embedding_dim=10, vocab_size=100),
    )
-2021-06-15 16:10:21,674 - INFO - joeynmt.training - Train stats:
+2021-06-16 10:45:55,642 - INFO - joeynmt.training - Train stats:
 	device: cpu
 	n_gpu: 0
 	16-bits training: False
 	gradient accumulation: 1
 	batch size per device: 100
 	total batch size (w. parallel & accumulation): 100
-2021-06-15 16:10:21,674 - INFO - joeynmt.training - EPOCH 1
+2021-06-16 10:45:55,642 - INFO - joeynmt.training - EPOCH 1
+2021-06-16 10:46:06,163 - INFO - joeynmt.training - Epoch   1: total training loss 171.05
+2021-06-16 10:46:06,163 - INFO - joeynmt.training - EPOCH 2
+2021-06-16 10:46:15,624 - INFO - joeynmt.training - Epoch   2: total training loss 154.58
+2021-06-16 10:46:15,624 - INFO - joeynmt.training - EPOCH 3
+2021-06-16 10:46:24,900 - INFO - joeynmt.training - Epoch   3: total training loss 151.15
+2021-06-16 10:46:24,900 - INFO - joeynmt.training - EPOCH 4
+2021-06-16 10:46:26,047 - INFO - joeynmt.training - Epoch   4, Step:      100, Batch Loss:     4.455394, Tokens per Sec:      229, Lr: 0.000200
+2021-06-16 10:46:34,214 - INFO - joeynmt.training - Epoch   4: total training loss 145.09
+2021-06-16 10:46:34,214 - INFO - joeynmt.training - EPOCH 5
+2021-06-16 10:46:43,639 - INFO - joeynmt.training - Epoch   5: total training loss 136.02
+2021-06-16 10:46:43,639 - INFO - joeynmt.training - EPOCH 6
+2021-06-16 10:46:53,080 - INFO - joeynmt.training - Epoch   6: total training loss 121.35
+2021-06-16 10:46:53,080 - INFO - joeynmt.training - EPOCH 7
+2021-06-16 10:46:55,542 - INFO - joeynmt.training - Epoch   7, Step:      200, Batch Loss:     3.180740, Tokens per Sec:      219, Lr: 0.000200
+2021-06-16 10:47:02,797 - INFO - joeynmt.training - Epoch   7: total training loss 108.96
+2021-06-16 10:47:02,797 - INFO - joeynmt.training - EPOCH 8
+2021-06-16 10:47:12,301 - INFO - joeynmt.training - Epoch   8: total training loss 83.63
+2021-06-16 10:47:12,302 - INFO - joeynmt.training - EPOCH 9
+2021-06-16 10:47:22,070 - INFO - joeynmt.training - Epoch   9: total training loss 64.68
+2021-06-16 10:47:22,070 - INFO - joeynmt.training - EPOCH 10
+2021-06-16 10:47:25,428 - INFO - joeynmt.training - Epoch  10, Step:      300, Batch Loss:     1.568347, Tokens per Sec:      211, Lr: 0.000200
+2021-06-16 10:47:31,923 - INFO - joeynmt.training - Epoch  10: total training loss 48.28
+2021-06-16 10:47:31,923 - INFO - joeynmt.training - EPOCH 11
+2021-06-16 10:47:41,705 - INFO - joeynmt.training - Epoch  11: total training loss 35.64
+2021-06-16 10:47:41,706 - INFO - joeynmt.training - EPOCH 12
+2021-06-16 10:47:51,601 - INFO - joeynmt.training - Epoch  12: total training loss 25.88
+2021-06-16 10:47:51,602 - INFO - joeynmt.training - EPOCH 13
+2021-06-16 10:47:56,133 - INFO - joeynmt.training - Epoch  13, Step:      400, Batch Loss:     0.585266, Tokens per Sec:      216, Lr: 0.000200
+2021-06-16 10:48:01,345 - INFO - joeynmt.training - Epoch  13: total training loss 21.30
+2021-06-16 10:48:01,345 - INFO - joeynmt.training - EPOCH 14
+2021-06-16 10:48:10,977 - INFO - joeynmt.training - Epoch  14: total training loss 15.89
+2021-06-16 10:48:10,977 - INFO - joeynmt.training - EPOCH 15
+2021-06-16 10:48:20,856 - INFO - joeynmt.training - Epoch  15: total training loss 13.63
+2021-06-16 10:48:20,856 - INFO - joeynmt.training - EPOCH 16
+2021-06-16 10:48:26,781 - INFO - joeynmt.training - Epoch  16, Step:      500, Batch Loss:     0.362287, Tokens per Sec:      210, Lr: 0.000200
+2021-06-16 10:48:30,995 - INFO - joeynmt.training - Epoch  16: total training loss 12.37
+2021-06-16 10:48:30,995 - INFO - joeynmt.training - EPOCH 17
+2021-06-16 10:48:40,893 - INFO - joeynmt.training - Epoch  17: total training loss 11.44
+2021-06-16 10:48:40,893 - INFO - joeynmt.training - EPOCH 18
+2021-06-16 10:48:50,551 - INFO - joeynmt.training - Epoch  18: total training loss 10.01
+2021-06-16 10:48:50,551 - INFO - joeynmt.training - EPOCH 19
+2021-06-16 10:48:57,545 - INFO - joeynmt.training - Epoch  19, Step:      600, Batch Loss:     0.266396, Tokens per Sec:      222, Lr: 0.000200
+2021-06-16 10:49:00,335 - INFO - joeynmt.training - Epoch  19: total training loss 9.62
+2021-06-16 10:49:00,335 - INFO - joeynmt.training - EPOCH 20
+2021-06-16 10:49:10,093 - INFO - joeynmt.training - Epoch  20: total training loss 8.58
+2021-06-16 10:49:10,093 - INFO - joeynmt.training - EPOCH 21
+2021-06-16 10:49:19,876 - INFO - joeynmt.training - Epoch  21: total training loss 8.30
+2021-06-16 10:49:19,876 - INFO - joeynmt.training - EPOCH 22
+2021-06-16 10:49:28,108 - INFO - joeynmt.training - Epoch  22, Step:      700, Batch Loss:     0.197321, Tokens per Sec:      221, Lr: 0.000200
+2021-06-16 10:49:29,596 - INFO - joeynmt.training - Epoch  22: total training loss 7.42
+2021-06-16 10:49:29,596 - INFO - joeynmt.training - EPOCH 23
+2021-06-16 10:49:39,270 - INFO - joeynmt.training - Epoch  23: total training loss 6.77
+2021-06-16 10:49:39,270 - INFO - joeynmt.training - EPOCH 24
+2021-06-16 10:49:48,869 - INFO - joeynmt.training - Epoch  24: total training loss 6.10
+2021-06-16 10:49:48,869 - INFO - joeynmt.training - EPOCH 25
+2021-06-16 10:49:58,335 - INFO - joeynmt.training - Epoch  25, Step:      800, Batch Loss:     0.154526, Tokens per Sec:      221, Lr: 0.000200
+2021-06-16 10:49:58,647 - INFO - joeynmt.training - Epoch  25: total training loss 5.70
+2021-06-16 10:49:58,647 - INFO - joeynmt.training - EPOCH 26
+2021-06-16 10:50:08,345 - INFO - joeynmt.training - Epoch  26: total training loss 5.28
+2021-06-16 10:50:08,345 - INFO - joeynmt.training - EPOCH 27
+2021-06-16 10:50:19,424 - INFO - joeynmt.training - Epoch  27: total training loss 5.35
+2021-06-16 10:50:19,424 - INFO - joeynmt.training - EPOCH 28
+2021-06-16 10:50:33,258 - INFO - joeynmt.training - Epoch  28: total training loss 4.89
+2021-06-16 10:50:33,258 - INFO - joeynmt.training - EPOCH 29
+2021-06-16 10:50:35,017 - INFO - joeynmt.training - Epoch  29, Step:      900, Batch Loss:     0.156303, Tokens per Sec:      104, Lr: 0.000200
+2021-06-16 10:50:46,488 - INFO - joeynmt.training - Epoch  29: total training loss 4.49
+2021-06-16 10:50:46,488 - INFO - joeynmt.training - EPOCH 30
+2021-06-16 10:50:57,728 - INFO - joeynmt.training - Epoch  30: total training loss 4.43
+2021-06-16 10:50:57,728 - INFO - joeynmt.training - EPOCH 31
+2021-06-16 10:51:08,849 - INFO - joeynmt.training - Epoch  31: total training loss 4.25
+2021-06-16 10:51:08,849 - INFO - joeynmt.training - EPOCH 32
+2021-06-16 10:51:11,841 - INFO - joeynmt.training - Epoch  32, Step:     1000, Batch Loss:     0.108947, Tokens per Sec:      169, Lr: 0.000200
+2021-06-16 10:51:19,359 - INFO - joeynmt.training - Epoch  32: total training loss 3.94
+2021-06-16 10:51:19,360 - INFO - joeynmt.training - EPOCH 33
+2021-06-16 10:51:28,930 - INFO - joeynmt.training - Epoch  33: total training loss 3.59
+2021-06-16 10:51:28,930 - INFO - joeynmt.training - EPOCH 34
+2021-06-16 10:51:38,775 - INFO - joeynmt.training - Epoch  34: total training loss 3.50
+2021-06-16 10:51:38,776 - INFO - joeynmt.training - EPOCH 35
+2021-06-16 10:51:43,009 - INFO - joeynmt.training - Epoch  35, Step:     1100, Batch Loss:     0.109732, Tokens per Sec:      188, Lr: 0.000200
+2021-06-16 10:51:50,015 - INFO - joeynmt.training - Epoch  35: total training loss 3.39
+2021-06-16 10:51:50,015 - INFO - joeynmt.training - EPOCH 36
+2021-06-16 10:51:59,934 - INFO - joeynmt.training - Epoch  36: total training loss 3.49
+2021-06-16 10:51:59,934 - INFO - joeynmt.training - EPOCH 37
+2021-06-16 10:52:09,559 - INFO - joeynmt.training - Epoch  37: total training loss 3.34
+2021-06-16 10:52:09,559 - INFO - joeynmt.training - EPOCH 38
+2021-06-16 10:52:14,138 - INFO - joeynmt.training - Epoch  38, Step:     1200, Batch Loss:     0.085478, Tokens per Sec:      212, Lr: 0.000200
+2021-06-16 10:52:19,205 - INFO - joeynmt.training - Epoch  38: total training loss 3.06
+2021-06-16 10:52:19,205 - INFO - joeynmt.training - EPOCH 39
+2021-06-16 10:52:28,877 - INFO - joeynmt.training - Epoch  39: total training loss 3.08
+2021-06-16 10:52:28,877 - INFO - joeynmt.training - EPOCH 40
+2021-06-16 10:52:38,505 - INFO - joeynmt.training - Epoch  40: total training loss 3.45
+2021-06-16 10:52:38,506 - INFO - joeynmt.training - EPOCH 41
+2021-06-16 10:52:44,334 - INFO - joeynmt.training - Epoch  41, Step:     1300, Batch Loss:     0.092273, Tokens per Sec:      221, Lr: 0.000200
+2021-06-16 10:52:48,233 - INFO - joeynmt.training - Epoch  41: total training loss 3.50
+2021-06-16 10:52:48,233 - INFO - joeynmt.training - EPOCH 42
+2021-06-16 10:52:57,993 - INFO - joeynmt.training - Epoch  42: total training loss 3.11
+2021-06-16 10:52:57,993 - INFO - joeynmt.training - EPOCH 43
+2021-06-16 10:53:07,808 - INFO - joeynmt.training - Epoch  43: total training loss 2.99
+2021-06-16 10:53:07,808 - INFO - joeynmt.training - EPOCH 44
+2021-06-16 10:53:14,715 - INFO - joeynmt.training - Epoch  44, Step:     1400, Batch Loss:     0.106875, Tokens per Sec:      219, Lr: 0.000200
+2021-06-16 10:53:17,427 - INFO - joeynmt.training - Epoch  44: total training loss 2.81
+2021-06-16 10:53:17,428 - INFO - joeynmt.training - EPOCH 45
+2021-06-16 10:53:27,152 - INFO - joeynmt.training - Epoch  45: total training loss 2.99
+2021-06-16 10:53:27,152 - INFO - joeynmt.training - EPOCH 46
+2021-06-16 10:53:37,287 - INFO - joeynmt.training - Epoch  46: total training loss 2.84
+2021-06-16 10:53:37,287 - INFO - joeynmt.training - EPOCH 47
+2021-06-16 10:53:44,802 - INFO - joeynmt.training - Epoch  47, Step:     1500, Batch Loss:     0.079804, Tokens per Sec:      221, Lr: 0.000200
+2021-06-16 10:53:47,103 - INFO - joeynmt.training - Epoch  47: total training loss 2.74
+2021-06-16 10:53:47,103 - INFO - joeynmt.training - EPOCH 48
+2021-06-16 10:53:56,786 - INFO - joeynmt.training - Epoch  48: total training loss 2.79
+2021-06-16 10:53:56,787 - INFO - joeynmt.training - EPOCH 49
+2021-06-16 10:54:06,464 - INFO - joeynmt.training - Epoch  49: total training loss 2.81
+2021-06-16 10:54:06,464 - INFO - joeynmt.training - EPOCH 50
+2021-06-16 10:54:15,245 - INFO - joeynmt.training - Epoch  50, Step:     1600, Batch Loss:     0.086020, Tokens per Sec:      215, Lr: 0.000200
+2021-06-16 10:54:16,172 - INFO - joeynmt.training - Epoch  50: total training loss 2.92
+2021-06-16 10:54:16,172 - INFO - joeynmt.training - EPOCH 51
+2021-06-16 10:54:25,756 - INFO - joeynmt.training - Epoch  51: total training loss 2.61
+2021-06-16 10:54:25,756 - INFO - joeynmt.training - EPOCH 52
+2021-06-16 10:54:35,339 - INFO - joeynmt.training - Epoch  52: total training loss 2.54
+2021-06-16 10:54:35,339 - INFO - joeynmt.training - EPOCH 53
+2021-06-16 10:54:44,937 - INFO - joeynmt.training - Epoch  53: total training loss 2.53
+2021-06-16 10:54:44,937 - INFO - joeynmt.training - EPOCH 54
+2021-06-16 10:54:45,241 - INFO - joeynmt.training - Epoch  54, Step:     1700, Batch Loss:     0.117619, Tokens per Sec:      175, Lr: 0.000200
+2021-06-16 10:54:54,626 - INFO - joeynmt.training - Epoch  54: total training loss 2.40
+2021-06-16 10:54:54,626 - INFO - joeynmt.training - EPOCH 55
+2021-06-16 10:55:04,223 - INFO - joeynmt.training - Epoch  55: total training loss 2.36
+2021-06-16 10:55:04,223 - INFO - joeynmt.training - EPOCH 56
+2021-06-16 10:55:13,832 - INFO - joeynmt.training - Epoch  56: total training loss 2.42
+2021-06-16 10:55:13,832 - INFO - joeynmt.training - EPOCH 57
+2021-06-16 10:55:15,387 - INFO - joeynmt.training - Epoch  57, Step:     1800, Batch Loss:     0.082757, Tokens per Sec:      227, Lr: 0.000200
+2021-06-16 10:55:23,665 - INFO - joeynmt.training - Epoch  57: total training loss 2.42
+2021-06-16 10:55:23,665 - INFO - joeynmt.training - EPOCH 58
+2021-06-16 10:55:33,298 - INFO - joeynmt.training - Epoch  58: total training loss 2.43
+2021-06-16 10:55:33,298 - INFO - joeynmt.training - EPOCH 59
+2021-06-16 10:55:43,111 - INFO - joeynmt.training - Epoch  59: total training loss 2.25
+2021-06-16 10:55:43,111 - INFO - joeynmt.training - EPOCH 60
+2021-06-16 10:55:45,288 - INFO - joeynmt.training - Epoch  60, Step:     1900, Batch Loss:     0.072848, Tokens per Sec:      234, Lr: 0.000200
+2021-06-16 10:55:52,925 - INFO - joeynmt.training - Epoch  60: total training loss 2.17
+2021-06-16 10:55:52,925 - INFO - joeynmt.training - EPOCH 61
+2021-06-16 10:56:02,599 - INFO - joeynmt.training - Epoch  61: total training loss 2.08
+2021-06-16 10:56:02,599 - INFO - joeynmt.training - EPOCH 62
+2021-06-16 10:56:12,406 - INFO - joeynmt.training - Epoch  62: total training loss 2.22
+2021-06-16 10:56:12,406 - INFO - joeynmt.training - EPOCH 63
+2021-06-16 10:56:15,506 - INFO - joeynmt.training - Epoch  63, Step:     2000, Batch Loss:     0.060272, Tokens per Sec:      222, Lr: 0.000200
+2021-06-16 10:56:24,032 - INFO - joeynmt.training - Epoch  63: total training loss 2.37
+2021-06-16 10:56:24,032 - INFO - joeynmt.training - EPOCH 64
+2021-06-16 10:56:35,706 - INFO - joeynmt.training - Epoch  64: total training loss 2.24
+2021-06-16 10:56:35,706 - INFO - joeynmt.training - EPOCH 65
+2021-06-16 10:56:46,425 - INFO - joeynmt.training - Epoch  65: total training loss 2.09
+2021-06-16 10:56:46,425 - INFO - joeynmt.training - EPOCH 66
+2021-06-16 10:56:50,772 - INFO - joeynmt.training - Epoch  66, Step:     2100, Batch Loss:     0.060790, Tokens per Sec:      209, Lr: 0.000200
+2021-06-16 10:56:56,821 - INFO - joeynmt.training - Epoch  66: total training loss 1.95
+2021-06-16 10:56:56,821 - INFO - joeynmt.training - EPOCH 67
+2021-06-16 10:57:08,167 - INFO - joeynmt.training - Epoch  67: total training loss 2.08
+2021-06-16 10:57:08,167 - INFO - joeynmt.training - EPOCH 68
+2021-06-16 10:57:19,065 - INFO - joeynmt.training - Epoch  68: total training loss 2.60
+2021-06-16 10:57:19,065 - INFO - joeynmt.training - EPOCH 69
+2021-06-16 10:57:25,876 - INFO - joeynmt.training - Epoch  69, Step:     2200, Batch Loss:     0.068154, Tokens per Sec:      178, Lr: 0.000200
+2021-06-16 10:57:30,711 - INFO - joeynmt.training - Epoch  69: total training loss 2.64
+2021-06-16 10:57:30,712 - INFO - joeynmt.training - EPOCH 70
+2021-06-16 10:57:42,018 - INFO - joeynmt.training - Epoch  70: total training loss 2.73
+2021-06-16 10:57:42,019 - INFO - joeynmt.training - EPOCH 71
+2021-06-16 10:57:52,658 - INFO - joeynmt.training - Epoch  71: total training loss 2.98
+2021-06-16 10:57:52,659 - INFO - joeynmt.training - EPOCH 72
+2021-06-16 10:57:59,502 - INFO - joeynmt.training - Epoch  72, Step:     2300, Batch Loss:     0.096195, Tokens per Sec:      211, Lr: 0.000200
+2021-06-16 10:58:03,092 - INFO - joeynmt.training - Epoch  72: total training loss 2.76
+2021-06-16 10:58:03,092 - INFO - joeynmt.training - EPOCH 73
+2021-06-16 10:58:13,685 - INFO - joeynmt.training - Epoch  73: total training loss 2.86
+2021-06-16 10:58:13,685 - INFO - joeynmt.training - EPOCH 74
+2021-06-16 10:58:23,716 - INFO - joeynmt.training - Epoch  74: total training loss 2.97
+2021-06-16 10:58:23,716 - INFO - joeynmt.training - EPOCH 75
+2021-06-16 10:58:31,904 - INFO - joeynmt.training - Epoch  75, Step:     2400, Batch Loss:     0.072250, Tokens per Sec:      214, Lr: 0.000200
+2021-06-16 10:58:33,773 - INFO - joeynmt.training - Epoch  75: total training loss 3.42
+2021-06-16 10:58:33,773 - INFO - joeynmt.training - EPOCH 76

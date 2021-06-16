@@ -21,8 +21,8 @@ data:
     max_sent_length: 100
     #src_vocab: "../data/full/src_vocab.txt"
     #trg_vocab: "../data/full/trg_vocab.txt"
-    tag_vocab: "../data/full/vocab.tags"
-    random_train_subset: 3
+    #tag_vocab: "../data/full/vocab.tags"
+    random_train_subset: 100
 
 testing:
     beam_size: 5
@@ -94,6 +94,6 @@ model:
         #pass value to forward pass and modify model accordingly
         use_tags: True
         tag_embeddings:
-            embedding_dim: 128
+            embedding_dim: 10
             scale: True
             dropout: 0.

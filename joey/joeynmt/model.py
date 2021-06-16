@@ -89,13 +89,13 @@ class Model(nn.Module):
             # add tag prediction as output
             # out, tag_out, _, _ 
             
-            out, _, _, _ = self._encode_decode(**kwargs)
-            print(out.size())
+            out, _, _, tag_out = self._encode_decode(**kwargs)
+            #print(out.size())
             
             # mods
             # add 2 part loss here
-            # log_probs_tags = F.log_softmax(tag_out, dim=-1)
-            # batch_loss_tags = self.loss_function(log_probs_tags, kwargs["tags"])
+            #log_probs_tags = F.log_softmax(tag_out, dim=-1)
+            #batch_loss_tags = self.loss_function(log_probs_tags, kwargs["tags"])
             # how to combine losses - just sum loss?
             # batch_loss += batch_loss_tags
             
