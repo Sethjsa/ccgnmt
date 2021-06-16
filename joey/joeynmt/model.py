@@ -102,7 +102,7 @@ class Model(nn.Module):
 
             # compute batch loss
             batch_loss = self.loss_function(log_probs, kwargs["trg"])
-            print(kwargs["trg"])
+            #print(kwargs["trg"])
 
             # how to combine losses? just sum?
             batch_loss += batch_loss_tags
