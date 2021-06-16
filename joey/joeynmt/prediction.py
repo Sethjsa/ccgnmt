@@ -111,7 +111,7 @@ def validate_on_data(model: Model, data: Dataset,
 
             # run as during training with teacher forcing
             if compute_loss and batch.trg is not None:
-                batch_loss, _, _, _ = model(return_type="loss", **vars(batch))
+                batch_loss, _, _, _ = model(return_type="valid_loss", **vars(batch))
                 if n_gpu > 1:
                     batch_loss = batch_loss.mean() # average on multi-gpu
                 total_loss += batch_loss
@@ -308,7 +308,7 @@ def test(cfg_file,
     model_checkpoint = load_checkpoint(ckpt, use_cuda=use_cuda)
 
     # build model and load parameters into it
-    model = build_model(cfg["model"], src_vocab=src_vocab, trg_vocab=trg_vocab)
+    model = build_model(cfg["model"], src_vocab=src_vocab, trg_vocab=trg_vocab, tag_vocab=tag_vocab)
     model.load_state_dict(model_checkpoint["model_state"])
 
     if use_cuda:

@@ -4,6 +4,7 @@ import torch
 import torch.nn as nn
 from torch import Tensor
 from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
+from typing import List, Optional, Tuple
 
 from joeynmt.helpers import freeze_params
 from joeynmt.transformer_layers import \
@@ -87,7 +88,7 @@ class RecurrentEncoder(Encoder):
 
     #pylint: disable=arguments-differ
     def forward(self, embed_src: Tensor, src_length: Tensor, mask: Tensor,
-                **kwargs) -> (Tensor, Tensor):
+                **kwargs) -> Tuple[Tensor, Tensor]:
         """
         Applies a bidirectional RNN to sequence of embeddings x.
         The input mini-batch x needs to be sorted by src length.
@@ -196,7 +197,7 @@ class TransformerEncoder(Encoder):
     def forward(self,
                 embed_src: Tensor,
                 src_length: Tensor,
-                mask: Tensor, **kwargs) -> (Tensor, Tensor):
+                mask: Tensor, **kwargs) -> Tuple[Tensor, Tensor]:
         """
         Pass the input (and mask) through each layer in turn.
         Applies a Transformer encoder to sequence of embeddings x.

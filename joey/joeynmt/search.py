@@ -3,6 +3,7 @@ import torch
 import torch.nn.functional as F
 from torch import Tensor
 import numpy as np
+from typing import List, Optional, Tuple
 
 from joeynmt.decoders import TransformerDecoder
 from joeynmt.model import Model
@@ -14,7 +15,7 @@ __all__ = ["greedy", "transformer_greedy", "beam_search", "run_batch"]
 
 def greedy(src_mask: Tensor, max_output_length: int, model: Model,
            encoder_output: Tensor, encoder_hidden: Tensor) \
-        -> (np.array, np.array):
+        -> Tuple[np.array, np.array]:
     """
     Greedy decoding. Select the token word highest probability at each time
     step. This function is a wrapper that calls recurrent_greedy for
@@ -41,7 +42,7 @@ def greedy(src_mask: Tensor, max_output_length: int, model: Model,
 
 def recurrent_greedy(
         src_mask: Tensor, max_output_length: int, model: Model,
-        encoder_output: Tensor, encoder_hidden: Tensor) -> (np.array, np.array):
+        encoder_output: Tensor, encoder_hidden: Tensor) -> Tuple[np.array, np.array]:
     """
     Greedy decoding: in each step, choose the word that gets highest score.
     Version for recurrent decoder.
@@ -103,7 +104,7 @@ def recurrent_greedy(
 # pylint: disable=unused-argument
 def transformer_greedy(
         src_mask: Tensor, max_output_length: int, model: Model,
-        encoder_output: Tensor, encoder_hidden: Tensor) -> (np.array, None):
+        encoder_output: Tensor, encoder_hidden: Tensor) -> Tuple[np.array, None]:
     """
     Special greedy function for transformer, since it works differently.
     The transformer remembers all previous states and attends to them.
@@ -166,7 +167,7 @@ def transformer_greedy(
 def beam_search(model: Model, size: int,
                 encoder_output: Tensor, encoder_hidden: Tensor,
                 src_mask: Tensor, max_output_length: int,
-                alpha: float, n_best: int = 1) -> (np.array, np.array):
+                alpha: float, n_best: int = 1) -> Tuple[np.array, np.array]:
     """
     Beam search with size k.
     Inspired by OpenNMT-py, adapted for Transformer.
@@ -413,7 +414,7 @@ def beam_search(model: Model, size: int,
 
 def run_batch(model: Model, batch: Batch, max_output_length: int,
               beam_size: int, beam_alpha: float,
-              n_best: int = 1) -> (np.array, np.array):
+              n_best: int = 1) -> Tuple[np.array, np.array]:
     """
     Get outputs and attentions scores for a given batch
 

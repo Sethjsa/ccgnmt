@@ -2,7 +2,7 @@
 """
 Collection of builder functions
 """
-from typing import Callable, Optional, Generator
+from typing import Callable, Optional, Generator, Tuple
 
 import torch
 from torch import nn
@@ -106,7 +106,7 @@ def build_optimizer(config: dict, parameters: Generator) -> Optimizer:
 
 def build_scheduler(config: dict, optimizer: Optimizer, scheduler_mode: str,
                     hidden_size: int = 0) \
-        -> (Optional[_LRScheduler], Optional[str]):
+        -> Tuple[Optional[_LRScheduler], Optional[str]]:
     """
     Create a learning rate scheduler if specified in config and
     determine when a scheduler step should be executed.

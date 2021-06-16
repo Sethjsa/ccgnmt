@@ -525,7 +525,7 @@ class TransformerDecoder(Decoder):
         self.tag_embeddings = None # self.tag_embed # size [tag_vocab_size, embed_dim] = self.tag_embed.vocab_size, self.tag_embed.embedding_dim; 511 x 128
         self.to_embed = nn.Linear(self._hidden_size, self.tag_embed_dim, bias=False) # 512 -> 128
         self.to_out = nn.Linear(self.tag_embed_dim, self._hidden_size, bias=False) # 128 -> 512
-        self.tag_dec_att = LuongAttention(hidden_size=self.tag_embed_dim, key_size=self.tag_embed_dim) # 128, 128
+        # self.tag_dec_att = LuongAttention(hidden_size=self.tag_embed_dim, key_size=self.tag_embed_dim) # 128, 128
 
 ###################### End ######################
 
@@ -592,11 +592,11 @@ class TransformerDecoder(Decoder):
             embs = embs.unsqueeze(0).unsqueeze(0)
 
             # dim = [batch x trg_len x tag_vocab x 1]
-            att_probs = att_probs.unsqueeze(3)
+            att_probs_sq = att_probs.unsqueeze(3)
 
             # elementwise hadamard product - attention scaling
             # dim = [batch x tgt_len x tag_vocab x embed_dim]
-            context_weights = att_probs * embs # torch.mul(att_probs, embs)
+            context_weights = att_probs_sq * embs # torch.mul(att_probs, embs)
 
             # weighted sum of scaled embeddings
             # dim = [batch x tgt_len x embed_dim]

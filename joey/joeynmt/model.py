@@ -94,11 +94,29 @@ class Model(nn.Module):
             
             # mods
             # add 2 part loss here
-            #log_probs_tags = F.log_softmax(tag_out, dim=-1)
-            #batch_loss_tags = self.loss_function(log_probs_tags, kwargs["tags"])
-            # how to combine losses - just sum loss?
-            # batch_loss += batch_loss_tags
+            log_probs_tags = F.log_softmax(tag_out, dim=-1)
+            batch_loss_tags = self.loss_function(log_probs_tags, kwargs["tag"])
             
+            # compute log probs
+            log_probs = F.log_softmax(out, dim=-1)
+
+            # compute batch loss
+            batch_loss = self.loss_function(log_probs, kwargs["trg"])
+            print(kwargs["trg"])
+
+            # how to combine losses? just sum?
+            batch_loss += batch_loss_tags
+
+            # return batch loss
+            #     = sum over all elements in batch that are not pad
+            return_tuple = (batch_loss, None, None, None)
+        
+        elif return_type == "valid_loss":
+
+            assert self.loss_function is not None
+            
+            out, _, _, _ = self._encode_decode(**kwargs)
+
             # compute log probs
             log_probs = F.log_softmax(out, dim=-1)
 
@@ -234,7 +252,9 @@ def build_model(cfg: dict = None,
     logger.info("Building an encoder-decoder model...")
     src_padding_idx = src_vocab.stoi[PAD_TOKEN]
     trg_padding_idx = trg_vocab.stoi[PAD_TOKEN]
-    tag_padding_idx = tag_vocab.stoi[PAD_TOKEN]
+
+    if tag_vocab is not None:
+        tag_padding_idx = tag_vocab.stoi[PAD_TOKEN]
 
     src_embed = Embeddings(
         **cfg["encoder"]["embeddings"], vocab_size=len(src_vocab),
@@ -254,9 +274,10 @@ def build_model(cfg: dict = None,
             **cfg["decoder"]["embeddings"], vocab_size=len(trg_vocab),
             padding_idx=trg_padding_idx)
     
-    tag_embed = Embeddings(
-        **cfg["decoder"]["tag_embeddings"], vocab_size=len(tag_vocab),
-        padding_idx=tag_padding_idx)
+    if tag_vocab is not None:
+        tag_embed = Embeddings(
+            **cfg["decoder"]["tag_embeddings"], vocab_size=len(tag_vocab),
+            padding_idx=tag_padding_idx)
     
     #tag_embed = tag_emb.lut.weight
 
@@ -280,10 +301,15 @@ def build_model(cfg: dict = None,
     dec_dropout = cfg["decoder"].get("dropout", 0.)
     dec_emb_dropout = cfg["decoder"]["embeddings"].get("dropout", dec_dropout)
     if cfg["decoder"].get("type", "recurrent") == "transformer":
-        decoder = TransformerDecoder(
-            **cfg["decoder"], encoder=encoder, vocab_size=len(trg_vocab),
-            tag_vocab_size=len(tag_vocab), tag_embed_size=tag_embed.embedding_dim,
-            emb_size=trg_embed.embedding_dim, emb_dropout=dec_emb_dropout)
+        if tag_vocab is not None:
+            decoder = TransformerDecoder(
+                **cfg["decoder"], encoder=encoder, vocab_size=len(trg_vocab),
+                tag_vocab_size=len(tag_vocab), tag_embed_size=tag_embed.embedding_dim,
+                emb_size=trg_embed.embedding_dim, emb_dropout=dec_emb_dropout)
+        else:
+            decoder = TransformerDecoder(
+                **cfg["decoder"], encoder=encoder, vocab_size=len(trg_vocab),
+                emb_size=trg_embed.embedding_dim, emb_dropout=dec_emb_dropout)
     else:
         decoder = RecurrentDecoder(
             **cfg["decoder"], encoder=encoder, vocab_size=len(trg_vocab),
