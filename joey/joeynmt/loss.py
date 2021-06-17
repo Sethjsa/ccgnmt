@@ -70,6 +70,7 @@ class XentLoss(nn.Module):
             # targets: distributions with batch*seq_len x vocab_size
             assert log_probs.contiguous().view(-1, log_probs.size(-1)).shape \
                 == targets.shape
+            print(targets.shape)
         else:
             # targets: indices with batch*seq_len
             targets = targets.contiguous().view(-1)

@@ -506,9 +506,8 @@ class TrainManager:
         # reactivate training
         self.model.train()
 
-        # mods
-        # loss will include tag and out CE loss 
 
+        # loss includes tag and out CE loss 
         # get loss
         batch_loss, _, _, _ = self.model(return_type="loss", **vars(batch))
 

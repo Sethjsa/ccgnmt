@@ -41,6 +41,8 @@ print(current_word_mask(10).unsqueeze(1))
 
         # add linear transformation from 640 > 512
         # self.to_embed = nn.Linear(640, hidden_size, dropout=dropout)
+
+        self.tag_embed # size [tag_vocab_size, embed_dim] = self.tag_embed.vocab_size, self.tag_embed.embedding_dim;
         """
 
 """

@@ -86,30 +86,30 @@ class Model(nn.Module):
         if return_type == "loss":
             assert self.loss_function is not None
 
-            # add tag prediction as output
-            # out, tag_out, _, _ 
-            
+######################  Modifications  ######################
+           
             out, _, _, tag_out = self._encode_decode(**kwargs)
-            #print(out.size())
             
-            # mods
-            # add 2 part loss here
+            # compute tag log probs from att_probs
             log_probs_tags = F.log_softmax(tag_out, dim=-1)
+
+            # compute batch tag loss
             batch_loss_tags = self.loss_function(log_probs_tags, kwargs["tag"])
             
-            # compute log probs
+            # compute word log probs
             log_probs = F.log_softmax(out, dim=-1)
 
-            # compute batch loss
+            # compute batch word loss
             batch_loss = self.loss_function(log_probs, kwargs["trg"])
-            #print(kwargs["trg"])
 
-            # how to combine losses? just sum?
+            # sum losses
             batch_loss += batch_loss_tags
 
             # return batch loss
             #     = sum over all elements in batch that are not pad
             return_tuple = (batch_loss, None, None, None)
+
+######################      End         ###################### 
         
         elif return_type == "valid_loss":
 

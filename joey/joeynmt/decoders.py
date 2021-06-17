@@ -8,25 +8,13 @@ from typing import Optional, Tuple
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-import numpy as np
+
 from torch import Tensor
 from joeynmt.attention import BahdanauAttention, LuongAttention
 from joeynmt.encoders import Encoder
-from joeynmt.helpers import freeze_params, ConfigurationError, subsequent_mask#, current_word_mask
+from joeynmt.helpers import freeze_params, ConfigurationError, subsequent_mask
 from joeynmt.transformer_layers import PositionalEncoding, \
     TransformerDecoderLayer
-
-def current_word_mask(size: int) -> Tensor:
-    """
-    Mask out previous and subsequent positions (to prevent attending to past and future positions)
-    Transformer helper function.
-
-    :param size: size of mask (2nd and 3rd dim)
-    :return: Tensor with 0s and 1s of shape (1, size, size)
-    """
-    mask = np.triu(np.ones((size, size)), k=0).astype('uint8') & np.tril(np.ones((size, size)), k=0).astype('uint8')
-    return torch.from_numpy(mask) == 1
 
 # pylint: disable=abstract-method
 class Decoder(nn.Module):
@@ -517,19 +505,16 @@ class TransformerDecoder(Decoder):
         self.emb_dropout = nn.Dropout(p=emb_dropout)
         self.output_layer = nn.Linear(hidden_size, vocab_size, bias=False)
         
-###################### Modifications ######################
+######################  Modifications  ######################
 
-        self.tag_vocab_size = tag_vocab_size
         self.use_tags = use_tags
+        self.tag_vocab_size = tag_vocab_size
         self.tag_embed_dim = tag_embed_size
-        self.tag_embeddings = None # self.tag_embed # size [tag_vocab_size, embed_dim] = self.tag_embed.vocab_size, self.tag_embed.embedding_dim; 511 x 128
+        self.tag_embeddings = None # 511 x 128
         self.to_embed = nn.Linear(self._hidden_size, self.tag_embed_dim, bias=False) # 512 -> 128
         self.to_out = nn.Linear(self.tag_embed_dim, self._hidden_size, bias=False) # 128 -> 512
-        # self.tag_dec_att = LuongAttention(hidden_size=self.tag_embed_dim, key_size=self.tag_embed_dim) # 128, 128
-
-###################### End ######################
-
-
+        
+######################      End         ######################
 
         if freeze:
             freeze_params(self)
@@ -563,7 +548,8 @@ class TransformerDecoder(Decoder):
         x = self.pe(trg_embed)  # add position encoding to word embedding
         x = self.emb_dropout(x)
        
-       # dim = [batch x tgt_len x tgt_len] (batch x word position x masked words (subsequent + padding))
+       # dim = [batch x tgt_len x tgt_len] 
+       # (batch x word position x masked words (subsequent + padding))
         trg_mask = trg_mask & subsequent_mask(
             trg_embed.size(1)).type_as(trg_mask)
         
@@ -571,10 +557,11 @@ class TransformerDecoder(Decoder):
             x = layer(x=x, memory=encoder_output,
                       src_mask=src_mask, trg_mask=trg_mask)
         
-        # dim = [batch x tgt_len x hidden_size] (decoder state for each output word)
+        # decoder state for each output word (so far)
+        # dim = [batch x tgt_len x hidden_size] 
         x = self.layer_norm(x)
         
-##################### Modifications ######################
+######################  Modifications  ######################
 
         # predict tags
         if self.use_tags:
@@ -586,7 +573,7 @@ class TransformerDecoder(Decoder):
             embs = self.tag_embeddings
 
             # dim = [batch x tgt_len x tag_vocab]
-            att_probs = F.softmax(y @ embs.transpose(0,1), dim=2)
+            att_probs = torch.softmax(y @ embs.transpose(0,1), dim=-1)
 
             # dim = [1 x 1 x tag_vocab x embed_dim]
             embs = embs.unsqueeze(0).unsqueeze(0)
@@ -596,11 +583,12 @@ class TransformerDecoder(Decoder):
 
             # elementwise hadamard product - attention scaling
             # dim = [batch x tgt_len x tag_vocab x embed_dim]
-            context_weights = att_probs_sq * embs # torch.mul(att_probs, embs)
+            context_weights = att_probs_sq * embs
 
-            # weighted sum of scaled embeddings
+            # weighted sum of scaled embeddings in vocab dimension
+            # gives contextual embedding
             # dim = [batch x tgt_len x embed_dim]
-            context = torch.sum(context_weights, dim=2)
+            context = torch.sum(context_weights, dim=-2)
 
             # dim = [batch x tgt_len x hidden_size]
             out = self.to_out(context)
@@ -608,7 +596,7 @@ class TransformerDecoder(Decoder):
             # dim = [batch x tgt_len x hidden_size]
             x = x + out
 
-###################### End ###################### 
+######################      End         ###################### 
 
         output = self.output_layer(x)
 

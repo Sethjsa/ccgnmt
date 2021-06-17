@@ -131,7 +131,7 @@ def current_word_mask(size: int) -> Tensor:
     :param size: size of mask (2nd and 3rd dim)
     :return: Tensor with 0s and 1s of shape (1, size, size)
     """
-    mask = np.triu(np.ones((1, size, 128)), k=0).astype('uint8') & np.tril(np.ones((1, size, 128)), k=0).astype('uint8')
+    mask = np.triu(np.ones((1, size, size)), k=0).astype('uint8') & np.tril(np.ones((1, size, size)), k=0).astype('uint8')
     return torch.from_numpy(mask) == 1
 
 

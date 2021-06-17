@@ -94,6 +94,6 @@ model:
         #pass value to forward pass and modify model accordingly
         use_tags: True
         tag_embeddings:
-            embedding_dim: 10 #128
+            embedding_dim: 128
             scale: True
             dropout: 0.
