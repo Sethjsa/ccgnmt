@@ -572,8 +572,13 @@ class TransformerDecoder(Decoder):
             # dim = [tag_vocab x embed_dim] = [511 x 128]     
             embs = self.tag_embeddings
 
+            # att scores for loss calculation (log softmax for CE)
             # dim = [batch x tgt_len x tag_vocab]
-            att_probs = torch.softmax(y @ embs.transpose(0,1), dim=-1)
+            att_scores = y @ embs.transpose(0,1)
+
+            # softmax for contextual embedding calculation
+            # dim = [batch x tgt_len x tag_vocab]
+            att_probs = torch.softmax(att_scores, dim=-1)
 
             # dim = [1 x 1 x tag_vocab x embed_dim]
             embs = embs.unsqueeze(0).unsqueeze(0)
@@ -600,7 +605,7 @@ class TransformerDecoder(Decoder):
 
         output = self.output_layer(x)
 
-        return output, x, out, att_probs
+        return output, x, out, att_scores
 
     def __repr__(self):
         return "%s(num_layers=%r, num_heads=%r)" % (

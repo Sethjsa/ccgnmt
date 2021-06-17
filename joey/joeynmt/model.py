@@ -88,9 +88,10 @@ class Model(nn.Module):
 
 ######################  Modifications  ######################
            
+            # predicted word and tag output
             out, _, _, tag_out = self._encode_decode(**kwargs)
             
-            # compute tag log probs from att_probs
+            # compute tag log probs from att_scores
             log_probs_tags = F.log_softmax(tag_out, dim=-1)
 
             # compute batch tag loss
