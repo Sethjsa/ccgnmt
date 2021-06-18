@@ -9,4 +9,4 @@
 /easyccg
 /model_rebank
 /joeynmt
-joey/models/ccg_transformer_test/25.ckpt
+joey/models/ccg_transformer_test/*.ckpt

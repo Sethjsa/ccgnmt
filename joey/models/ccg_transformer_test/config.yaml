@@ -22,7 +22,7 @@ data:
     #src_vocab: "../data/full/src_vocab.txt"
     #trg_vocab: "../data/full/trg_vocab.txt"
     #tag_vocab: "../data/full/vocab.tags"
-    random_train_subset: 10
+    random_train_subset: 50
 
 testing:
     beam_size: 5

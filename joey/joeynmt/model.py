@@ -96,7 +96,7 @@ class Model(nn.Module):
 
             # compute batch tag loss
             batch_loss_tags = self.loss_function(log_probs_tags, kwargs["tag"])
-            
+
             # compute word log probs
             log_probs = F.log_softmax(out, dim=-1)
 
