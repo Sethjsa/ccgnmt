@@ -157,6 +157,7 @@ def validate_on_data(model: Model, data: Dataset,
                              for s in valid_sources]
             valid_references = [bpe_postprocess(v, bpe_type=bpe_type)
                                 for v in valid_references]
+            # add interleave_postprocess here for Baseline Bb
             valid_hypotheses = [bpe_postprocess(v, bpe_type=bpe_type)
                                 for v in valid_hypotheses]
 

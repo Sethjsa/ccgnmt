@@ -219,6 +219,11 @@ def bpe_postprocess(string, bpe_type="subword-nmt") -> str:
         ret = string.strip()
     return ret
 
+def interleave_postprocess(string) -> str:
+        l = string.split()
+        ret = " ".join(l[0::2])
+        return ret
+        
 
 def store_attention_plots(attentions: np.array,
                           targets: List[List[str]],

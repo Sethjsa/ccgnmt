@@ -1,6 +1,32 @@
 import torch
 import numpy as np
 
+
+
+def bpe_postprocess(string, bpe_type="subword-nmt") -> str:
+    """
+    Post-processor for BPE output. Recombines BPE-split tokens.
+
+    :param string:
+    :param bpe_type: one of {"sentencepiece", "subword-nmt"}
+    :return: post-processed string
+    """
+    if bpe_type == "sentencepiece":
+        ret = string.replace(" ", "").replace("▁", " ").strip()
+    elif bpe_type == "subword-nmt":
+        ret = string.replace("@@ ", "").strip()
+    else:
+        ret = string.strip()
+    return ret
+
+
+def interleave_postprocess(string) -> str:
+        l = string.split()
+        ret = " ".join(l[0::2])
+        return ret
+
+# print(interleave_postprocess(bpe_postprocess("European NN Commission N - (NPNP)NP Up@@ coming NN events N")))
+
 # def mask(tgt_len):
 #     mask = torch.zeros((tgt_len,tgt_len))
 #     for i in range(tgt_len):
@@ -25,7 +51,7 @@ def current_word_mask(size: int):
 
 #add to padding mask
 
-print(current_word_mask(10).unsqueeze(1))
+#print(current_word_mask(10).unsqueeze(1))
 
         # mods
 
