@@ -221,9 +221,10 @@ def bpe_postprocess(string, bpe_type="subword-nmt") -> str:
 
 def interleave_postprocess(string) -> str:
         l = string.split()
-        ret = " ".join(l[0::2])
+        #ret = " ".join(l[0::2])
+        ret = [word for word in l if not "TAG_" in l]
         return ret
-        
+
 
 def store_attention_plots(attentions: np.array,
                           targets: List[List[str]],
