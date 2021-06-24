@@ -511,6 +511,7 @@ class TransformerDecoder(Decoder):
         self.tag_vocab_size = tag_vocab_size
         self.tag_embed_dim = tag_embed_size
         self.tag_embeddings = None # 511 x 128
+        self.value_embeddings = None
         self.to_embed = nn.Linear(self._hidden_size, self.tag_embed_dim, bias=False) # 512 -> 128
         self.to_out = nn.Linear(self.tag_embed_dim, self._hidden_size, bias=False) # 128 -> 512
         
@@ -581,14 +582,17 @@ class TransformerDecoder(Decoder):
             att_probs = torch.softmax(att_scores, dim=-1)
 
             # dim = [1 x 1 x tag_vocab x embed_dim]
-            embs = embs.unsqueeze(0).unsqueeze(0)
-
+            # embs = embs.unsqueeze(0).unsqueeze(0)
+            # use different embedding matrix for values
+            values = self.value_embeddings
+            values = values.unsqueeze(0).unsqueeze(0)
+            
             # dim = [batch x trg_len x tag_vocab x 1]
             att_probs_sq = att_probs.unsqueeze(3)
 
             # elementwise hadamard product - attention scaling
             # dim = [batch x tgt_len x tag_vocab x embed_dim]
-            context_weights = att_probs_sq * embs
+            context_weights = att_probs_sq * values
 
             # weighted sum of scaled embeddings in vocab dimension
             # gives contextual embedding

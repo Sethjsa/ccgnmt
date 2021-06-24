@@ -279,6 +279,9 @@ def build_model(cfg: dict = None,
         tag_embed = Embeddings(
             **cfg["decoder"]["tag_embeddings"], vocab_size=len(tag_vocab),
             padding_idx=tag_padding_idx)
+        value_embed = Embeddings(
+            **cfg["decoder"]["tag_embeddings"], vocab_size=len(tag_vocab),
+            padding_idx=tag_padding_idx)
     
     #tag_embed = tag_emb.lut.weight
 
@@ -334,6 +337,7 @@ def build_model(cfg: dict = None,
                 "The decoder must be a Transformer.")
     
     model.decoder.tag_embeddings = tag_embed.lut.weight
+    model.decoder.value_embeddings = value_embed.lut.weight
 
     # custom initialization of model parameters
     initialize_model(model, cfg, src_padding_idx, trg_padding_idx, tag_padding_idx)
