@@ -290,7 +290,7 @@ def test(cfg_file,
 
     # load the data
     if datasets is None:
-        _, dev_data, test_data, src_vocab, trg_vocab = load_data(
+        _, dev_data, test_data, src_vocab, trg_vocab, tag_vocab = load_data(
             data_cfg=cfg["data"], datasets=["dev", "test"])
         data_to_predict = {"dev": dev_data, "test": test_data}
     else:  # avoid to load data again
