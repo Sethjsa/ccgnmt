@@ -1,5 +1,5 @@
 tags = []
-with open("corpus.tc.en", "r") as f, open("corpus.en","w") as g:
+with open("corpus.en", "r") as f, open("corpus.en1","w") as g:
     d = f.read()
     d = d.replace("#", "")
     g.write(d)

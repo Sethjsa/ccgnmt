@@ -1,4 +1,4 @@
-with open("output_corpus.en", "r") as f, open("train_corpus.tags", "w") as g, open("train_corpus.en", "w") as h:
+with open("corpus_output.en", "r") as f, open("train_corpus.tags", "w") as g, open("train_corpus.en", "w") as h:
     for line in f:
         #splitted = line.split("||")
         line = line.replace("||", " ")

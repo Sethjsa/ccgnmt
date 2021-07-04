@@ -19,3 +19,10 @@
 #duplicate tags for bpe'd words
 #python3 duplicate_tags.py
 
+#get normal dev and test data
+#strip_sgml.py
+
+#apply bpe to test and dev
+
+#
+

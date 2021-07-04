@@ -9,6 +9,8 @@
 
 name: "ccg_transformer"
 
+save_attention: True
+
 data:
     src: "de"
     trg: "en"
@@ -19,14 +21,16 @@ data:
     level: "bpe"
     lowercase: False
     max_sent_length: 100
-    #src_vocab: "../data/full/src_vocab.txt"
-    #trg_vocab: "../data/full/trg_vocab.txt"
-    #tag_vocab: "../data/full/vocab.tags"
+    # src_vocab: "../data/full/src_vocab.txt"
+    # trg_vocab: "../data/full/trg_vocab.txt"
+    # tag_vocab: "../data/full/vocab.tags"
     random_train_subset: 10
+    save_attention: True
 
 testing:
     beam_size: 5
     alpha: 1.0
+    save_attention: True
 
 training:
     random_seed: 42
@@ -58,6 +62,7 @@ training:
     max_output_length: 100
     print_valid_sents: [0, 1, 2, 3]
     keep_last_ckpts: 3
+    save_attention: True
 
 model:
     initializer: "xavier"
@@ -97,3 +102,4 @@ model:
             embedding_dim: 128
             scale: True
             dropout: 0.
+    save_attention: True

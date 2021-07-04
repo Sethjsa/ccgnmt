@@ -13,8 +13,8 @@ with open("train_corpus.en", "r") as f:
         if line == "\n":    
             remove.append(count)
 
-with open("train_corpus.de", "r") as g:
-    with open("train_corpus_proc.de", "w") as h:
+with open("train_corpus.tr", "r") as g:
+    with open("train_corpus_proc.tr", "w") as h:
         for count, line in enumerate(g):
             if not count in remove:
                 h.write(line)
@@ -25,7 +25,7 @@ with open("train_corpus.en", "r") as j:
             if not count in remove:
                 k.write(line)
 
-with open("tags_corpus.en", "r") as j:
+with open("train_corpus.tags", "r") as j:
     with open("train_corpus_proc.tags", "w") as k:
         for count, line in enumerate(j):
             if not count in remove:
