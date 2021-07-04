@@ -579,37 +579,37 @@ class TransformerDecoder(Decoder):
 
             # softmax for contextual embedding calculation
             # dim = [batch x tgt_len x tag_vocab]
-            att_probs = torch.softmax(att_scores, dim=-1)
+            #att_probs = torch.softmax(att_scores, dim=-1)
 
             # dim = [1 x 1 x tag_vocab x embed_dim]
             # embs = embs.unsqueeze(0).unsqueeze(0)
             # use different embedding matrix for values
-            values = self.value_embeddings
-            values = values.unsqueeze(0).unsqueeze(0)
+            #values = self.value_embeddings
+            #values = values.unsqueeze(0).unsqueeze(0)
             
             # dim = [batch x trg_len x tag_vocab x 1]
-            att_probs_sq = att_probs.unsqueeze(3)
+            #att_probs_sq = att_probs.unsqueeze(3)
 
             # elementwise hadamard product - attention scaling
             # dim = [batch x tgt_len x tag_vocab x embed_dim]
-            context_weights = att_probs_sq * values
+            #context_weights = att_probs_sq * values
 
             # weighted sum of scaled embeddings in vocab dimension
             # gives contextual embedding
             # dim = [batch x tgt_len x embed_dim]
-            context = torch.sum(context_weights, dim=-2)
+            #context = torch.sum(context_weights, dim=-2)
 
             # dim = [batch x tgt_len x hidden_size]
-            out = self.to_out(context)
+            #out = self.to_out(context)
 
             # dim = [batch x tgt_len x hidden_size]
-            x = x + out
+            #x = x + out
 
 ######################      End         ###################### 
 
         output = self.output_layer(x)
 
-        return output, x, out, att_scores
+        return output, x, None, att_scores
 
     def __repr__(self):
         return "%s(num_layers=%r, num_heads=%r)" % (
