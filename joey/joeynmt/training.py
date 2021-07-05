@@ -428,7 +428,7 @@ class TrainManager:
                                          use_cuda=self.use_cuda)
 
                 # get batch loss
-                batch_loss += self._train_step(batch)
+                batch_loss += self._train_step(batch, epoch_no)
 
                 # update!
                 if (i + 1) % self.batch_multiplier == 0:
@@ -496,7 +496,7 @@ class TrainManager:
 
         self.tb_writer.close()  # close Tensorboard writer
 
-    def _train_step(self, batch: Batch) -> Tensor:
+    def _train_step(self, batch: Batch, epoch_no: int) -> Tensor:
         """
         Train the model on one batch: Compute the loss.
 
@@ -509,7 +509,17 @@ class TrainManager:
 
         # loss includes tag and out CE loss 
         # get loss
-        batch_loss, _, _, _ = self.model(return_type="loss", **vars(batch))
+        batch_loss, batch_tag_loss, _, _ = self.model(return_type="loss", **vars(batch))
+
+        # scale tag loss
+        importance = 1
+        scaling = 0.8 ** epoch_no
+        factor = importance * scaling
+        
+        # add tag loss if above threshold
+        if not factor < 0.1:
+            batch_tag_loss = batch_tag_loss * factor
+            batch_loss = batch_loss + batch_tag_loss
 
         # sum multi-gpu losses
         if self.n_gpu > 1:
