@@ -4,6 +4,7 @@
 """
 Various decoders
 """
+from os import X_OK
 from typing import Optional, Tuple
 
 import torch
@@ -512,8 +513,10 @@ class TransformerDecoder(Decoder):
         self.tag_embed_dim = tag_embed_size
         self.tag_embeddings = None # 511 x 128
         self.value_embeddings = None
-        self.to_embed = nn.Linear(self._hidden_size, self.tag_embed_dim, bias=False) # 512 -> 128
-        self.to_out = nn.Linear(self.tag_embed_dim, self._hidden_size, bias=False) # 128 -> 512
+        #self.to_embed = nn.Linear(self._hidden_size, self.tag_embed_dim, bias=False) # 512 -> 128
+        #self.to_embed_vocab = nn.Linear(self._hidden_size, self.tag_vocab_size, bias=False)
+        self.mlp = nn.Sequential(nn.Linear(self._hidden_size, 256), nn.Tanh(), nn.Linear(256, self.tag_vocab_size), nn.LogSoftmax(dim=-1))
+        #self.to_out = nn.Linear(self.tag_embed_dim, self._hidden_size, bias=False) # 128 -> 512
         
 ######################      End         ######################
 
@@ -565,17 +568,20 @@ class TransformerDecoder(Decoder):
 ######################  Modifications  ######################
 
         # predict tags
-        if self.use_tags:
+        tag_out = self.mlp(x)
+
+        # predict tags
+        #if self.use_tags:
 
             # dim = [batch x tgt_len x embed_dim]
-            y = self.to_embed(x)
+            
 
             # dim = [tag_vocab x embed_dim] = [511 x 128]     
-            embs = self.tag_embeddings
+            #embs = self.tag_embeddings
 
             # att scores for loss calculation (log softmax for CE)
             # dim = [batch x tgt_len x tag_vocab]
-            att_scores = y @ embs.transpose(0,1)
+            #att_scores = y @ embs.transpose(0,1)
 
             # softmax for contextual embedding calculation
             # dim = [batch x tgt_len x tag_vocab]
@@ -609,7 +615,7 @@ class TransformerDecoder(Decoder):
 
         output = self.output_layer(x)
 
-        return output, x, None, att_scores
+        return output, x, None, tag_out
 
     def __repr__(self):
         return "%s(num_layers=%r, num_heads=%r)" % (

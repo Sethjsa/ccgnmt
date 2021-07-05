@@ -10,4 +10,5 @@
 /model_rebank
 /joeynmt
 joey/models/ccg_transformer_test/*.ckpt
+joey/models/ccg_transformer_mlp/*.ckpt
 /data/tren

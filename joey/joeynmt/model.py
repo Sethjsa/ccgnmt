@@ -92,10 +92,13 @@ class Model(nn.Module):
             out, _, _, tag_out = self._encode_decode(**kwargs)
             
             # compute tag log probs from att_scores
-            log_probs_tags = F.log_softmax(tag_out, dim=-1)
+            #log_probs_tags = F.log_softmax(tag_out, dim=-1)
 
             # compute batch tag loss
-            batch_loss_tags = self.loss_function(log_probs_tags, kwargs["tag"])
+            batch_loss_tags = self.loss_function(tag_out, kwargs["tag"])
+
+            # scale tag loss
+            # batch_loss_tags = batch_loss_tags * 1
 
             # compute word log probs
             log_probs = F.log_softmax(out, dim=-1)
