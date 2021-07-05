@@ -107,11 +107,11 @@ class Model(nn.Module):
             batch_loss = self.loss_function(log_probs, kwargs["trg"])
 
             # sum losses
-            batch_loss += batch_loss_tags
+            #batch_loss += batch_loss_tags
 
             # return batch loss
             #     = sum over all elements in batch that are not pad
-            return_tuple = (batch_loss, None, None, None)
+            return_tuple = (batch_loss, batch_loss_tags, None, None)
 
 ######################      End         ###################### 
         

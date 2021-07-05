@@ -11,4 +11,8 @@
 /joeynmt
 joey/models/ccg_transformer_test/*.ckpt
 joey/models/ccg_transformer_mlp/*.ckpt
+<<<<<<< Updated upstream
+=======
+joey/models/ccg_transformer_decay/*.ckpt
+>>>>>>> Stashed changes
 /data/tren
