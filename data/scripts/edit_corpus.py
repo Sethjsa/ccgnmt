@@ -8,25 +8,25 @@ with open("train_18.en", "r+") as h:
 
 remove = []
 
-with open("train_corpus.en", "r") as f:
+with open("train_mono.en", "r") as f:
     for count, line in enumerate(f):
         if line == "\n":    
             remove.append(count)
 
-with open("train_corpus.tr", "r") as g:
-    with open("train_corpus_proc.tr", "w") as h:
-        for count, line in enumerate(g):
-            if not count in remove:
-                h.write(line)
+#with open("train_corpus.tr", "r") as g:
+ #   with open("train_corpus_proc.tr", "w") as h:
+  #      for count, line in enumerate(g):
+   #         if not count in remove:
+    #            h.write(line)
 
-with open("train_corpus.en", "r") as j:
-    with open("train_corpus_proc.en", "w") as k:
+with open("train_mono.en", "r") as j:
+    with open("train_mono_proc.en", "w") as k:
         for count, line in enumerate(j):
             if not count in remove:
                 k.write(line)
 
-with open("train_corpus.tags", "r") as j:
-    with open("train_corpus_proc.tags", "w") as k:
+with open("train_mono.tags", "r") as j:
+    with open("train_mono_proc.tags", "w") as k:
         for count, line in enumerate(j):
             if not count in remove:
                 k.write(line)
