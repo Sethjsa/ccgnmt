@@ -223,6 +223,7 @@ def interleave_postprocess(string) -> str:
         l = string.split()
         #ret = " ".join(l[0::2])
         ret = [word for word in l if not "TAG_" in l]
+        ret = " ".join(ret)
         return ret
 
 
