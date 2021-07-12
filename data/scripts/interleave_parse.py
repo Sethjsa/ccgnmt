@@ -1,4 +1,4 @@
-with open("train_parse.deptags", "r") as f, open("train_bpe.tr", "r") as g, open("train_parse_bpe.tr", "w") as h:
+with open("test_parse.lrdeptags", "r") as f, open("test_bpe.tr", "r") as g, open("test_parselr_bpe.tr", "w") as h:
     g = g.readlines()
     for c, line in enumerate (f):
         l = g[c].split()
@@ -9,7 +9,7 @@ with open("train_parse.deptags", "r") as f, open("train_bpe.tr", "r") as g, open
         bpe_skip = 0
         out = []
         #print(l, l2)
-        #print(l, l2)
+        # print(c, l, l2)
         for c, word in enumerate(l):
             if word == "&apos;" or word == "&quot;":
                 apos_skip += 1
