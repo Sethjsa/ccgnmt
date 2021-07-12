@@ -1,6 +1,6 @@
 import os
 
-
+"""
 src_lang = 'de'
 trg_lang = 'en'
 bpe_size = 85000
@@ -49,5 +49,5 @@ for split in ['train', 'dev', 'test']:
   ! subword-nmt apply-bpe \
     -c $bpe_file \
     < $trg_input_file > $trg_output_file
-
+"""
 
