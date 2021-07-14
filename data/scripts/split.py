@@ -1,4 +1,4 @@
-with open("mono_output.en", "r") as f, open("train_mono.tags", "w") as g, open("train_mono.en", "w") as h:
+with open("test_output.en", "r") as f, open("test_split.tags", "w") as g, open("test_split.en", "w") as h:
     for line in f:
         #splitted = line.split("||")
         line = line.replace("||", " ")
