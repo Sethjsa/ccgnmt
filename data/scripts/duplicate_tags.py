@@ -1,4 +1,4 @@
-with open("train_trgparse_bpe.en", "r") as f, open("train_trgparse.lrdeptags", "r") as g, open("train_trgparselr_bpe.tags", "w") as h:
+with open("train_trgparse_bpe.en", "r") as f, open("train_trgparse_proc.deptags", "r") as g, open("train_trgparse_bpe.tags", "w") as h:
     f0 = f.readlines()
     g0 = g.readlines()
     for count, line in enumerate(f0):
