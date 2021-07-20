@@ -62,6 +62,8 @@ class TrainManager:
         train_config = config["training"]
         self.batch_class = batch_class
 
+        self.decay_factor = train_config["decay"]
+
         # files for logging and storing
         self.model_dir = train_config["model_dir"]
         assert os.path.exists(self.model_dir)
@@ -513,7 +515,7 @@ class TrainManager:
 
         # scale tag loss
         importance = 1
-        scaling = 0.8 ** epoch_no
+        scaling = self.decay_factor ** epoch_no
         factor = importance * scaling
         
         # add tag loss if above threshold

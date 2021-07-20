@@ -11,4 +11,5 @@
 /joeynmt
 joey/models/ccg_transformer_decay/*.ckpt
 joey/models/ccg_transformer_mlp/*.ckpt
+joey/models/ccg_transformer_test/*.ckpt
 /data/tren

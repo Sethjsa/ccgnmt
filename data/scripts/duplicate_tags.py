@@ -1,4 +1,4 @@
-with open("train_bpe.en", "r") as f, open("train_corpus_proc.tags", "r") as g, open("train_bpe.tags", "w") as h:
+with open("train_bpe30.en", "r") as f, open("train.tags", "r") as g, open("train_bpe30.tags", "w") as h:
     f0 = f.readlines()
     g0 = g.readlines()
     for count, line in enumerate(f0):
